@@ -1,5 +1,23 @@
 .Home {
   width: 100%;
-  height: 100vh;
   background-color: #f0f2f5;
+  box-sizing: border-box;
+}
+.gutter {
+  width: 100%;
+  height: 70px;
+}
+.Home_innerWrapper {
+  display: flex;
+  margin-top: 30px;
+}
+.main {
+  width: 75%;
+  background-color: aqua;
+  height: 100vh;
+  padding: 0 100px;
+}
+.taskbar {
+  width: 25%;
+  background-color: blue;
 }
