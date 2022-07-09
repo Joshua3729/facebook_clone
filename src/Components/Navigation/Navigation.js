@@ -12,6 +12,19 @@ const Navigation = () => {
           <img src={search} alt="" />
         </button>
       </div>
+      <ul className={classes.second_column}>
+        <li className={classes.nav_item}>1</li>
+        <li className={classes.nav_item}>2</li>
+        <li className={classes.nav_item}>3</li>
+        <li className={classes.nav_item}>4</li>
+        <li className={classes.nav_item}>5</li>
+      </ul>
+      <ul className={classes.third_column}>
+        <li className={classes.third_column_item}>6</li>
+        <li className={classes.third_column_item}>7</li>
+        <li className={classes.third_column_item}>8</li>
+        <li className={classes.third_column_item}>9</li>
+      </ul>
     </div>
   );
 };
