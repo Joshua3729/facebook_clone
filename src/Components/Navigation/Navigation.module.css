@@ -39,16 +39,28 @@
   margin-right: 10px;
   padding: 0 50px;
   height: 100%;
-  background-color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
 }
 .nav_item:last-child {
   margin-right: 0;
 }
 .third_column_item {
   padding: 0 30px;
-  background-color: aqua;
   margin-right: 10px;
 }
 .third_column:last-child {
   margin-right: 0;
+}
+.g28tu32o {
+  color: #65676b;
+}
+.active {
+  border-bottom: #1b74e4 solid 3px;
+}
+.active .g28tu32o {
+  color: #1b74e4;
 }
