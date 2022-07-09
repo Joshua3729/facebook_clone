@@ -9,6 +9,7 @@
   background-color: white;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
+  z-index: 1500;
 }
 .search_btn {
   margin-left: 10px;

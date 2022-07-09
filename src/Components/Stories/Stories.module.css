@@ -1,5 +1,7 @@
 .Stories {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
   height: 250px;
   width: 100%;
-  background-color: bisque;
 }

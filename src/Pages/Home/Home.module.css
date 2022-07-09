@@ -13,11 +13,9 @@
 }
 .main {
   width: 75%;
-  background-color: aqua;
   height: 100vh;
   padding: 0 100px;
 }
 .taskbar {
   width: 25%;
-  background-color: blue;
 }
