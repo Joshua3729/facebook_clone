@@ -25,9 +25,20 @@ const Post = () => {
         />
       </div>
       <div className={classes.post_toolbar}>
-        <i data-visualcompletion="css-img" className={classes.like}></i>
-        <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps"></i>
-        <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps"></i>
+        <div className={classes.inner_wrapper}>
+          <button className={classes.like_btn}>
+            <i data-visualcompletion="css-img" className={classes.like}></i>{" "}
+            Like
+          </button>
+          <button className={classes.comment_btn}>
+            <i data-visualcompletion="css-img" className={classes.comment}></i>
+            Comment
+          </button>
+          <button className={classes.share_btn}>
+            <i data-visualcompletion="css-img" className={classes.share}></i>
+            Share
+          </button>
+        </div>
       </div>
     </div>
   );

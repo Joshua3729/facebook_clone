@@ -41,8 +41,9 @@
 }
 .post_toolbar {
   width: 100%;
-  height: 90px;
   background-color: white;
+  padding: 20px;
+  box-sizing: border-box;
 }
 .like {
   background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yZ/r/YnBe7QFb2jR.png?_nc_eui2=AeESxVsbUKq-7urpxHmkQrc7tCPH_G7guai0I8f8buC5qLDEivUyqMQ5iUbLqvgls6kWPZ0LXonTJbaCiJ0nz0lx);
@@ -52,6 +53,7 @@
   height: 18px;
   background-repeat: no-repeat;
   display: inline-block;
+  margin-right: 10px;
 }
 .comment {
   background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yZ/r/YnBe7QFb2jR.png?_nc_eui2=AeESxVsbUKq-7urpxHmkQrc7tCPH_G7guai0I8f8buC5qLDEivUyqMQ5iUbLqvgls6kWPZ0LXonTJbaCiJ0nz0lx");
@@ -61,6 +63,7 @@
   height: 18px;
   background-repeat: no-repeat;
   display: inline-block;
+  margin-right: 10px;
 }
 .share {
   background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yZ/r/YnBe7QFb2jR.png?_nc_eui2=AeESxVsbUKq-7urpxHmkQrc7tCPH_G7guai0I8f8buC5qLDEivUyqMQ5iUbLqvgls6kWPZ0LXonTJbaCiJ0nz0lx");
@@ -70,4 +73,23 @@
   height: 18px;
   background-repeat: no-repeat;
   display: inline-block;
+  margin-right: 10px;
+}
+.inner_wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.like_btn,
+.comment_btn,
+.share_btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 20px;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  color: #65676b;
 }
