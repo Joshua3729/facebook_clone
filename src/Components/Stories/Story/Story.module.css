@@ -1,11 +1,9 @@
 .Story {
   position: relative;
-  background-color: red;
+  background-color: lightgray;
   width: 100%;
   height: 100%;
   border-radius: 15px;
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.4), transparent),
-    url("https://sahiphopza.co/wp-content/uploads/2022/01/download-major-league-djz-mixes-for-january-2022-Mp3-Download.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
