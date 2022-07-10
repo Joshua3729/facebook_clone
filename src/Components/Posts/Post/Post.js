@@ -18,6 +18,12 @@ const Post = () => {
           <div className={classes.time}>16h</div>
         </div>
       </div>
+      <div className={classes.image_wrapper}>
+        <img
+          src="https://images.complex.com/complex/images/c_fill,f_auto,g_center,w_1200/fl_lossy,pg_1/mb7jv2qtrxgfvf9jjcrk/drake-french"
+          alt=""
+        />
+      </div>
     </div>
   );
 };
