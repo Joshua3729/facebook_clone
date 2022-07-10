@@ -6,6 +6,9 @@ const Posts = () => {
   return (
     <div className={classes.Posts}>
       <Post />
+      <Post />
+      <Post />
+      <Post />
     </div>
   );
 };

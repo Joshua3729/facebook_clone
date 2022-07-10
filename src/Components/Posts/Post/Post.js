@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Post.module.css";
 
-const Post = () => {
+const Post = (props) => {
   return (
     <div className={classes.Post}>
       <div className={classes.post_header}>
@@ -14,16 +14,15 @@ const Post = () => {
         </div>
 
         <div className={classes.name_wrapper}>
-          <div className={classes.user_name}>Drake</div>
-          <div className={classes.time}>16h</div>
+          <div className={classes.user_name}>{props.user_name}</div>
+          <div className={classes.time}>{props.time}</div>
         </div>
       </div>
-      <div className={classes.image_wrapper}>
-        <img
-          src="https://images.complex.com/complex/images/c_fill,f_auto,g_center,w_1200/fl_lossy,pg_1/mb7jv2qtrxgfvf9jjcrk/drake-french"
-          alt=""
-        />
-      </div>
+      {props.media && (
+        <div className={classes.image_wrapper}>
+          <img src={props.media} alt="" />
+        </div>
+      )}
       <div className={classes.post_toolbar}>
         <div className={classes.inner_wrapper}>
           <button className={classes.like_btn}>
