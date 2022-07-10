@@ -3,6 +3,7 @@
   background-color: white;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
+  overflow: hidden;
 }
 .post_header {
   display: flex;
@@ -37,4 +38,36 @@
 }
 .image_wrapper img {
   width: 100%;
+}
+.post_toolbar {
+  width: 100%;
+  height: 90px;
+  background-color: white;
+}
+.like {
+  background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yZ/r/YnBe7QFb2jR.png?_nc_eui2=AeESxVsbUKq-7urpxHmkQrc7tCPH_G7guai0I8f8buC5qLDEivUyqMQ5iUbLqvgls6kWPZ0LXonTJbaCiJ0nz0lx);
+  background-position: 0px -332px;
+  background-size: 26px 884px;
+  width: 18px;
+  height: 18px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.comment {
+  background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yZ/r/YnBe7QFb2jR.png?_nc_eui2=AeESxVsbUKq-7urpxHmkQrc7tCPH_G7guai0I8f8buC5qLDEivUyqMQ5iUbLqvgls6kWPZ0LXonTJbaCiJ0nz0lx");
+  background-position: 0px -292px;
+  background-size: 26px 884px;
+  width: 18px;
+  height: 18px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.share {
+  background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yZ/r/YnBe7QFb2jR.png?_nc_eui2=AeESxVsbUKq-7urpxHmkQrc7tCPH_G7guai0I8f8buC5qLDEivUyqMQ5iUbLqvgls6kWPZ0LXonTJbaCiJ0nz0lx");
+  background-position: 0px -352px;
+  background-size: 26px 884px;
+  width: 18px;
+  height: 18px;
+  background-repeat: no-repeat;
+  display: inline-block;
 }
