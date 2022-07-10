@@ -23,6 +23,7 @@ const Post = (props) => {
           <img src={props.media} alt="" />
         </div>
       )}
+      {props.text && <div className={classes.text_wrapper}>{props.text}</div>}
       <div className={classes.post_toolbar}>
         <div className={classes.inner_wrapper}>
           <button className={classes.like_btn}>
@@ -37,6 +38,14 @@ const Post = (props) => {
             <i data-visualcompletion="css-img" className={classes.share}></i>
             Share
           </button>
+        </div>
+      </div>
+      <div className={classes.comment_wrapper}>
+        <div className={classes.comment_innerWrapper}>
+          <div className={classes.userProfile_wrapper}>
+            <img src={props.userImg} alt="" />
+          </div>
+          <input type="text" className={classes.comment_input} />
         </div>
       </div>
     </div>

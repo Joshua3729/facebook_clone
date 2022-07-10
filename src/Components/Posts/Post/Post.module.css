@@ -46,7 +46,7 @@
 .post_toolbar {
   width: 100%;
   background-color: white;
-  padding: 10px 20px;
+  padding: 5px 20px;
   box-sizing: border-box;
 }
 .like {
@@ -106,4 +106,42 @@
 }
 .share_btn:hover {
   background-color: #dddddd;
+}
+.text_wrapper {
+  font-size: 22px;
+  text-align: left;
+  line-height: 1.5;
+  padding: 0 20px;
+}
+.comment_wrapper {
+  width: 100%;
+  background-color: white;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+.comment_innerWrapper {
+  border-top: #e5e5e5 1.5px solid;
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+}
+.userProfile_wrapper {
+  margin-right: 20px;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+.comment_input {
+  width: calc(100% - 50px);
+  border-radius: 100px;
+  border: none;
+  background-color: #f0f2f5;
+}
+.userProfile_wrapper img {
+  width: 110%;
+  height: 110%;
 }
