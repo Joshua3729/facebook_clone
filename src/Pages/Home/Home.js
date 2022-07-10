@@ -1,5 +1,6 @@
 import React from "react";
 import WhatsOnYourMind from "../../Components/Inputs/WhatsOnYourMind/WhatsOnYourMind";
+import Posts from "../../Components/Posts/Posts";
 import Stories from "../../Components/Stories/Stories";
 import classes from "./Home.module.css";
 
@@ -12,6 +13,7 @@ const Home = () => {
           <Stories />
           <div className={classes.feed}>
             <WhatsOnYourMind />
+            <Posts />
           </div>
         </div>
         <div className={classes.taskbar}></div>
