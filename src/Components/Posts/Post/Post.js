@@ -18,6 +18,9 @@ const Post = (props) => {
           <div className={classes.time}>{props.time}</div>
         </div>
       </div>
+      {props.caption && (
+        <div className={classes.caption_wrapper}>{props.caption}</div>
+      )}
       {props.media && (
         <div className={classes.image_wrapper}>
           <img src={props.media} alt="" />
@@ -45,7 +48,11 @@ const Post = (props) => {
           <div className={classes.userProfile_wrapper}>
             <img src={props.userImg} alt="" />
           </div>
-          <input type="text" className={classes.comment_input} />
+          <input
+            type="text"
+            className={classes.comment_input}
+            placeholder="Write a comment"
+          />
         </div>
       </div>
     </div>

@@ -19,6 +19,7 @@
   color: #65676b;
   border-radius: 100px;
   cursor: pointer;
+  padding-left: 10px;
 }
 .user_input span {
   padding: 20px 10px;

@@ -140,8 +140,21 @@
   border-radius: 100px;
   border: none;
   background-color: #f0f2f5;
+  font-size: 20px;
+  padding: 10px 20px;
+  border: none;
+}
+.comment_input:focus {
+  border: none;
+  outline: none;
 }
 .userProfile_wrapper img {
   width: 110%;
   height: 110%;
+}
+.caption_wrapper {
+  padding: 0 20px 20px 20px;
+  text-align: left;
+  font-size: 20px;
+  color: #050505;
 }

@@ -14,6 +14,17 @@ const Home = () => {
           <div className={classes.feed}>
             <WhatsOnYourMind />
             <Posts />
+            <div className={classes.noMore_posts}>
+              <div className={classes.inner_wrapper}>
+                <p className={classes.Notice}>No More Posts</p>
+                <p className={classes.CTA}>
+                  Add more friends to see more posts in your Feed.
+                </p>
+                <button className={classes.findFriends_btn}>
+                  Find Friends
+                </button>
+              </div>
+            </div>
           </div>
         </div>
         <div className={classes.taskbar}></div>
