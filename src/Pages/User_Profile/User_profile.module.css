@@ -13,6 +13,8 @@
   background-color: #f0f2f5;
   width: 100%;
   height: 500px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 .profile_wrapper {
   padding: 40px;
@@ -39,4 +41,21 @@
   margin-left: 220px;
   font-size: 40px;
   font-weight: 700;
+}
+.messanger,
+.add_friend {
+  padding: 15px 0;
+  width: 120px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 600;
+}
+.add_friend {
+  background-color: #e4e6eb;
+}
+.messanger {
+  background-color: #1b74e4;
+  color: white;
 }

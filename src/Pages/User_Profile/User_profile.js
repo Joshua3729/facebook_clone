@@ -15,7 +15,9 @@ const User_profile = () => {
           </div>
           <div className={classes.btns_wrapper}>
             <button className={classes.add_friend}>Friends</button>
-            <button className={classes.messanger}>Messenger</button>
+            <button className={classes.messanger}>
+              <i class="fas fa-brands fa-facebook-messenger"></i> Message
+            </button>
           </div>
         </div>
       </div>
