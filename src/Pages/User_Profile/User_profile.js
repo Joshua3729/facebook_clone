@@ -7,10 +7,12 @@ const User_profile = () => {
       <div className={classes.header_bar}>
         <div className={classes.cover_wrapper}></div>
         <div className={classes.profile_wrapper}>
-          <div className={classes.userImg}>
-            <img src="" alt="" />
+          <div className={classes.header_innerWrapper}>
+            <div className={classes.userImg}>
+              <img src="" alt="" />
+            </div>
+            <div className={classes.userName}>Hery Ford</div>
           </div>
-          <div className={classes.userName}>Hery Ford</div>
           <div className={classes.btns_wrapper}>
             <button className={classes.add_friend}>Friends</button>
             <button className={classes.messanger}>Messenger</button>

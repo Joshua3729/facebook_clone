@@ -6,7 +6,7 @@
 .header_bar {
   width: 100%;
   background-color: white;
-  padding: 0 90px 90px;
+  padding: 0 90px;
   box-sizing: border-box;
 }
 .cover_wrapper {
@@ -17,4 +17,26 @@
 .profile_wrapper {
   padding: 40px;
   box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header_innerWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 65px;
+}
+.userImg {
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  background-color: yellow;
+  top: -130px;
+}
+.userName {
+  margin-left: 220px;
+  font-size: 40px;
+  font-weight: 700;
 }
