@@ -29,7 +29,9 @@ const Post = (props) => {
       )}
       {props.video && (
         <div className={classes.video_wrapper}>
-          <video src={props.video}></video>
+          <video autoplay="true" loop="" controls="true">
+            <source type="video/mp4" src={props.video} />
+          </video>
         </div>
       )}
       {props.text && <div className={classes.text_wrapper}>{props.text}</div>}

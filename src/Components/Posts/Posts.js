@@ -49,12 +49,12 @@ const Posts = () => {
         }
       />
       <Post
-        user_name={"Kygo"}
+        user_name={"Motivation Daily"}
         time={"1d"}
-        caption={"Hello Ibiza!"}
+        caption={"very enlightening."}
         video={kompela}
         userImg={
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYH_VDaGfxQ_cPhkgDPyoxXJgnnKHzEw7kdg&usqp=CAU"
+          "http://apkpuff.com/wp-content/uploads/2021/04/Motivation-Daily-quotes-Mod-Apk.png"
         }
       />
     </div>
