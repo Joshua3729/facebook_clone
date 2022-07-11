@@ -1,4 +1,5 @@
 import React from "react";
+
 import classes from "./Post.module.css";
 
 const Post = (props) => {
@@ -26,6 +27,11 @@ const Post = (props) => {
           <img src={props.media} alt="" />
         </div>
       )}
+      {props.video && (
+        <div className={classes.video_wrapper}>
+          <video src={props.video}></video>
+        </div>
+      )}
       {props.text && <div className={classes.text_wrapper}>{props.text}</div>}
       <div className={classes.post_toolbar}>
         <div className={classes.inner_wrapper}>
@@ -45,9 +51,13 @@ const Post = (props) => {
       </div>
       <div className={classes.comment_wrapper}>
         <div className={classes.comment_innerWrapper}>
-          <div className={classes.userProfile_wrapper}>
-            <img src={props.userImg} alt="" />
+          <div className={classes.outer_wrapper}>
+            <div className={classes.userProfile_wrapper}>
+              <img src={props.userImg} alt="" />
+            </div>
+            <div className={classes.online}></div>
           </div>
+
           <input
             type="text"
             className={classes.comment_input}

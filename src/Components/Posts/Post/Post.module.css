@@ -126,13 +126,11 @@
   display: flex;
 }
 .userProfile_wrapper {
-  margin-right: 20px;
   align-items: center;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
-
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 .comment_input {
@@ -157,4 +155,28 @@
   text-align: left;
   font-size: 20px;
   color: #050505;
+}
+.online {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  border: 3px white solid;
+  background-color: #31a24c;
+  bottom: 0px;
+  right: -5px;
+  z-index: 500;
+  border-radius: 50px;
+}
+.outer_wrapper {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+}
+.video_wrapper {
+  width: 100%;
+}
+
+.video_wrapper video {
+  width: 100%;
 }

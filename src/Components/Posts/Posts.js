@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./Posts.module.css";
 import Post from "./Post/Post";
+import kompela from "../../Assets/Videos/kompela.mp4";
 
 const Posts = () => {
   return (
@@ -43,6 +44,15 @@ const Posts = () => {
         user_name={"Mabongi KayWan"}
         time={"06 june"}
         text={"SBWL ukuya Emalydin today"}
+        userImg={
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYH_VDaGfxQ_cPhkgDPyoxXJgnnKHzEw7kdg&usqp=CAU"
+        }
+      />
+      <Post
+        user_name={"Kygo"}
+        time={"1d"}
+        caption={"Hello Ibiza!"}
+        video={kompela}
         userImg={
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYH_VDaGfxQ_cPhkgDPyoxXJgnnKHzEw7kdg&usqp=CAU"
         }
