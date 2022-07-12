@@ -42,12 +42,21 @@ const User_profile = () => {
         </div>
         <div className={classes.nav_bar}>
           <ul className={classes.links_wrapper}>
-            <li className={classes.nav_item}>Posts</li>
+            <li className={[classes.nav_item, classes.active].join(" ")}>
+              Posts
+            </li>
             <li className={classes.nav_item}>About</li>
             <li className={classes.nav_item}>Friends</li>
             <li className={classes.nav_item}>Photos</li>
             <li className={classes.nav_item}>Videos</li>
           </ul>
+        </div>
+      </div>
+
+      <div className={classes.main_wrapper}>
+        <div className={classes.main}>
+          <div className={classes.left_wrapper}></div>
+          <div className={classes.right_wrapper}></div>
         </div>
       </div>
     </div>
