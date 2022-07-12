@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import IntroCard from "../../Components/IntroCard/IntroCard";
+import PhotosCard from "../../Components/PhotosCard/PhotosCard";
 import classes from "./User_profile.module.css";
+import WhatsOnYourMind from "../../Components/Inputs/WhatsOnYourMind/WhatsOnYourMind";
 
 const User_profile = () => {
   return (
@@ -53,13 +55,15 @@ const User_profile = () => {
           </ul>
         </div>
       </div>
-
       <div className={classes.main_wrapper}>
         <div className={classes.main}>
           <div className={classes.left_wrapper}>
             <IntroCard />
+            <PhotosCard />
           </div>
-          <div className={classes.right_wrapper}></div>
+          <div className={classes.right_wrapper}>
+            <WhatsOnYourMind />
+          </div>
         </div>
       </div>
     </div>

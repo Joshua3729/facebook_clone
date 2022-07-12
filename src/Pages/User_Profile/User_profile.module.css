@@ -1,6 +1,7 @@
 .User_profile {
   width: 100%;
-  height: 180vh;
+  padding-bottom: 50px;
+  height: auto;
   background-color: #f0f2f5;
 }
 .header_bar {
@@ -132,7 +133,6 @@
 .main {
   display: flex;
   margin-top: 20px;
-  height: 50px;
   width: calc(100% - 220px);
 }
 .main_wrapper {
@@ -146,8 +146,6 @@
 .right_wrapper {
   width: calc(60% - 20px);
   height: 100%;
-  background-color: white;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   margin-left: 20px;
 }
