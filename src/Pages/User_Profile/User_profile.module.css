@@ -31,11 +31,19 @@
 }
 .userImg {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 210px;
   height: 210px;
   border-radius: 50%;
-  background-color: yellow;
+  background-color: white;
   top: -130px;
+}
+.userImg img {
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  border-radius: 50%;
 }
 .userName {
   margin-left: 220px;
@@ -45,11 +53,11 @@
 .messanger,
 .add_friend {
   padding: 15px 0;
-  width: 120px;
+  width: 125px;
   margin-right: 10px;
   border: none;
   border-radius: 10px;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 600;
 }
 .add_friend {
@@ -58,4 +66,56 @@
 .messanger {
   background-color: #1b74e4;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message {
+  width: 20px;
+  fill: white;
+  margin-right: 7px;
+}
+.btns_wrapper {
+  display: flex;
+}
+.friends {
+  margin-right: 5px;
+}
+.add_friend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.links_wrapper {
+  display: flex;
+  list-style: none;
+  height: 80px;
+  margin: 0;
+  padding: 0;
+  border-top: #ccced2 solid 1px;
+}
+.nav_bar {
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+.nav_item {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  margin-right: 10px;
+  font-size: 20px;
+  box-sizing: border-box;
+  font-weight: 600;
+  color: #65676b;
+}
+.active {
+  border-bottom: #1b74e4 solid 3px;
+  color: #1b74e4;
+}
+
+.nav_item:last-child {
+  margin-right: 0;
 }
