@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import IntroCard from "../../Components/IntroCard/IntroCard";
 import classes from "./User_profile.module.css";
 
 const User_profile = () => {
@@ -55,7 +56,9 @@ const User_profile = () => {
 
       <div className={classes.main_wrapper}>
         <div className={classes.main}>
-          <div className={classes.left_wrapper}></div>
+          <div className={classes.left_wrapper}>
+            <IntroCard />
+          </div>
           <div className={classes.right_wrapper}></div>
         </div>
       </div>
