@@ -10,8 +10,11 @@ import {
   Routes,
 } from "react-router-dom";
 import User_profile from "./Pages/User_Profile/User_profile";
+import AuthPage from "./Pages/AuthPage/AuthPage";
 
 function App() {
+  let auth = false;
+
   let route = (
     <Router>
       <Routes>
@@ -20,9 +23,18 @@ function App() {
       </Routes>
     </Router>
   );
+  if (!auth) {
+    route = (
+      <Router>
+        <Routes>
+          <Route path="/" exact element={<AuthPage />} />
+        </Routes>
+      </Router>
+    );
+  }
   return (
     <div className={classes.App}>
-      <Navigation />
+      {auth && <Navigation />}
       {route}
     </div>
   );
