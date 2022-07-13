@@ -46,9 +46,6 @@ const AuthPage = () => {
           </div>
         </div>
       </div>
-      <div className={classes.footer}>
-        Bookface &copy; {new Date().getFullYear()}
-      </div>
     </div>
   );
 };

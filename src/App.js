@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import User_profile from "./Pages/User_Profile/User_profile";
 import AuthPage from "./Pages/AuthPage/AuthPage";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   let auth = false;
@@ -36,6 +37,7 @@ function App() {
     <div className={classes.App}>
       {auth && <Navigation />}
       {route}
+      <Footer />
     </div>
   );
 }
