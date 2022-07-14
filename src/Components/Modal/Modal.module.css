@@ -4,7 +4,6 @@
   left: 50%;
   /* transform: translate(-50%, -50%); */
   z-index: 1500;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease-out;
 }
 
