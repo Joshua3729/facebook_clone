@@ -93,7 +93,34 @@
 .modal_wrapper {
   width: 440px;
   height: 500px;
+  padding: 15px;
   background-color: white;
   border-radius: 7px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+.modal_open {
+  position: fixed;
+}
+.header_wrapper {
+  border-bottom: #dddfe2 1px solid;
+}
+
+.signup {
+  color: #1c1e21;
+  font-size: 30px;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.close {
+  cursor: pointer;
+}
+.close img {
+  width: 25px;
+  height: 25px;
+}
+.innerWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

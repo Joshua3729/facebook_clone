@@ -8,9 +8,21 @@ const AuthPage = () => {
   return (
     <>
       <Modal show={show}>
-        <div className={classes.modal_wrapper}></div>
+        <div className={classes.modal_wrapper}>
+          <div className={classes.header_wrapper}>
+            <div className={classes.innerWrapper}>
+              <div className={classes.signup}>Sign Up</div>
+              <div className={classes.close}>
+                <img
+                  src="https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/TdCEremeWv5.png"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </Modal>
-      <div className={classes.AuthPage}>
+      <div className={[classes.AuthPage, show && classes.modal_open].join(" ")}>
         <div className={classes.innerWrapper}>
           <div className={classes.left_wrapper}>
             <div className={classes.text_wrapper}>
