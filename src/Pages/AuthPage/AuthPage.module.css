@@ -93,7 +93,6 @@
 .modal_wrapper {
   width: 440px;
   height: 500px;
-  padding: 15px;
   background-color: white;
   border-radius: 7px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
@@ -103,6 +102,7 @@
 }
 .header_wrapper {
   border-bottom: #dddfe2 1px solid;
+  padding: 15px;
 }
 
 .signup {
@@ -118,9 +118,50 @@
   width: 25px;
   height: 25px;
 }
-.innerWrapper {
+.header_innerWrapper {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.statement {
+  color: #606770;
+}
+.input_wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+.form_wrapper {
+  padding: 15px;
+}
+
+.input_item {
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border-radius: 7px;
+  margin-top: 10px;
+  margin-bottom: 0;
+  border: #ccd0d5 1px solid;
+  font-size: 15px;
+  background-color: #f5f6f7;
+  color: #1c1e21;
+}
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(154, 148, 170);
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgb(154, 148, 170);
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: rgb(154, 148, 170);
 }

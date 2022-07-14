@@ -10,7 +10,7 @@ const AuthPage = () => {
       <Modal show={show}>
         <div className={classes.modal_wrapper}>
           <div className={classes.header_wrapper}>
-            <div className={classes.innerWrapper}>
+            <div className={classes.header_innerWrapper}>
               <div className={classes.signup}>Sign Up</div>
               <div className={classes.close}>
                 <img
@@ -19,6 +19,33 @@ const AuthPage = () => {
                 />
               </div>
             </div>
+            <div className={classes.statement}>Its quick and easy</div>
+          </div>
+          <div className={classes.form_wrapper}>
+            <form>
+              <div className={classes.input_wrapper}>
+                <input
+                  type="text"
+                  placeholder="Firstname"
+                  className={classes.input_item}
+                />
+                <input
+                  type="text"
+                  placeholder="Surname"
+                  className={classes.input_item}
+                />
+              </div>
+              <input
+                type="email"
+                placeholder="Email address"
+                className={classes.input_item}
+              />
+              <input
+                type="password"
+                placeholder="New password"
+                className={classes.input_item}
+              />
+            </form>
           </div>
         </div>
       </Modal>
