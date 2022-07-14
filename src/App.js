@@ -14,7 +14,7 @@ import AuthPage from "./Pages/AuthPage/AuthPage";
 import Footer from "./Components/Footer/Footer";
 
 function App() {
-  let auth = true;
+  let auth = false;
 
   let route = (
     <Router>
