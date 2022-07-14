@@ -32,7 +32,7 @@
   box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
   background-color: white;
   border-radius: 10px;
-  padding: 20px 20px 30px 20px;
+  padding: 20px 20px 25px 20px;
 }
 .input_item {
   width: 100%;
@@ -63,17 +63,18 @@
   font-weight: 600;
   border-radius: 5px;
   border: none;
+  cursor: pointer;
 }
 .fogort_password {
   margin-top: 20px;
   color: #1b74e4;
+  cursor: pointer;
 }
 .createAccount_wrapper {
   width: 100%;
   margin-top: 20px;
   border-top: #dddfe2 1px solid;
-  height: 100px;
-  padding-top: 30px;
+  padding-top: 25px;
 }
 .createAccount_btn {
   border-radius: 5px;
@@ -85,4 +86,7 @@
   padding: 0 20px;
   cursor: pointer;
   font-weight: 600;
+}
+.text_wrapper {
+  margin-top: 50px;
 }
