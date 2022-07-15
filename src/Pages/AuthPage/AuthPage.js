@@ -241,6 +241,47 @@ const AuthPage = () => {
                   </select>
                 </div>
               </div>
+              <div className={classes.dateOfBirth_wrapper}>
+                <div className={classes.title}>Date of birth</div>
+                <div className={classes.dateOfBirth_inner_wrapper}>
+                  <span className={classes.gender_input_item}>
+                    <label class="_58mt" for="u_2_2_w4">
+                      Female
+                    </label>
+                    <input
+                      type="radio"
+                      class="_8esa"
+                      name="sex"
+                      value="1"
+                      id="u_2_2_w4"
+                    />
+                  </span>
+                  <span className={classes.gender_input_item}>
+                    <label class="_58mt" for="u_2_3_bU">
+                      Male
+                    </label>
+                    <input
+                      type="radio"
+                      class="_8esa"
+                      name="sex"
+                      value="2"
+                      id="u_2_3_bU"
+                    />
+                  </span>
+                  <span className={classes.gender_input_item}>
+                    <label class="_58mt" for="u_2_4_n9">
+                      Custom
+                    </label>
+                    <input
+                      type="radio"
+                      class="_8esa"
+                      name="sex"
+                      value="-1"
+                      id="u_2_4_n9"
+                    />
+                  </span>
+                </div>
+              </div>
             </form>
           </div>
         </div>

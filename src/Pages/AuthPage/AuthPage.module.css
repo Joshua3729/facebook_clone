@@ -126,6 +126,7 @@
 }
 .statement {
   color: #606770;
+  font-size: 15px;
 }
 .input_wrapper {
   width: 100%;
@@ -164,4 +165,39 @@
 ::-ms-input-placeholder {
   /* Microsoft Edge */
   color: rgb(154, 148, 170);
+}
+.dateOfBirth_inner_wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.dateOfBirth_inner_wrapper select {
+  padding: 0 7px;
+  height: 40px;
+  border-radius: 7px;
+  border: #ccd0d5 1px solid;
+}
+.title {
+  font-size: 12px;
+  color: #606770;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+.dateOfBirth_wrapper {
+  margin-top: 10px;
+}
+.gender_input_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border: 1px solid #ccd0d5;
+}
+.gender_input_item {
+  border-radius: 4px;
+  border-width: 1px;
+  padding: 0 10px;
+  width: 100%;
+  height: 40px;
 }
