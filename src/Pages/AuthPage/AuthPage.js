@@ -242,7 +242,7 @@ const AuthPage = () => {
                 </div>
               </div>
               <div className={classes.dateOfBirth_wrapper}>
-                <div className={classes.title}>Date of birth</div>
+                <div className={classes.title}>Gender</div>
                 <div className={classes.dateOfBirth_inner_wrapper}>
                   <span className={classes.gender_input_item}>
                     <label class="_58mt" for="u_2_2_w4">
@@ -254,6 +254,7 @@ const AuthPage = () => {
                       name="sex"
                       value="1"
                       id="u_2_2_w4"
+                      checked
                     />
                   </span>
                   <span className={classes.gender_input_item}>
@@ -278,9 +279,26 @@ const AuthPage = () => {
                       name="sex"
                       value="-1"
                       id="u_2_4_n9"
+                      disabled={true}
                     />
                   </span>
                 </div>
+              </div>
+              <div className={classes.termsOfService}>
+                <p className={classes.item_one}>
+                  People who use our service may have uploaded your contact
+                  information to Facebook.{" "}
+                  <span className={classes.links}>Learn more</span>
+                </p>
+                <p className={classes.item_two}>
+                  By clicking Sign Up, you agree to our{" "}
+                  <span className={classes.links}>Terms, Data Policy</span> and{" "}
+                  <span className={classes.links}>Cookie Policy</span>. You may
+                  receive SMS notifications from us and can opt out at any time.
+                </p>
+              </div>
+              <div className={classes.signup_btnWrapper}>
+                <button className={classes.signup_btn}>Sign Up</button>
               </div>
             </form>
           </div>
