@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./App.module.css";
 import Navigation from "./Components/Navigation/Navigation";
 import Home from "./Pages/Home/Home";
@@ -14,7 +14,10 @@ import AuthPage from "./Pages/AuthPage/AuthPage";
 import Footer from "./Components/Footer/Footer";
 
 function App() {
-  let auth = false;
+  const [auth, setAuth] = useState(true);
+  const setAuthHandler = (auth) => {
+    setAuth(auth);
+  };
 
   let route = (
     <Router>
@@ -28,7 +31,11 @@ function App() {
     route = (
       <Router>
         <Routes>
-          <Route path="/" exact element={<AuthPage />} />
+          <Route
+            path="/"
+            exact
+            element={<AuthPage setAuthHandler={setAuthHandler} />}
+          />
         </Routes>
       </Router>
     );
@@ -37,7 +44,6 @@ function App() {
     <div className={classes.App}>
       {auth && <Navigation />}
       {route}
-      <Footer />
     </div>
   );
 }

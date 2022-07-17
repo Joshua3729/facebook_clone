@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "../../Components/Modal/Modal";
 import classes from "./AuthPage.module.css";
 
-const AuthPage = () => {
-  const show = true;
+const AuthPage = (props) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const showModalHandler = (show) => {
+    setShowModal(show);
+  };
 
   return (
     <>
-      <Modal show={show}>
+      <Modal show={showModal}>
         <div className={classes.modal_wrapper}>
           <div className={classes.header_wrapper}>
             <div className={classes.header_innerWrapper}>
               <div className={classes.signup}>Sign Up</div>
-              <div className={classes.close}>
+              <div
+                className={classes.close}
+                onClick={() => showModalHandler(false)}
+              >
                 <img
                   src="https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/TdCEremeWv5.png"
                   alt=""
@@ -304,7 +311,11 @@ const AuthPage = () => {
           </div>
         </div>
       </Modal>
-      <div className={[classes.AuthPage, show && classes.modal_open].join(" ")}>
+      <div
+        className={[classes.AuthPage, showModal && classes.modal_open].join(
+          " "
+        )}
+      >
         <div className={classes.innerWrapper}>
           <div className={classes.left_wrapper}>
             <div className={classes.text_wrapper}>
@@ -339,11 +350,19 @@ const AuthPage = () => {
                   placeholder="Password"
                 />
               </div>
-              <button className={classes.LogIn_btn}>Log In</button>
+              <button
+                className={classes.LogIn_btn}
+                onClick={() => props.setAuthHandler(true)}
+              >
+                Log In
+              </button>
 
               <div className={classes.fogort_password}>Forgotten password?</div>
               <div className={classes.createAccount_wrapper}>
-                <button className={classes.createAccount_btn}>
+                <button
+                  className={classes.createAccount_btn}
+                  onClick={() => showModalHandler(true)}
+                >
                   Create New Account
                 </button>
               </div>
