@@ -21,7 +21,7 @@
 .footer_wrapper {
   position: relative;
   padding-bottom: 10px;
-  height: 50px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -29,4 +29,31 @@
   font-size: 15px;
   width: 100%;
   background-color: white;
+}
+.addWrapper {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  background-color: white;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.svg_asset {
+  width: 30px;
+  fill: white;
+}
+.add_innerWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #1b74e4;
+  border-radius: 50%;
 }
