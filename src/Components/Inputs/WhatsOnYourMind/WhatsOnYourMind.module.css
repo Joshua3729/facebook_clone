@@ -41,7 +41,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
-  height: 50px;
   border-top: 3px #f0f2f5 solid;
   padding: 10px 0;
 }
@@ -54,6 +53,7 @@
   cursor: pointer;
   font-weight: 600;
   color: #65676b;
+  padding: 10px;
 }
 .post_option:hover {
   background-color: #f0f2f5;
