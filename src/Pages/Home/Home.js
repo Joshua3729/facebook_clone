@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import WhatsOnYourMind from "../../Components/Inputs/WhatsOnYourMind/WhatsOnYourMind";
 import Posts from "../../Components/Posts/Posts";
 import Stories from "../../Components/Stories/Stories";
 import classes from "./Home.module.css";
+import openSocket from "socket.io-client";
 
 const Home = () => {
+  useEffect(() => {
+    openSocket("http://localhost:5000");
+  });
   return (
     <div className={classes.Home}>
       <div className={classes.gutter}></div>
