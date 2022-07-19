@@ -14,7 +14,7 @@ import AuthPage from "./Pages/AuthPage/AuthPage";
 import Footer from "./Components/Footer/Footer";
 
 function App() {
-  const [auth, setAuth] = useState(true);
+  const [auth, setAuth] = useState(false);
   const setAuthHandler = (auth) => {
     setAuth(auth);
   };
