@@ -7,7 +7,10 @@ import openSocket from "socket.io-client";
 
 const Home = () => {
   useEffect(() => {
-    openSocket("http://localhost:5000");
+    const socket = openSocket("http://localhost:5000");
+    socket.on("posts", (data) => {
+      if (data.action == "create") console.log(data.post);
+    });
   });
   return (
     <div className={classes.Home}>
