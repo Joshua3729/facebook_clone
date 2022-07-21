@@ -1,0 +1,1 @@
+export { initPosts } from "./Home";

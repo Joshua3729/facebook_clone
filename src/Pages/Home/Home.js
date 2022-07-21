@@ -4,6 +4,7 @@ import Posts from "../../Components/Posts/Posts";
 import Stories from "../../Components/Stories/Stories";
 import classes from "./Home.module.css";
 import openSocket from "socket.io-client";
+import * as HomeActions from "../../store/actionTypes/index";
 
 const Home = () => {
   useEffect(() => {

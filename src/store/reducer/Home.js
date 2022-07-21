@@ -1,12 +1,10 @@
-import * as actionTypes from "../actions/actionTypes";
+import * as actionTypes from "../actionTypes/actionTypes";
 
 const initialState = {
   posts: [],
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.GETSTATE:
-
     default:
       return state;
   }

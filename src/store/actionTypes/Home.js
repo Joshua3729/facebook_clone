@@ -1,3 +1,5 @@
+import * as actionTypes from "../actionTypes/actionTypes";
+
 export const setPosts = (posts) => {
   return {
     type: actionTypes.SET_POSTS,
