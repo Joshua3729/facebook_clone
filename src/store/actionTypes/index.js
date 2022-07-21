@@ -1,1 +1,1 @@
-export { initPosts } from "./Home";
+export { initPosts, getNewPost } from "./Home";

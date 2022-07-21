@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     const socket = openSocket("http://localhost:5000");
     socket.on("posts", (data) => {
-      if (data.action == "create") console.log(data.post);
+      if (data.action == "create") dispatch(HomeActions.getNewPost(data));
     });
     dispatch(HomeActions.initPosts());
   }, []);

@@ -9,6 +9,11 @@ const reducer = (state = initialState, action) => {
       return {
         posts: action.posts,
       };
+    case actionTypes.GET_NEW_POST:
+      return {
+        ...state,
+        posts: [action.post, ...state.posts],
+      };
     default:
       return state;
   }

@@ -25,3 +25,9 @@ export const initPosts = () => {
       .catch((err) => console.log(err));
   };
 };
+export const getNewPost = (posts) => {
+  return {
+    type: actionTypes.GET_NEW_POST,
+    posts: posts,
+  };
+};
