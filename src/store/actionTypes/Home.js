@@ -20,7 +20,7 @@ export const initPosts = () => {
       .then((resData) => {
         console.log("below");
         console.log(resData);
-        dispatch(setPosts(resData));
+        dispatch(setPosts(resData.data));
       })
       .catch((err) => console.log(err));
   };

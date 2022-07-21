@@ -12,7 +12,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.GET_NEW_POST:
       return {
         ...state,
-        posts: [action.post, ...state.posts],
+        posts: [...action.post, ...state.posts],
       };
     default:
       return state;

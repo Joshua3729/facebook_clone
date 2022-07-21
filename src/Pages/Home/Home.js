@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     const socket = openSocket("http://localhost:5000");
     socket.on("posts", (data) => {
-      if (data.action == "create") dispatch(HomeActions.getNewPost(data));
+      if (data.action == "create") dispatch(HomeActions.getNewPost(data.post));
     });
     dispatch(HomeActions.initPosts());
   }, []);
@@ -24,7 +24,7 @@ const Home = () => {
           <Stories />
           <div className={classes.feed}>
             <WhatsOnYourMind />
-            <Posts posts={posts.data} />
+            <Posts posts={posts} />
             <div className={classes.noMore_posts}>
               <div className={classes.inner_wrapper}>
                 <p className={classes.Notice}>No More Posts</p>
