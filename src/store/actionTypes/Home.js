@@ -18,16 +18,14 @@ export const initPosts = () => {
         return res.json();
       })
       .then((resData) => {
-        console.log("below");
-        console.log(resData);
         dispatch(setPosts(resData.data));
       })
       .catch((err) => console.log(err));
   };
 };
-export const getNewPost = (posts) => {
+export const getNewPost = (post) => {
   return {
     type: actionTypes.GET_NEW_POST,
-    posts: posts,
+    post: post,
   };
 };
