@@ -4,13 +4,25 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import Home from "./store/reducer/Home";
 
+const logger = (store) => {
+  return (next) => {
+    return (action) => {
+      console.log("[Middleware]", action);
+      const result = next(action);
+      console.log("[Middleware] next state", store.getState());
+    };
+  };
+};
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
   Home,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancers(applyMiddleware(logger, thunk))
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
