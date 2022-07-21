@@ -24,7 +24,7 @@ const Home = () => {
           <Stories />
           <div className={classes.feed}>
             <WhatsOnYourMind />
-            <Posts posts={posts} />
+            <Posts posts={posts.data} />
             <div className={classes.noMore_posts}>
               <div className={classes.inner_wrapper}>
                 <p className={classes.Notice}>No More Posts</p>
