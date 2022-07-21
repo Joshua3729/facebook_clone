@@ -5,6 +5,10 @@ const initialState = {
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.SET_POSTS:
+      return {
+        posts: action.posts,
+      };
     default:
       return state;
   }

@@ -18,7 +18,9 @@ export const initPosts = () => {
         return res.json();
       })
       .then((resData) => {
-        dispatch(setPosts(resData.posts));
+        console.log("below");
+        console.log(resData);
+        dispatch(setPosts(resData));
       })
       .catch((err) => console.log(err));
   };

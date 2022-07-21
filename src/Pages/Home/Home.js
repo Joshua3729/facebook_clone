@@ -5,14 +5,17 @@ import Stories from "../../Components/Stories/Stories";
 import classes from "./Home.module.css";
 import openSocket from "socket.io-client";
 import * as HomeActions from "../../store/actionTypes/index";
-
+import { useDispatch, useSelector } from "react-redux";
 const Home = () => {
+  const posts = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
   useEffect(() => {
     const socket = openSocket("http://localhost:5000");
     socket.on("posts", (data) => {
       if (data.action == "create") console.log(data.post);
     });
-  });
+    dispatch(HomeActions.initPosts());
+  }, []);
   return (
     <div className={classes.Home}>
       <div className={classes.gutter}></div>
@@ -21,7 +24,7 @@ const Home = () => {
           <Stories />
           <div className={classes.feed}>
             <WhatsOnYourMind />
-            <Posts />
+            <Posts posts={posts} />
             <div className={classes.noMore_posts}>
               <div className={classes.inner_wrapper}>
                 <p className={classes.Notice}>No More Posts</p>
