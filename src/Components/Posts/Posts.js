@@ -9,13 +9,12 @@ const Posts = (props) => {
     posts = props.posts.map((post) => {
       return (
         <Post
-          user_name={post.post_creator}
+          user_name={post.fullname}
           time={"16h"}
           media={post.photo_url}
           caption={post.caption}
-          userImage={
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYH_VDaGfxQ_cPhkgDPyoxXJgnnKHzEw7kdg&usqp=CAU"
-          }
+          profile_img={post.profile_img}
+          userImg="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYH_VDaGfxQ_cPhkgDPyoxXJgnnKHzEw7kdg&usqp=CAU"
         />
       );
     });

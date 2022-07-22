@@ -8,7 +8,7 @@ const Post = (props) => {
       <div className={classes.post_header}>
         <div className={classes.profile_wrapper}>
           <img
-            src="https://variety.com/wp-content/uploads/2021/09/Drake-publicity9-2021-e1631312720295.jpg?w=681&h=383&crop=1"
+            src={props.profile_img}
             alt="profile"
             className={classes.profile}
           />
