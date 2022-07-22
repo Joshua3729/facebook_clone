@@ -18,7 +18,6 @@ function App() {
   const setAuthHandler = (auth) => {
     setAuth(auth);
   };
-  console.log("once");
   let route = (
     <Router>
       <Routes>

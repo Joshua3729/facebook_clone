@@ -10,12 +10,12 @@ const Home = () => {
   const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(HomeActions.initPosts());
+    dispatch(HomeActions.initPosts());
     const socket = openSocket("http://localhost:5000");
-    // socket.on("posts", (data) => {
-    //   if (data.action == "create") dispatch(HomeActions.getNewPost(data.post));
-    // });
-    console.log("suppose to be printed once per reload");
+    socket.on("posts", (data) => {
+      if (data.action == "create") dispatch(HomeActions.getNewPost(data.post));
+    });
+    console.log("once");
   }, []);
   return (
     <div className={classes.Home}>
