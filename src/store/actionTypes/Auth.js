@@ -15,6 +15,14 @@ export const setOnInputBlur = (input) => {
     input: input,
   };
 };
+export const setSessionData = (isAuth, token, user_data) => {
+  return {
+    type: actionTypes.setSessionData,
+    isAuth: isAuth,
+    token: token,
+    user_data: user_data,
+  };
+};
 
 export const setOnLogin = (
   isAuth,
@@ -72,14 +80,21 @@ export const onLogin = (event, authData) => {
               resData.profile_url
             )
           );
-          localStorage.setItem("token", resData.token);
-          localStorage.setItem("userId", resData.userId);
 
           const remainingMilliseconds = 60 * 60 * 1000;
           const expiryDate = new Date(
             new Date().getTime() + remainingMilliseconds
           );
-          localStorage.setItem("expiryDate", expiryDate.toISOString());
+          const session_data = {
+            token: resData.token,
+            expiryDate: expiryDate.toISOString(),
+            user_data: {
+              user_id: null,
+              fullname: null,
+              profile_url: null,
+            },
+          };
+          localStorage.setItem("session_data", JSON.stringify(session_data));
           this.setAutoLogout(remainingMilliseconds);
         })
         .catch((err) => {
