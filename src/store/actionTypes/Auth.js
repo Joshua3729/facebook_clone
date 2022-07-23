@@ -35,10 +35,11 @@ export const setOnLogin = (
   };
 };
 
-export const onLogin = (authData) => {
+export const onLogin = (event, authData) => {
+  event.preventDefault();
   return (dispatch) => {
     if (authData.formIsValid) {
-      fetch(`hhtp://localhost:5000/auth/login`, {
+      fetch(`http://localhost:5000/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

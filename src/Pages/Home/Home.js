@@ -7,7 +7,7 @@ import openSocket from "socket.io-client";
 import * as HomeActions from "../../store/actionTypes/index";
 import { useDispatch, useSelector } from "react-redux";
 const Home = () => {
-  const posts = useSelector((state) => state.posts);
+  const posts = useSelector((state) => state.home.posts);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(HomeActions.initPosts());

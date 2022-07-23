@@ -336,11 +336,13 @@ const AuthPage = (props) => {
             <div className={classes.signIn_input}>
               <form
                 onSubmit={(e) =>
-                  this.props.onLogin(e, {
-                    email: loginForm.email.value,
-                    password: loginForm.password.value,
-                    formIsValid: formIsValid,
-                  })
+                  dispatch(
+                    HomeActions.onLogin(e, {
+                      email: loginForm.email.value,
+                      password: loginForm.password.value,
+                      formIsValid: formIsValid,
+                    })
+                  )
                 }
               >
                 <div
