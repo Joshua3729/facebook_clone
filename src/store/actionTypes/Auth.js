@@ -30,7 +30,7 @@ export const setOnLogin = (
   authLoading,
   user_id,
   fullname,
-  profile_url
+  profile_img
 ) => {
   return {
     type: actionTypes.ON_LOGIN,
@@ -39,7 +39,7 @@ export const setOnLogin = (
     authLoading: authLoading,
     user_id: user_id,
     fullname: fullname,
-    profile_url: profile_url,
+    profile_img: profile_img,
   };
 };
 
@@ -75,9 +75,9 @@ export const onLogin = (event, authData) => {
               true,
               resData.token,
               false,
-              resData.userId,
+              resData.user_id,
               resData.fullname,
-              resData.profile_url
+              resData.profile_img
             )
           );
 
@@ -89,9 +89,9 @@ export const onLogin = (event, authData) => {
             token: resData.token,
             expiryDate: expiryDate.toISOString(),
             user_data: {
-              user_id: null,
-              fullname: null,
-              profile_url: null,
+              user_id: resData.user_id,
+              fullname: resData.fullname,
+              profile_img: resData.profile_img,
             },
           };
           localStorage.setItem("session_data", JSON.stringify(session_data));

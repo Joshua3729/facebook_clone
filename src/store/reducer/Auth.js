@@ -7,7 +7,7 @@ const initialState = {
   user_data: {
     user_id: null,
     fullname: null,
-    profile_url: null,
+    profile_img: null,
   },
   authLoading: false,
   loginForm: {
@@ -117,7 +117,7 @@ const reducer = (state = initialState, action) => {
         user_data: {
           user_id: action.user_id,
           fullname: action.fullname,
-          profile_url: action.profile_url,
+          profile_img: action.profile_img,
         },
       };
     case actionTypes.setSessionData:

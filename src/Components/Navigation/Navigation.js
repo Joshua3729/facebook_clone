@@ -2,8 +2,11 @@ import React from "react";
 import Logo from "../UI/Logo/Logo";
 import classes from "./Navigation.module.css";
 import search from "../../Assets/Images/search.png";
+import { useSelector } from "react-redux";
 
 const Navigation = () => {
+  const profile_img = useSelector((state) => state.auth.user_data.profile_img);
+
   return (
     <div className={classes.Navigation}>
       <div className={classes.first_column}>
@@ -90,10 +93,7 @@ const Navigation = () => {
         </li>
         <li className={classes.third_column_item}>
           <div className={classes.profile}>
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYH_VDaGfxQ_cPhkgDPyoxXJgnnKHzEw7kdg&usqp=CAU"
-              alt=""
-            />
+            <img src={profile_img} alt="" />
           </div>
         </li>
       </ul>
