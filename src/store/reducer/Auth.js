@@ -120,6 +120,13 @@ const reducer = (state = initialState, action) => {
           profile_url: action.profile_url,
         },
       };
+    case actionTypes.setSessionData:
+      return {
+        ...state,
+        isAuth: action.isAuth,
+        token: action.token,
+        user_data: action.user_data,
+      };
     default:
       return state;
   }
