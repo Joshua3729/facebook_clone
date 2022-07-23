@@ -8,6 +8,59 @@ const initialState = {
     fullname: null,
     profile_url: null,
   },
+  loginForm: {
+    email: {
+      value: "",
+      valid: false,
+      touched: false,
+      validators: [required, email],
+    },
+    password: {
+      value: "",
+      valid: false,
+      touched: false,
+      validators: [required, length({ min: 5 })],
+    },
+  },
+  signupForm: {
+    email: {
+      value: "",
+      valid: false,
+      touched: false,
+      validators: [required, email],
+    },
+    password: {
+      value: "",
+      valid: false,
+      touched: false,
+      validators: [required, length({ min: 5 })],
+    },
+    firstname: {
+      value: "",
+      valid: false,
+      touched: false,
+      validators: [required],
+    },
+    lastname: {
+      value: "",
+      valid: false,
+      touched: false,
+      validators: [required],
+    },
+    gender: {
+      value: "",
+      valid: false,
+      touched: false,
+      validators: [required],
+    },
+    DOB: {
+      value: "",
+      valid: false,
+      touched: false,
+      validators: [required],
+    },
+  },
+  formIsValid: false,
 };
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
