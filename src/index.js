@@ -7,6 +7,12 @@ import { Provider } from "react-redux";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import Home from "./store/reducer/Home";
+import Auth from "./store/reducer/Auth";
+
+const rootReducer = combineReducers({
+  home: Home,
+  auth:Auth
+})
 
 const logger = (store) => {
   return (next) => {
