@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./Posts.module.css";
 import Post from "./Post/Post";
 import kompela from "../../Assets/Videos/kompela.mp4";
-import * as Date from "../Utils/Date";
+import * as Date from "../../Utils/Date";
 
 const Posts = (props) => {
   let posts = null;

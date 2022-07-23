@@ -11,8 +11,8 @@ import Auth from "./store/reducer/Auth";
 
 const rootReducer = combineReducers({
   home: Home,
-  auth:Auth
-})
+  auth: Auth,
+});
 
 const logger = (store) => {
   return (next) => {
@@ -27,7 +27,7 @@ const logger = (store) => {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
-  Home,
+  rootReducer,
   composeEnhancers(applyMiddleware(logger, thunk))
 );
 

@@ -64,7 +64,7 @@ const initialState = {
   },
   formIsValid: false,
 };
-const authReducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ON_INPUT_CHANGE:
       let isValid = true;
@@ -125,4 +125,4 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-export default authReducer;
+export default reducer;

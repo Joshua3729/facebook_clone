@@ -12,12 +12,11 @@ import {
 import User_profile from "./Pages/User_Profile/User_profile";
 import AuthPage from "./Pages/AuthPage/AuthPage";
 import Footer from "./Components/Footer/Footer";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
-  const [auth, setAuth] = useState(true);
-  const setAuthHandler = (auth) => {
-    setAuth(auth);
-  };
+  const isAuth = useSelector((state) => state.auth.isAuth);
+
   let route = (
     <Router>
       <Routes>
@@ -26,22 +25,18 @@ function App() {
       </Routes>
     </Router>
   );
-  if (!auth) {
+  if (!isAuth) {
     route = (
       <Router>
         <Routes>
-          <Route
-            path="/"
-            exact
-            element={<AuthPage setAuthHandler={setAuthHandler} />}
-          />
+          <Route path="/" exact element={<AuthPage />} />
         </Routes>
       </Router>
     );
   }
   return (
     <div className={classes.App}>
-      {auth && <Navigation />}
+      {isAuth && <Navigation />}
       {route}
     </div>
   );

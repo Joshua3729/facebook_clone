@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import Modal from "../../Components/Modal/Modal";
 import classes from "./AuthPage.module.css";
+import * as HomeActions from "../../store/actionTypes/index";
+import { useDispatch, useSelector } from "react-redux";
 
 const AuthPage = (props) => {
   const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
 
   const showModalHandler = (show) => {
     setShowModal(show);
@@ -328,36 +331,43 @@ const AuthPage = (props) => {
           </div>
           <div className={classes.right_wrapper}>
             <div className={classes.signIn_input}>
-              <div
-                className={[classes.email_wrapper, classes.input_item].join(
-                  " "
-                )}
+              <form
+                onSubmit={(e) =>
+                  this.props.onLogin(e, {
+                    email: this.state.loginForm.email.value,
+                    password: this.state.loginForm.password.value,
+                    formIsValid: this.state.formIsValid,
+                  })
+                }
               >
-                <input
-                  type="email"
-                  className={classes.email_address}
-                  placeholder="Email address"
-                />
-              </div>
-              <div
-                className={[classes.password_wrapper, classes.input_item].join(
-                  " "
-                )}
-              >
-                <input
-                  type="password"
-                  className={classes.password}
-                  placeholder="Password"
-                />
-              </div>
-              <button
-                className={classes.LogIn_btn}
-                onClick={() => props.setAuthHandler(true)}
-              >
-                Log In
-              </button>
-
-              <div className={classes.fogort_password}>Forgotten password?</div>
+                <div
+                  className={[classes.email_wrapper, classes.input_item].join(
+                    " "
+                  )}
+                >
+                  <input
+                    type="email"
+                    className={classes.email_address}
+                    placeholder="Email address"
+                  />
+                </div>
+                <div
+                  className={[
+                    classes.password_wrapper,
+                    classes.input_item,
+                  ].join(" ")}
+                >
+                  <input
+                    type="password"
+                    className={classes.password}
+                    placeholder="Password"
+                  />
+                </div>
+                <button className={classes.LogIn_btn}>Log In</button>
+                <div className={classes.fogort_password}>
+                  Forgotten password?
+                </div>
+              </form>
               <div className={classes.createAccount_wrapper}>
                 <button
                   className={classes.createAccount_btn}
