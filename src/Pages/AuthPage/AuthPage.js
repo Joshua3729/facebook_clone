@@ -12,6 +12,9 @@ const AuthPage = (props) => {
     setShowModal(show);
   };
 
+  const loginForm = useSelector((state) => state.auth.loginForm);
+  const formIsValid = useSelector((state) => state.auth.formIsValid);
+
   return (
     <>
       <Modal show={showModal}>
@@ -334,9 +337,9 @@ const AuthPage = (props) => {
               <form
                 onSubmit={(e) =>
                   this.props.onLogin(e, {
-                    email: this.state.loginForm.email.value,
-                    password: this.state.loginForm.password.value,
-                    formIsValid: this.state.formIsValid,
+                    email: loginForm.email.value,
+                    password: loginForm.password.value,
+                    formIsValid: formIsValid,
                   })
                 }
               >
@@ -347,8 +350,18 @@ const AuthPage = (props) => {
                 >
                   <input
                     type="email"
+                    name="email"
                     className={classes.email_address}
                     placeholder="Email address"
+                    onChange={(e) =>
+                      dispatch(
+                        HomeActions.setOnInputChange(
+                          "email",
+                          e.target.value,
+                          "loginForm"
+                        )
+                      )
+                    }
                   />
                 </div>
                 <div
@@ -359,8 +372,18 @@ const AuthPage = (props) => {
                 >
                   <input
                     type="password"
+                    name="password"
                     className={classes.password}
                     placeholder="Password"
+                    onChange={(e) =>
+                      dispatch(
+                        HomeActions.setOnInputChange(
+                          "password",
+                          e.target.value,
+                          "loginForm"
+                        )
+                      )
+                    }
                   />
                 </div>
                 <button className={classes.LogIn_btn}>Log In</button>
