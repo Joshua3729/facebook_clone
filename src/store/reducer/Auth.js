@@ -2,13 +2,14 @@ import * as actionTypes from "../actionTypes/actionTypes";
 import { required, length, email } from "../../Utils/validators";
 
 const initialState = {
-  Auth: false,
+  isAuth: false,
   token: null,
   user_data: {
     user_id: null,
     fullname: null,
     profile_url: null,
   },
+  authLoading: false,
   loginForm: {
     email: {
       value: "",
@@ -110,10 +111,14 @@ const authReducer = (state = initialState, action) => {
     case actionTypes.ON_LOGIN:
       return {
         ...state,
-        isAuth: true,
-        token: resData.token,
+        isAuth: action.isAuth,
+        token: action.token,
         authLoading: false,
-        userId: resData.userId,
+        user_data: {
+          user_id: action.user_id,
+          fullname: action.fullname,
+          profile_url: action.profile_url,
+        },
       };
     default:
       return state;

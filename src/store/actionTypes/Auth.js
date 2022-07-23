@@ -16,10 +16,22 @@ export const setOnInputBlur = (input) => {
   };
 };
 
-export const setOnLogin = (input) => {
+export const setOnLogin = (
+  isAuth,
+  token,
+  authLoading,
+  user_id,
+  fullname,
+  profile_url
+) => {
   return {
-    type: actionTypes.ON_INPUT_BLUR,
-    input: input,
+    type: actionTypes.ON_LOGIN,
+    isAuth: isAuth,
+    token: token,
+    authLoading: authLoading,
+    user_id: user_id,
+    fullname: fullname,
+    profile_url: profile_url,
   };
 };
 
@@ -34,7 +46,6 @@ export const onLogin = (authData) => {
         body: JSON.stringify({
           email: authData.email,
           password: authData.password,
-          rememberMe: this.state.rememberMe,
         }),
       })
         .then((res) => {
@@ -50,15 +61,18 @@ export const onLogin = (authData) => {
           return res.json();
         })
         .then((resData) => {
-          this.setState({
-            isAuth: true,
-            token: resData.token,
-            authLoading: false,
-            userId: resData.userId,
-          });
+          dispatch(
+            setOnLogin(
+              true,
+              resData.token,
+              false,
+              resData.userId,
+              resData.fullname,
+              resData.profile_url
+            )
+          );
           localStorage.setItem("token", resData.token);
           localStorage.setItem("userId", resData.userId);
-          localStorage.setItem("rememberMe", this.state.rememberMe);
 
           const remainingMilliseconds = 60 * 60 * 1000;
           const expiryDate = new Date(
@@ -68,27 +82,8 @@ export const onLogin = (authData) => {
           this.setAutoLogout(remainingMilliseconds);
         })
         .catch((err) => {
-          this.setState({
-            isAuth: false,
-            authLoading: false,
-            error: err,
-            showModal: true,
-            serverMessage: err.error,
-          });
+          console.log(err);
         });
-
-      fetch("http://localhost:5000/feed/get_posts")
-        .then((res) => {
-          if (res.status !== 200) {
-            throw new Error("Failed to fetch posts.");
-          }
-
-          return res.json();
-        })
-        .then((resData) => {
-          dispatch(setPosts(resData.data));
-        })
-        .catch((err) => console.log(err));
     }
   };
 };
