@@ -1,10 +1,7 @@
 import React from "react";
-import * as Date from "../../Utils/Date";
 import classes from "./Post.module.css";
 
 const Post = (props) => {
-  console.log("below");
-  console.log(Date.getTimeCreated(props.created_at));
   return (
     <div className={classes.Post}>
       <div className={classes.post_header}>
