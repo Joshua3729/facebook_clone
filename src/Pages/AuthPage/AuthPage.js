@@ -51,11 +51,29 @@ const AuthPage = (props) => {
                   type="text"
                   placeholder="Firstname"
                   className={classes.input_item}
+                  onChange={(e) =>
+                    dispatch(
+                      HomeActions.setOnInputChange(
+                        "firstname",
+                        e.target.value,
+                        "signupForm"
+                      )
+                    )
+                  }
                 />
                 <input
                   type="text"
                   placeholder="Surname"
                   className={classes.input_item}
+                  onChange={(e) =>
+                    dispatch(
+                      HomeActions.setOnInputChange(
+                        "surname",
+                        e.target.value,
+                        "signupForm"
+                      )
+                    )
+                  }
                 />
               </div>
               <input
@@ -67,6 +85,15 @@ const AuthPage = (props) => {
                 type="password"
                 placeholder="New password"
                 className={classes.input_item}
+                onChange={(e) =>
+                  dispatch(
+                    HomeActions.setOnInputChange(
+                      "email",
+                      e.target.value,
+                      "signupForm"
+                    )
+                  )
+                }
               />
               <div className={classes.dateOfBirth_wrapper}>
                 <div className={classes.title}>Date of birth</div>
