@@ -37,11 +37,12 @@ const AuthPage = (props) => {
               onSubmit={(e) => {
                 dispatch(
                   HomeActions.onSignup(e, {
-                    name: signupForm.name.value,
-                    surname: signupForm.surname.value,
+                    firstName: signupForm.firstname.value,
+                    lastName: signupForm.lastname.value,
                     email: signupForm.email.value,
                     password: signupForm.password.value,
                     formIsValid: formIsValid,
+                    DOB: formIsValid.DOB,
                   })
                 );
               }}

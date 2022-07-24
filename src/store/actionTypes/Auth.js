@@ -153,6 +153,12 @@ export const onSignup = (event, userData) => {
           email: userData.email,
           password: userData.password,
           name: `${userData.name}  ${userData.surname}`,
+          firstName: signupForm.firstname.value,
+          lastName: signupForm.lastname.value,
+          email: signupForm.email.value,
+          password: signupForm.password.value,
+          formIsValid: formIsValid,
+          DOB: formIsValid.DOB,
         }),
       })
         .then((res) => {
@@ -169,6 +175,7 @@ export const onSignup = (event, userData) => {
         })
         .then((resData) => {
           dispatch(setOnSignup(false, false));
+          alert("signed up!");
         })
         .catch((err) => {
           console.log(err);
