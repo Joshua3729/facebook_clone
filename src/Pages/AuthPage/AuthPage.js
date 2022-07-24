@@ -12,7 +12,7 @@ const AuthPage = (props) => {
   const loginForm = useSelector((state) => state.auth.loginForm);
   const formIsValid = useSelector((state) => state.auth.formIsValid);
   const signupForm = useSelector((state) => state.auth.signupForm);
-
+  const gender = useSelector((state) => state.auth.gender);
   return (
     <>
       <Modal show={showModal}>
@@ -63,12 +63,12 @@ const AuthPage = (props) => {
                 />
                 <input
                   type="text"
-                  placeholder="Surname"
+                  placeholder="lastname"
                   className={classes.input_item}
                   onChange={(e) =>
                     dispatch(
                       HomeActions.setOnInputChange(
-                        "surname",
+                        "lastname",
                         e.target.value,
                         "signupForm"
                       )
@@ -80,6 +80,15 @@ const AuthPage = (props) => {
                 type="email"
                 placeholder="Email address"
                 className={classes.input_item}
+                onChange={(e) =>
+                  dispatch(
+                    HomeActions.setOnInputChange(
+                      "email",
+                      e.target.value,
+                      "signupForm"
+                    )
+                  )
+                }
               />
               <input
                 type="password"
@@ -88,7 +97,7 @@ const AuthPage = (props) => {
                 onChange={(e) =>
                   dispatch(
                     HomeActions.setOnInputChange(
-                      "email",
+                      "password",
                       e.target.value,
                       "signupForm"
                     )
@@ -320,9 +329,16 @@ const AuthPage = (props) => {
                       type="radio"
                       class="_8esa"
                       name="sex"
-                      value="1"
+                      value={1}
                       id="u_2_2_w4"
-                      checked
+                      checked={gender == 1}
+                      onChange={(e) =>
+                        dispatch(
+                          HomeActions.setOnGenderInputChange(
+                            Number(e.target.value)
+                          )
+                        )
+                      }
                     />
                   </span>
                   <span className={classes.gender_input_item}>
@@ -333,8 +349,15 @@ const AuthPage = (props) => {
                       type="radio"
                       class="_8esa"
                       name="sex"
-                      value="2"
+                      value={2}
                       id="u_2_3_bU"
+                      onChange={(e) =>
+                        dispatch(
+                          HomeActions.setOnGenderInputChange(
+                            Number(e.target.value)
+                          )
+                        )
+                      }
                     />
                   </span>
                   <span className={classes.gender_input_item}>

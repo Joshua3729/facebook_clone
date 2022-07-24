@@ -12,11 +12,11 @@ const initialState = {
   authLoading: false,
   showModal: false,
   DOB: {
-    date: null,
-    month: null,
-    year: null,
+    date: "14",
+    month: "7",
+    year: "2022",
   },
-
+  gender: 1,
   loginForm: {
     email: {
       value: "",
@@ -51,12 +51,6 @@ const initialState = {
       validators: [required],
     },
     lastname: {
-      value: "",
-      valid: false,
-      touched: false,
-      validators: [required],
-    },
-    gender: {
       value: "",
       valid: false,
       touched: false,
@@ -158,6 +152,11 @@ const reducer = (state = initialState, action) => {
           ...state.DOB,
           [action.input]: action.value,
         },
+      };
+    case actionTypes.setOnGenderInputChange:
+      return {
+        ...state,
+        gender: action.value,
       };
     default:
       return state;

@@ -8,5 +8,6 @@ export {
   setAuthLoad,
   setShowModal,
   setOnDateInputChange,
+  setOnGenderInputChange,
 } from "./Auth";
 export { initPosts, getNewPost } from "./Home";
