@@ -11,6 +11,7 @@ const AuthPage = (props) => {
 
   const loginForm = useSelector((state) => state.auth.loginForm);
   const formIsValid = useSelector((state) => state.auth.formIsValid);
+  const signupForm = useSelector((state) => state.auth.signupForm);
 
   return (
     <>
@@ -32,7 +33,19 @@ const AuthPage = (props) => {
             <div className={classes.statement}>Its quick and easy</div>
           </div>
           <div className={classes.form_wrapper}>
-            <form>
+            <form
+              onSubmit={(e) => {
+                dispatch(
+                  HomeActions.onSignup(e, {
+                    name: signupForm.name.value,
+                    surname: signupForm.surname.value,
+                    email: signupForm.email.value,
+                    password: signupForm.password.value,
+                    formIsValid: formIsValid,
+                  })
+                );
+              }}
+            >
               <div className={classes.input_wrapper}>
                 <input
                   type="text"
