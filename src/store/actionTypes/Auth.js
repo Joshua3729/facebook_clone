@@ -132,7 +132,7 @@ export const setOnSignup = (authLoading, showModal) => {
   };
 };
 
-export const setAuthLoad = (loading) => {
+export const setAuthLoad = (authLoading) => {
   return {
     type: actionTypes.setAuthLoad,
     authLoading: authLoading,

@@ -134,6 +134,11 @@ const reducer = (state = initialState, action) => {
         token: action.token,
         user_data: action.user_data,
       };
+    case actionTypes.setAuthLoad:
+      return {
+        ...state,
+        authLoading: action.authLoading,
+      };
     default:
       return state;
   }
