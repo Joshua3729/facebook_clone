@@ -103,3 +103,18 @@ export const onLogin = (event, authData) => {
     }
   };
 };
+
+export const setOnLogout = () => {};
+
+export const onLogout = () => {
+  this.setState({ isAuth: false, token: null, isAdmin: false });
+  localStorage.removeItem("token");
+  localStorage.removeItem("expiryDate");
+  localStorage.removeItem("userId");
+  localStorage.removeItem("adminId");
+  localStorage.removeItem("adminToken");
+  localStorage.removeItem("rememberMe");
+  this.props.history.push({
+    search: "",
+  });
+};
