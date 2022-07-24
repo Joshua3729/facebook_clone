@@ -11,6 +11,12 @@ const initialState = {
   },
   authLoading: false,
   showModal: false,
+  DOB: {
+    date: null,
+    month: null,
+    year: null,
+  },
+
   loginForm: {
     email: {
       value: "",

@@ -183,3 +183,10 @@ export const onSignup = (event, userData) => {
 export const setShowModal = (show) => {
   return { type: actionTypes.setShowModal, showModal: show };
 };
+export const setOnDateInputChange = (input, value) => {
+  return {
+    type: actionTypes.setOnDateInputChange,
+    input: input,
+    value: value,
+  };
+};

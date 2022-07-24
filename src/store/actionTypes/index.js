@@ -7,5 +7,6 @@ export {
   onSignup,
   setAuthLoad,
   setShowModal,
+  setOnDateInputChange,
 } from "./Auth";
 export { initPosts, getNewPost } from "./Home";

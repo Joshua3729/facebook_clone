@@ -8,3 +8,4 @@ export const setOnLogout = "setOnLogout";
 export const setOnSignup = "setOnSignup";
 export const setAuthLoad = "setAuthLoad";
 export const setShowModal = "setShowModal";
+export const setOnDateInputChange = "setOnDateInputChange";
