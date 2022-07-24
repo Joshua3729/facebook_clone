@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as HomeActions from "./store/actionTypes/index";
 
 function App() {
-  const isAuth = useSelector((state) => state.auth.isAuth);
+  let isAuth = useSelector((state) => state.auth.isAuth);
   const dispatch = useDispatch();
   useEffect(() => {
     const session_data = JSON.parse(localStorage.getItem("session_data"));
@@ -25,13 +25,14 @@ function App() {
       return;
     }
     if (new Date(session_data?.xpiryDate) <= new Date()) {
-      this.logoutHandler();
+      dispatch(HomeActions.onLogout());
+
       return;
     }
 
     const remainingMilliseconds =
       new Date(session_data?.expiryDate).getTime() - new Date().getTime();
-    this.setAutoLogout(remainingMilliseconds);
+    setAutoLogout(remainingMilliseconds);
 
     if (session_data?.user_data.user_id) {
       isAuth = true;
@@ -44,6 +45,13 @@ function App() {
       )
     );
   }, []);
+
+  const setAutoLogout = (milliseconds) => {
+    setTimeout(() => {
+      dispatch(HomeActions.onLogout());
+    }, milliseconds);
+  };
+
   let route = (
     <Router>
       <Routes>

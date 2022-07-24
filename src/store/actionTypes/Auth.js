@@ -115,7 +115,7 @@ export const setOnLogout = (isAuth, token, user_data) => {
 
 export const onLogout = () => {
   return (dispatch) => {
-    dispatch(setOnLogout(false, null, user_data));
+    dispatch(setOnLogout(false, null, null));
     localStorage.removeItem("session_data");
     this.props.history.push({
       search: "",
