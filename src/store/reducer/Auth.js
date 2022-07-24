@@ -127,6 +127,13 @@ const reducer = (state = initialState, action) => {
         token: action.token,
         user_data: action.user_data,
       };
+    case actionTypes.setOnLogout:
+      return {
+        ...state,
+        isAuth: action.isAuth,
+        token: action.token,
+        user_data: action.user_data,
+      };
     default:
       return state;
   }

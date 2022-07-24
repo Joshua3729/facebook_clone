@@ -104,17 +104,21 @@ export const onLogin = (event, authData) => {
   };
 };
 
-export const setOnLogout = () => {};
+export const setOnLogout = (isAuth, token, user_data) => {
+  return {
+    type: actionTypes.setOnLogout,
+    isAuth: isAuth,
+    token: token,
+    user_data: user_data,
+  };
+};
 
 export const onLogout = () => {
-  this.setState({ isAuth: false, token: null, isAdmin: false });
-  localStorage.removeItem("token");
-  localStorage.removeItem("expiryDate");
-  localStorage.removeItem("userId");
-  localStorage.removeItem("adminId");
-  localStorage.removeItem("adminToken");
-  localStorage.removeItem("rememberMe");
-  this.props.history.push({
-    search: "",
-  });
+  return (dispatch) => {
+    dispatch(setOnLogout(false, null, user_data));
+    localStorage.removeItem("session_data");
+    this.props.history.push({
+      search: "",
+    });
+  };
 };
