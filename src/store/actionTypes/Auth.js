@@ -142,7 +142,7 @@ export const setAuthLoad = (authLoading) => {
 export const onSignup = (event, userData) => {
   return (dispatch) => {
     event.preventDefault();
-    this.setState({ authLoading: true });
+    dispatch(setAuthLoad(true));
     if (userData.formIsValid) {
       fetch(`${Url}/auth/signup`, {
         method: "PUT",
@@ -176,10 +176,7 @@ export const onSignup = (event, userData) => {
       event.target.reset();
     } else {
       alert("form not valid :(");
-      this.setState({
-        isAuth: false,
-        authLoading: false,
-      });
+      dispatch(setAuthLoad(false));
     }
   };
 };

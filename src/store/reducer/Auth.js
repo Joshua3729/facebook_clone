@@ -10,6 +10,7 @@ const initialState = {
     profile_img: null,
   },
   authLoading: false,
+  showModal: false,
   loginForm: {
     email: {
       value: "",
@@ -138,6 +139,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         authLoading: action.authLoading,
+      };
+    case actionTypes.setOnSignup:
+      return {
+        authLoading: action.authLoading,
+        showModal: action.showModal,
       };
     default:
       return state;

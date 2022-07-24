@@ -4,5 +4,6 @@ export {
   setOnInputBlur,
   setOnInputChange,
   onLogout,
+  onSignup,
 } from "./Auth";
 export { initPosts, getNewPost } from "./Home";
