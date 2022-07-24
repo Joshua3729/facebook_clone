@@ -5,3 +5,4 @@ export const ON_INPUT_BLUR = "ON_INPUT_BLUR";
 export const ON_LOGIN = "ON_LOGIN";
 export const setSessionData = "setSessionData";
 export const setOnLogout = "setOnLogout";
+export const setOnSignup = "setOnSignup";

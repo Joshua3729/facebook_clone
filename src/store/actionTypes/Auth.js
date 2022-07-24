@@ -1,3 +1,4 @@
+import { Action } from "history";
 import * as actionTypes from "./actionTypes";
 
 export const setOnInputChange = (input, value, formType) => {
@@ -120,5 +121,58 @@ export const onLogout = () => {
     this.props.history.push({
       search: "",
     });
+  };
+};
+
+export const setOnSignup = (authLoading, showModal) => {
+  return {
+    type: actionTypes.setOnSignup,
+    authLoading: authLoading,
+    showModal: showModal,
+  };
+};
+
+export const onSignup = (event, userData) => {
+  return (dispatch) => {
+    event.preventDefault();
+    this.setState({ authLoading: true });
+    if (userData.formIsValid) {
+      fetch(`${Url}/auth/signup`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: userData.email,
+          password: userData.password,
+          name: `${userData.name}  ${userData.surname}`,
+        }),
+      })
+        .then((res) => {
+          if (res.status === 422) {
+            throw {
+              error:
+                "Validation failed. Make sure the email address isn't used yet!",
+            };
+          }
+          if (res.status !== 200 && res.status !== 201) {
+            throw { error: "Could not create user" };
+          }
+          return res.json();
+        })
+        .then((resData) => {
+          dispatch(setOnSignup(false, false));
+        })
+        .catch((err) => {
+          console.log(error);
+        });
+      event.target.reset();
+    } else {
+      alert("form not valid :(");
+      this.setState({
+        isAuth: false,
+        authLoading: false,
+      });
+    }
   };
 };
