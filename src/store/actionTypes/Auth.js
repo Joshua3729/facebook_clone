@@ -132,6 +132,13 @@ export const setOnSignup = (authLoading, showModal) => {
   };
 };
 
+export const setAuthLoad = (loading) => {
+  return {
+    type: actionTypes.setAuthLoad,
+    authLoading: authLoading,
+  };
+};
+
 export const onSignup = (event, userData) => {
   return (dispatch) => {
     event.preventDefault();
