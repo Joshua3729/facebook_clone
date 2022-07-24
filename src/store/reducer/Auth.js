@@ -145,6 +145,10 @@ const reducer = (state = initialState, action) => {
         authLoading: action.authLoading,
         showModal: action.showModal,
       };
+    case actionTypes.setShowModal:
+      return {
+        showModal: action.showModal,
+      };
     default:
       return state;
   }

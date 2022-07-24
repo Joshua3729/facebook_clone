@@ -5,12 +5,9 @@ import * as HomeActions from "../../store/actionTypes/index";
 import { useDispatch, useSelector } from "react-redux";
 
 const AuthPage = (props) => {
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
+  const showModal = useSelector((state) => state.auth.showModal);
   const dispatch = useDispatch();
-
-  const showModalHandler = (show) => {
-    setShowModal(show);
-  };
 
   const loginForm = useSelector((state) => state.auth.loginForm);
   const formIsValid = useSelector((state) => state.auth.formIsValid);

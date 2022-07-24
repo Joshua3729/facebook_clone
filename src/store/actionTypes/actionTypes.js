@@ -7,3 +7,4 @@ export const setSessionData = "setSessionData";
 export const setOnLogout = "setOnLogout";
 export const setOnSignup = "setOnSignup";
 export const setAuthLoad = "setAuthLoad";
+export const setShowModal = "setShowModal";

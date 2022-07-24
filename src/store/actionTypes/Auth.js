@@ -180,3 +180,6 @@ export const onSignup = (event, userData) => {
     }
   };
 };
+export const setShowModal = () => {
+  return { type: actionTypes.setShowModal, showModal: true };
+};
