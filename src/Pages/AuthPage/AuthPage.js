@@ -13,6 +13,7 @@ const AuthPage = (props) => {
   const formIsValid = useSelector((state) => state.auth.formIsValid);
   const signupForm = useSelector((state) => state.auth.signupForm);
   const gender = useSelector((state) => state.auth.gender);
+  const DOB = useSelector((state) => state.auth.DOB);
   return (
     <>
       <Modal show={showModal}>
@@ -42,7 +43,7 @@ const AuthPage = (props) => {
                     email: signupForm.email.value,
                     password: signupForm.password.value,
                     formIsValid: formIsValid,
-                    DOB: formIsValid.DOB,
+                    DOB: DOB,
                   })
                 );
               }}

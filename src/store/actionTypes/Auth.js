@@ -140,25 +140,27 @@ export const setAuthLoad = (authLoading) => {
 };
 
 export const onSignup = (event, userData) => {
+  console.log(userData);
   return (dispatch) => {
     event.preventDefault();
     dispatch(setAuthLoad(true));
     if (userData.formIsValid) {
       fetch(`http://localhost:5000/auth/signup`, {
-        method: "PUT",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          firstName: userData.firstName,
+          lastName: userData.lastName,
           email: userData.email,
           password: userData.password,
-          name: `${userData.name}  ${userData.surname}`,
-          firstName: signupForm.firstname.value,
-          lastName: signupForm.lastname.value,
-          email: signupForm.email.value,
-          password: signupForm.password.value,
-          formIsValid: formIsValid,
-          DOB: formIsValid.DOB,
+          formIsValid: userData.formIsValid,
+          DOB: {
+            date: userData.DOB.date,
+            month: userData.DOB.month,
+            year: userData.DOB.year,
+          },
         }),
       })
         .then((res) => {
@@ -171,6 +173,7 @@ export const onSignup = (event, userData) => {
           if (res.status !== 200 && res.status !== 201) {
             throw { error: "Could not create user" };
           }
+
           return res.json();
         })
         .then((resData) => {
