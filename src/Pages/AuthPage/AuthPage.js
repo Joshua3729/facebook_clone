@@ -104,6 +104,11 @@ const AuthPage = (props) => {
                     id="day"
                     title="Day"
                     class="_9407 _5dba _9hk6 _8esg"
+                    onChange={(e) => {
+                      dispatch(
+                        HomeActions.setOnDateInputChange("date", e.target.value)
+                      );
+                    }}
                   >
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -145,6 +150,14 @@ const AuthPage = (props) => {
                     id="month"
                     title="Month"
                     class="_9407 _5dba _9hk6 _8esg"
+                    onChange={(e) => {
+                      dispatch(
+                        HomeActions.setOnDateInputChange(
+                          "month",
+                          e.target.value
+                        )
+                      );
+                    }}
                   >
                     <option value="1">Jan</option>
                     <option value="2">Feb</option>
@@ -167,6 +180,11 @@ const AuthPage = (props) => {
                     id="year"
                     title="Year"
                     class="_9407 _5dba _9hk6 _8esg"
+                    onChange={(e) => {
+                      dispatch(
+                        HomeActions.setOnDateInputChange("year", e.target.value)
+                      );
+                    }}
                   >
                     <option value="2022" selected="1">
                       2022

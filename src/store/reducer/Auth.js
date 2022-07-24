@@ -62,12 +62,6 @@ const initialState = {
       touched: false,
       validators: [required],
     },
-    DOB: {
-      value: "",
-      valid: false,
-      touched: false,
-      validators: [required],
-    },
   },
   formIsValid: false,
 };
@@ -148,12 +142,22 @@ const reducer = (state = initialState, action) => {
       };
     case actionTypes.setOnSignup:
       return {
+        ...state,
         authLoading: action.authLoading,
         showModal: action.showModal,
       };
     case actionTypes.setShowModal:
       return {
+        ...state,
         showModal: action.showModal,
+      };
+    case actionTypes.setOnDateInputChange:
+      return {
+        ...state,
+        DOB: {
+          ...state.DOB,
+          [action.input]: action.value,
+        },
       };
     default:
       return state;

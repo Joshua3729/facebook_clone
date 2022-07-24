@@ -190,3 +190,10 @@ export const setOnDateInputChange = (input, value) => {
     value: value,
   };
 };
+
+export const setOnGenderInputChange = (value) => {
+  return {
+    type: actionTypes.setOnGenderInputChange,
+    value: value,
+  };
+};
