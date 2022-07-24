@@ -21,7 +21,7 @@ const AuthPage = (props) => {
               <div className={classes.signup}>Sign Up</div>
               <div
                 className={classes.close}
-                onClick={() => showModalHandler(false)}
+                onClick={() => dispatch(HomeActions.setShowModal(false))}
               >
                 <img
                   src="https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/TdCEremeWv5.png"
@@ -393,7 +393,7 @@ const AuthPage = (props) => {
               <div className={classes.createAccount_wrapper}>
                 <button
                   className={classes.createAccount_btn}
-                  onClick={() => showModalHandler(true)}
+                  onClick={() => dispatch(HomeActions.setShowModal(true))}
                 >
                   Create New Account
                 </button>

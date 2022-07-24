@@ -144,7 +144,7 @@ export const onSignup = (event, userData) => {
     event.preventDefault();
     dispatch(setAuthLoad(true));
     if (userData.formIsValid) {
-      fetch(`${Url}/auth/signup`, {
+      fetch(`http://localhost:5000/auth/signup`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -171,7 +171,7 @@ export const onSignup = (event, userData) => {
           dispatch(setOnSignup(false, false));
         })
         .catch((err) => {
-          console.log(error);
+          console.log(err);
         });
       event.target.reset();
     } else {
@@ -180,6 +180,6 @@ export const onSignup = (event, userData) => {
     }
   };
 };
-export const setShowModal = () => {
-  return { type: actionTypes.setShowModal, showModal: true };
+export const setShowModal = (show) => {
+  return { type: actionTypes.setShowModal, showModal: show };
 };
