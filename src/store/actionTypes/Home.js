@@ -36,3 +36,9 @@ export const setShowCreatePost_Modal = (show) => {
     showCreatePost_modal: show,
   };
 };
+export const setCreatePost = (post_caption) => {
+  return {
+    type: actionTypes.ON_CREATE_POST,
+    post_caption: post_caption,
+  };
+};

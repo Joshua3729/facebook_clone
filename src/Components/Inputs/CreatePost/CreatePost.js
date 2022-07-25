@@ -1,10 +1,13 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import classes from "./CreatePost.module.css";
 import * as HomeActions from "../../../store/actionTypes/index";
 
 const CreatePost = (props) => {
   const dispatch = useDispatch();
+  const formValid = useSelector(
+    (state) => state.home.post_data.post_caption.length >= 10
+  );
 
   return (
     <div className={classes.CreatePost}>
@@ -63,7 +66,9 @@ const CreatePost = (props) => {
             </div>
           </div>
         </div>
-        <button className={classes.post_btn}>Post</button>
+        <button className={classes.post_btn} disabled={!formValid}>
+          Post
+        </button>
       </form>
     </div>
   );
