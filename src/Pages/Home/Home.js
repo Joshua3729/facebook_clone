@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CreatePost from "../../Components/Inputs/CreatePost/CreatePost";
 const Home = () => {
   const posts = useSelector((state) => state.home.posts);
+  const user_data = useSelector((state) => state.auth.user_data);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(HomeActions.initPosts());
@@ -22,7 +23,10 @@ const Home = () => {
   return (
     <>
       <Modal show={true}>
-        <CreatePost />
+        <CreatePost
+          fullname={user_data.fullname}
+          profile_img={user_data.profile_img}
+        />
       </Modal>
       <div className={classes.Home}>
         <div className={classes.gutter}></div>
