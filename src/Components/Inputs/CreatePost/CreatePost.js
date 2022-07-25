@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./CreatePost.module.css";
 import * as HomeActions from "../../../store/actionTypes/index";
+import Picker from "emoji-picker-react";
 
 const CreatePost = (props) => {
   const dispatch = useDispatch();
@@ -10,7 +11,11 @@ const CreatePost = (props) => {
   );
   const token = useSelector((state) => state.auth.token);
   const postData = useSelector((state) => state.home.post_data);
+  const [showEmoji, setShowEmoji] = useState(false);
 
+  const setShowEmojiHandler = () => {
+    setShowEmoji(!showEmoji);
+  };
   return (
     <div className={classes.CreatePost}>
       <div className={classes.CreatePost_header}>
@@ -47,6 +52,24 @@ const CreatePost = (props) => {
           maxlength="2000"
           onChange={(e) => dispatch(HomeActions.setPostCaption(e.target.value))}
         ></textarea>
+        <div className={classes.emoji_pickerWrapper}>
+          <div
+            className={classes.chooseImoji}
+            onClick={() => setShowEmojiHandler()}
+          >
+            <i
+              data-visualcompletion="css-img"
+              className={classes.show_emoji}
+              aria-label="Insert an emoji"
+              role="img"
+            ></i>
+          </div>
+          {showEmoji && (
+            <div className={classes.emoji_picker}>
+              <Picker />
+            </div>
+          )}
+        </div>
         <div className={classes.addToYourPost}>
           <div className={classes.commad}>Add to your post</div>
           <div className={classes.options_wrapper}>

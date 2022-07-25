@@ -166,3 +166,29 @@
   color: #bcc0c4;
   cursor: not-allowed;
 }
+.emoji_pickerWrapper {
+  position: relative;
+}
+.emoji_picker {
+  position: absolute;
+  transform: translateY(-110%);
+  box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+.show_emoji {
+  height: 24px;
+  width: 24px;
+  background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/y2/r/DqLo_-4rkyw.png?_nc_eui2=AeFLC7pSrRgABY2DTngfxxhXumekpjsbDHq6Z6SmOxsMert5P6uFpEv2go7NvNnxih9p_AObn5-6dnZUmg3jyu1O");
+  background-position: 0px -34px;
+  background-size: 34px 294px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  transform: scale(1.2);
+  transition: 0.4s all;
+}
+.show_emoji:hover {
+  transform: scale(1);
+}
+.chooseImoji {
+  cursor: pointer;
+}
