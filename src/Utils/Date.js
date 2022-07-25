@@ -4,7 +4,7 @@ export const getTimeCreated = (date) => {
   const date2 = new Date();
   const diffInMs = Math.abs(date2 - date1);
   if (diffInMs < 60000) return `${(diffInMs / (1000 * 60)).toFixed(0)}s`;
-  else if (diffInMs < 3600000) return `${diffInMs / (1000 * 60)}m`;
+  else if (diffInMs < 3600000) return `${(diffInMs / (1000 * 60)).toFixed(0)}m`;
   else if (diffInMs < 86400000)
     return `${(diffInMs / (1000 * 60 * 60)).toFixed(0)}h`;
   else if (diffInMs < 2592000000)

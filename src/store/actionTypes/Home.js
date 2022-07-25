@@ -48,7 +48,8 @@ export const setCreatePostLoading = (createPostLoading) => {
     createPostLoading: createPostLoading,
   };
 };
-export const ON_CREATE_POST = (e, postData) => {
+export const ON_CREATE_POST = (e, postData, token) => {
+  console.log(token);
   return (dispatch) => {
     e.preventDefault();
 
@@ -58,6 +59,7 @@ export const ON_CREATE_POST = (e, postData) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
       },
       body: JSON.stringify({
         caption: postData.post_caption,
@@ -72,6 +74,7 @@ export const ON_CREATE_POST = (e, postData) => {
       })
       .then((resData) => {
         dispatch(setCreatePostLoading(false));
+        dispatch(setShowCreatePost_Modal(false));
       })
       .catch((err) => console.log(err));
   };
