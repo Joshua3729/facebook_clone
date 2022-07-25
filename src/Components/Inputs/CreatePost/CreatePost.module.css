@@ -99,6 +99,9 @@
   color: #65676b;
 }
 .addToYourPost {
+  display: flex;
+
+  justify-content: space-between;
   height: 70px;
   border-radius: 10px;
   padding: 20px;
@@ -120,8 +123,41 @@
   color: white;
   background-color: #1b74e4;
   margin-top: 20px;
+  cursor: pointer;
 }
 .post_btn:focus {
   outline: none;
+}
+.Media {
+  width: 30px;
+
+  color: #45bd62;
+}
+.media_wrapper {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
   cursor: pointer;
+}
+.descriptor {
+  display: none;
+  position: absolute;
+  top: 0;
+  transform: translateY(-100%);
+  border-radius: 10px;
+  padding: 5px;
+  color: white;
+  font-size: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.media_wrapper:hover {
+  background-color: #dddfe2;
+}
+.media_wrapper:hover .descriptor {
+  display: block;
 }
