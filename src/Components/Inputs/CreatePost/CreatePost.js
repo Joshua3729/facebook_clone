@@ -27,10 +27,13 @@ const CreatePost = (props) => {
           className={classes.text_input}
           placeholder={`Whats on your mind?, ${props.fullname.split(" ")[0]}`}
           name="txtname"
-          rows="4"
-          cols="50"
           maxlength="2000"
         ></textarea>
+        <div className={classes.addToYourPost}>
+          <div className={classes.commad}>Add to your post</div>
+          <div className={classes.options_wrapper}></div>
+        </div>
+        <button className={classes.post_btn}>Post</button>
       </form>
     </div>
   );
