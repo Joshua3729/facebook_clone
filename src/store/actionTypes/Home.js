@@ -42,24 +42,34 @@ export const setPostCaption = (post_caption) => {
     post_caption: post_caption,
   };
 };
-export const setCreatePostLoading = () => {
+export const setCreatePostLoading = (createPostLoading) => {
   return {
     type: actionTypes.setCreatePostLoading,
     createPostLoading: createPostLoading,
   };
 };
-export const ON_CREATE_POST = () => {
+export const ON_CREATE_POST = (postData) => {
   return (dispatch) => {
-    fetch("http://localhost:5000/feed/get_posts")
+    dispatch(setCreatePostLoading(true));
+
+    fetch("http://localhost:5000/feed/post", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        caption: postData.post_caption,
+      }),
+    })
       .then((res) => {
         if (res.status !== 200) {
-          throw new Error("Failed to fetch posts.");
+          throw new Error("Failed to create post.");
         }
 
         return res.json();
       })
       .then((resData) => {
-        dispatch(setPosts(resData.data));
+        dispatch(setCreatePostLoading(false));
       })
       .catch((err) => console.log(err));
   };
