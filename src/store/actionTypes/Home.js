@@ -42,3 +42,25 @@ export const setPostCaption = (post_caption) => {
     post_caption: post_caption,
   };
 };
+export const setCreatePostLoading = () => {
+  return {
+    type: actionTypes.setCreatePostLoading,
+    createPostLoading: createPostLoading,
+  };
+};
+export const ON_CREATE_POST = () => {
+  return (dispatch) => {
+    fetch("http://localhost:5000/feed/get_posts")
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to fetch posts.");
+        }
+
+        return res.json();
+      })
+      .then((resData) => {
+        dispatch(setPosts(resData.data));
+      })
+      .catch((err) => console.log(err));
+  };
+};

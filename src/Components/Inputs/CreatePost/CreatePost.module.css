@@ -161,3 +161,8 @@
 .media_wrapper:hover .descriptor {
   display: block;
 }
+.post_btn:disabled {
+  background-color: #e4e6eb;
+  color: #bcc0c4;
+  cursor: not-allowed;
+}

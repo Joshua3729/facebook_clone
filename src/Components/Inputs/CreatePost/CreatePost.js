@@ -8,7 +8,7 @@ const CreatePost = (props) => {
   const formValid = useSelector(
     (state) => state.home.post_data.post_caption.length >= 10
   );
-
+  console.log(formValid);
   return (
     <div className={classes.CreatePost}>
       <div className={classes.CreatePost_header}>
@@ -38,6 +38,7 @@ const CreatePost = (props) => {
           placeholder={`Whats on your mind?, ${props.fullname.split(" ")[0]}`}
           name="txtname"
           maxlength="2000"
+          onChange={(e) => dispatch(HomeActions.setPostCaption(e.target.value))}
         ></textarea>
         <div className={classes.addToYourPost}>
           <div className={classes.commad}>Add to your post</div>
