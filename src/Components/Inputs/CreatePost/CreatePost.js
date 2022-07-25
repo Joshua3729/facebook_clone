@@ -1,12 +1,19 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import classes from "./CreatePost.module.css";
+import * as HomeActions from "../../../store/actionTypes/index";
 
 const CreatePost = (props) => {
+  const dispatch = useDispatch();
+
   return (
     <div className={classes.CreatePost}>
       <div className={classes.CreatePost_header}>
         Create Post
-        <div className={classes.close}>
+        <div
+          className={classes.close}
+          onClick={() => dispatch(HomeActions.setShowCreatePost_Modal(false))}
+        >
           <img
             src="https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/TdCEremeWv5.png"
             alt=""

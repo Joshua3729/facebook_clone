@@ -11,6 +11,9 @@ import CreatePost from "../../Components/Inputs/CreatePost/CreatePost";
 const Home = () => {
   const posts = useSelector((state) => state.home.posts);
   const user_data = useSelector((state) => state.auth.user_data);
+  const showCreatePost_modal = useSelector(
+    (state) => state.home.showCreatePost_modal
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(HomeActions.initPosts());
@@ -22,7 +25,7 @@ const Home = () => {
   }, []);
   return (
     <>
-      <Modal show={true}>
+      <Modal show={showCreatePost_modal}>
         <CreatePost
           fullname={user_data.fullname}
           profile_img={user_data.profile_img}

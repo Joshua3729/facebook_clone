@@ -29,3 +29,10 @@ export const getNewPost = (post) => {
     post: post,
   };
 };
+
+export const setShowCreatePost_Modal = (show) => {
+  return {
+    type: actionTypes.setShowCreatePost_Modal,
+    showCreatePost_modal: show,
+  };
+};

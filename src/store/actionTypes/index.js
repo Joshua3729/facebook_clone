@@ -10,4 +10,4 @@ export {
   setOnDateInputChange,
   setOnGenderInputChange,
 } from "./Auth";
-export { initPosts, getNewPost } from "./Home";
+export { initPosts, getNewPost, setShowCreatePost_Modal } from "./Home";

@@ -1,7 +1,10 @@
 import React from "react";
 import classes from "./WhatsOnYourMind.module.css";
+import * as HomeActions from "../../../store/actionTypes/index";
+import { useDispatch } from "react-redux";
 
 const WhatsOnYourMind = (props) => {
+  const dispatch = useDispatch();
   return (
     <div className={classes.WhatsOnYourMind}>
       <div className={classes.wrapper}>
@@ -11,7 +14,10 @@ const WhatsOnYourMind = (props) => {
           className={classes.profile}
         />
 
-        <div className={classes.user_input}>
+        <div
+          className={classes.user_input}
+          onClick={() => dispatch(HomeActions.setShowCreatePost_Modal(true))}
+        >
           <span>Whats on your mind josh?</span>
         </div>
       </div>

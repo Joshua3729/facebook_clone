@@ -10,3 +10,4 @@ export const setAuthLoad = "setAuthLoad";
 export const setShowModal = "setShowModal";
 export const setOnDateInputChange = "setOnDateInputChange";
 export const setOnGenderInputChange = "setOnGenderInputChange";
+export const setShowCreatePost_Modal = "setShowCreatePost_Modal";
