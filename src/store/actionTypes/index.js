@@ -15,4 +15,5 @@ export {
   getNewPost,
   setShowCreatePost_Modal,
   setPostCaption,
+  ON_CREATE_POST,
 } from "./Home";

@@ -8,7 +8,8 @@ const CreatePost = (props) => {
   const formValid = useSelector(
     (state) => state.home.post_data.post_caption.length >= 10
   );
-  console.log(formValid);
+  const postData = useSelector((state) => state.home.post_data);
+
   return (
     <div className={classes.CreatePost}>
       <div className={classes.CreatePost_header}>
@@ -23,7 +24,10 @@ const CreatePost = (props) => {
           />
         </div>
       </div>
-      <form className={classes.CreatePost_form}>
+      <form
+        className={classes.CreatePost_form}
+        onSubmit={(e) => dispatch(HomeActions.ON_CREATE_POST(e, postData))}
+      >
         <div className={classes.user_wrapper}>
           <div className={classes.profile_wrapper}>
             <img src={props.profile_img} alt="" />

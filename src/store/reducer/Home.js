@@ -3,6 +3,7 @@ import * as actionTypes from "../actionTypes/actionTypes";
 const initialState = {
   posts: [],
   showCreatePost_modal: false,
+  createPostLoading: false,
   post_data: {
     post_caption: "",
   },
@@ -30,6 +31,12 @@ const reducer = (state = initialState, action) => {
         post_data: {
           post_caption: action.post_caption,
         },
+      };
+
+    case actionTypes.setCreatePostLoading:
+      return {
+        ...state,
+        createPostLoading: action.createPostLoading,
       };
     default:
       return state;
