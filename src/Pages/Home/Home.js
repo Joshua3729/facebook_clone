@@ -7,6 +7,7 @@ import Modal from "../../Components/Modal/Modal";
 import openSocket from "socket.io-client";
 import * as HomeActions from "../../store/actionTypes/index";
 import { useDispatch, useSelector } from "react-redux";
+import CreatePost from "../../Components/Inputs/CreatePost/CreatePost";
 const Home = () => {
   const posts = useSelector((state) => state.home.posts);
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const Home = () => {
   return (
     <>
       <Modal show={true}>
-        <div className={classes.create_post}></div>
+        <CreatePost />
       </Modal>
       <div className={classes.Home}>
         <div className={classes.gutter}></div>
