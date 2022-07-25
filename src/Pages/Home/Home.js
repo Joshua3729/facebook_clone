@@ -3,6 +3,7 @@ import WhatsOnYourMind from "../../Components/Inputs/WhatsOnYourMind/WhatsOnYour
 import Posts from "../../Components/Posts/Posts";
 import Stories from "../../Components/Stories/Stories";
 import classes from "./Home.module.css";
+import Modal from "../../Components/Modal/Modal";
 import openSocket from "socket.io-client";
 import * as HomeActions from "../../store/actionTypes/index";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,30 +19,35 @@ const Home = () => {
     console.log("once");
   }, []);
   return (
-    <div className={classes.Home}>
-      <div className={classes.gutter}></div>
-      <div className={classes.Home_innerWrapper}>
-        <div className={classes.main}>
-          <Stories />
-          <div className={classes.feed}>
-            <WhatsOnYourMind />
-            <Posts posts={posts} />
-            <div className={classes.noMore_posts}>
-              <div className={classes.inner_wrapper}>
-                <p className={classes.Notice}>No More Posts</p>
-                <p className={classes.CTA}>
-                  Add more friends to see more posts in your Feed.
-                </p>
-                <button className={classes.findFriends_btn}>
-                  Find Friends
-                </button>
+    <>
+      <Modal show={true}>
+        <div className={classes.create_post}></div>
+      </Modal>
+      <div className={classes.Home}>
+        <div className={classes.gutter}></div>
+        <div className={classes.Home_innerWrapper}>
+          <div className={classes.main}>
+            <Stories />
+            <div className={classes.feed}>
+              <WhatsOnYourMind />
+              <Posts posts={posts} />
+              <div className={classes.noMore_posts}>
+                <div className={classes.inner_wrapper}>
+                  <p className={classes.Notice}>No More Posts</p>
+                  <p className={classes.CTA}>
+                    Add more friends to see more posts in your Feed.
+                  </p>
+                  <button className={classes.findFriends_btn}>
+                    Find Friends
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+          <div className={classes.taskbar}></div>
         </div>
-        <div className={classes.taskbar}></div>
       </div>
-    </div>
+    </>
   );
 };
 export default Home;

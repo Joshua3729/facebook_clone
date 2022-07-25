@@ -140,7 +140,6 @@ export const setAuthLoad = (authLoading) => {
 };
 
 export const onSignup = (event, userData) => {
-  console.log(userData);
   return (dispatch) => {
     event.preventDefault();
     dispatch(setAuthLoad(true));
@@ -178,7 +177,6 @@ export const onSignup = (event, userData) => {
         })
         .then((resData) => {
           dispatch(setOnSignup(false, false));
-          alert("signed up!");
         })
         .catch((err) => {
           console.log(err);
