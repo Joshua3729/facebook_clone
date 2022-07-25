@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         showCreatePost_modal: action.showCreatePost_modal,
       };
-    case actionTypes.ON_CREATE_POST:
+    case actionTypes.setPostCaption:
       return {
         ...state,
         post_data: {
