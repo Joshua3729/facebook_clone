@@ -45,6 +45,7 @@ const reducer = (state = initialState, action) => {
           post_caption: state.post_data.post_caption + action.emojiObject,
         },
       };
+
     default:
       return state;
   }

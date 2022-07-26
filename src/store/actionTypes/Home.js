@@ -54,11 +54,10 @@ export const setCreatePostLoading = (createPostLoading) => {
     createPostLoading: createPostLoading,
   };
 };
+
 export const ON_CREATE_POST = (e, postData, token) => {
-  console.log(postData.post_caption);
   return (dispatch) => {
     e.preventDefault();
-
     dispatch(setCreatePostLoading(true));
 
     fetch("http://localhost:5000/feed/post", {

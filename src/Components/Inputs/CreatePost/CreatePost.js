@@ -15,6 +15,7 @@ const CreatePost = (props) => {
   const post_caption = useSelector(
     (state) => state.home.post_data.post_caption
   );
+  const submitting = useSelector((state) => state.home.submitting);
   const onEmojiClick = (event, emojiObject) => {
     dispatch(HomeActions.setOnEmojiClick(event, emojiObject));
   };
