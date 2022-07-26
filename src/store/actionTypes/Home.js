@@ -84,3 +84,10 @@ export const ON_CREATE_POST = (e, postData, token) => {
       .catch((err) => console.log(err));
   };
 };
+export const setLike = (post_id, addLike) => {
+  return {
+    type: actionTypes.setLike,
+    post_id: post_id,
+    addLike: addLike,
+  };
+};
