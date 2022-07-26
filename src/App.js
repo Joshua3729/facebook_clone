@@ -47,7 +47,7 @@ function App() {
         session_data.user_data
       )
     );
-    // dispatch(HomeActions.setAuthLoad(false));
+    dispatch(HomeActions.setAuthLoad(false));
   }, []);
 
   const setAutoLogout = (milliseconds) => {

@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./Post.module.css";
 
 const Post = (props) => {
+  const [liked, setLiked] = useState(false);
+
+  const setLikedHandler = () => {
+    setLiked(!liked);
+  };
   return (
     <div className={classes.Post}>
       <div className={classes.post_header}>
@@ -36,8 +41,15 @@ const Post = (props) => {
       {props.text && <div className={classes.text_wrapper}>{props.text}</div>}
       <div className={classes.post_toolbar}>
         <div className={classes.inner_wrapper}>
-          <button className={classes.like_btn}>
-            <i data-visualcompletion="css-img" className={classes.like}></i>{" "}
+          <button
+            className={classes.like_btn}
+            onClick={() => setLikedHandler()}
+            style={{ color: liked ? "#1b74e4" : "#65676b" }}
+          >
+            <i
+              data-visualcompletion="css-img"
+              className={[classes.like, liked && classes.liked].join(" ")}
+            ></i>{" "}
             Like
           </button>
           <button className={classes.comment_btn}>

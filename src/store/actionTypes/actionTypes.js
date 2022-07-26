@@ -15,3 +15,4 @@ export const setPostCaption = "setPostCaption";
 export const setCreatePostLoading = "createPostLoading";
 export const setOnEmojiClick = "setOnEmojiClick";
 export const setSubmitting = "setSubmitting";
+export const setLike = "setLike";

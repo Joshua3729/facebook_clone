@@ -61,6 +61,12 @@
   display: inline-block;
   margin-right: 10px;
 }
+.liked {
+  -webkit-filter: invert(39%) sepia(57%) saturate(200%) saturate(200%)
+    saturate(200%) saturate(200%) saturate(200%) saturate(147.75%)
+    hue-rotate(202deg) brightness(97%) contrast(96%);
+  background-position: 0px -312px !important;
+}
 .comment {
   background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yZ/r/YnBe7QFb2jR.png?_nc_eui2=AeESxVsbUKq-7urpxHmkQrc7tCPH_G7guai0I8f8buC5qLDEivUyqMQ5iUbLqvgls6kWPZ0LXonTJbaCiJ0nz0lx");
   background-position: 0px -292px;
