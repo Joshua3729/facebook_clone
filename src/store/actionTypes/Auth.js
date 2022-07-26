@@ -44,10 +44,18 @@ export const setOnLogin = (
   };
 };
 
+export const setAuthLoad = (authLoading) => {
+  return {
+    type: actionTypes.setAuthLoad,
+    authLoading: authLoading,
+  };
+};
+
 export const onLogin = (event, authData) => {
   event.preventDefault();
   return (dispatch) => {
     if (authData.formIsValid) {
+      dispatch(setAuthLoad(true));
       fetch(`http://localhost:5000/auth/login`, {
         method: "POST",
         headers: {
@@ -97,6 +105,7 @@ export const onLogin = (event, authData) => {
           };
           localStorage.setItem("session_data", JSON.stringify(session_data));
           this.setAutoLogout(remainingMilliseconds);
+          dispatch(setAuthLoad(false));
         })
         .catch((err) => {
           console.log(err);
@@ -132,17 +141,10 @@ export const setOnSignup = (authLoading, showModal) => {
   };
 };
 
-export const setAuthLoad = (authLoading) => {
-  return {
-    type: actionTypes.setAuthLoad,
-    authLoading: authLoading,
-  };
-};
-
 export const onSignup = (event, userData) => {
   return (dispatch) => {
     event.preventDefault();
-    dispatch(setAuthLoad(true));
+
     if (userData.formIsValid) {
       fetch(`http://localhost:5000/auth/signup`, {
         method: "POST",
@@ -184,7 +186,6 @@ export const onSignup = (event, userData) => {
       event.target.reset();
     } else {
       alert("form not valid :(");
-      dispatch(setAuthLoad(false));
     }
   };
 };

@@ -14,14 +14,17 @@ import AuthPage from "./Pages/AuthPage/AuthPage";
 import Footer from "./Components/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import * as HomeActions from "./store/actionTypes/index";
+import LoadingPage from "./Pages/LoadingPage/LoadingPage";
 
 function App() {
   let isAuth = useSelector((state) => state.auth.isAuth);
+  let authLoading = useSelector((state) => state.auth.authLoading);
   const dispatch = useDispatch();
   useEffect(() => {
     const session_data = JSON.parse(localStorage.getItem("session_data"));
-
+    dispatch(HomeActions.setAuthLoad(true));
     if (!session_data?.token) {
+      dispatch(HomeActions.setAuthLoad(false));
       return;
     }
     if (new Date(session_data?.xpiryDate) <= new Date()) {
@@ -44,6 +47,7 @@ function App() {
         session_data.user_data
       )
     );
+    // dispatch(HomeActions.setAuthLoad(false));
   }, []);
 
   const setAutoLogout = (milliseconds) => {
@@ -55,12 +59,12 @@ function App() {
   let route = (
     <Router>
       <Routes>
-        <Route path="/" exact element={<Home />} />
-        <Route path="/:username" exact element={<User_profile />} />
+        <Route path="/" exact element={<LoadingPage />} />
       </Routes>
     </Router>
   );
-  if (!isAuth) {
+
+  if (!isAuth && !authLoading) {
     route = (
       <Router>
         <Routes>
@@ -68,10 +72,19 @@ function App() {
         </Routes>
       </Router>
     );
+  } else if (isAuth && !authLoading) {
+    route = (
+      <Router>
+        <Routes>
+          <Route path="/" exact element={<Home />} />
+          <Route path="/:username" exact element={<User_profile />} />
+        </Routes>
+      </Router>
+    );
   }
   return (
     <div className={classes.App}>
-      {isAuth && <Navigation />}
+      {isAuth && !authLoading && <Navigation />}
       {route}
     </div>
   );
