@@ -9,7 +9,9 @@ const initialState = {
   },
   like: {
     post_id: null,
+    addLike: false,
   },
+  like_loading: false,
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -57,6 +59,11 @@ const reducer = (state = initialState, action) => {
         },
       };
 
+    case actionTypes.setLikeLoading:
+      return {
+        ...state,
+        like_loading: action.like_loading,
+      };
     default:
       return state;
   }

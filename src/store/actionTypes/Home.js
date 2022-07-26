@@ -91,3 +91,39 @@ export const setLike = (post_id, addLike) => {
     addLike: addLike,
   };
 };
+
+export const setLikeLoading = (loading) => {
+  return {
+    type: actionTypes.setLikeLoading,
+    like_loading: loading,
+  };
+};
+
+export const ON_POST_LIKE = (e, like_data) => {
+  return (dispatch) => {
+    e.preventDefault();
+    dispatch(setLikeLoading(true));
+
+    fetch("http://localhost:5000/feed/post_like", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({
+        post_id: like_data.post_id,
+      }),
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to create post.");
+        }
+
+        return res.json();
+      })
+      .then((resData) => {
+        dispatch(setLikeLoading(true));
+      })
+      .catch((err) => console.log(err));
+  };
+};
