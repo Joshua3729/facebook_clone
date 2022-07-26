@@ -16,4 +16,5 @@ export {
   setShowCreatePost_Modal,
   setPostCaption,
   ON_CREATE_POST,
+  setOnEmojiClick,
 } from "./Home";

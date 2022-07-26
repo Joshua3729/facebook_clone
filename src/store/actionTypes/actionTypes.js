@@ -13,3 +13,4 @@ export const setOnGenderInputChange = "setOnGenderInputChange";
 export const setShowCreatePost_Modal = "setShowCreatePost_Modal";
 export const setPostCaption = "setPostCaption";
 export const setCreatePostLoading = "createPostLoading";
+export const setOnEmojiClick = "setOnEmojiClick";

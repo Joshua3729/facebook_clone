@@ -12,7 +12,12 @@ const CreatePost = (props) => {
   const token = useSelector((state) => state.auth.token);
   const postData = useSelector((state) => state.home.post_data);
   const [showEmoji, setShowEmoji] = useState(false);
-
+  const post_caption = useSelector(
+    (state) => state.home.post_data.post_caption
+  );
+  const onEmojiClick = (event, emojiObject) => {
+    dispatch(HomeActions.setOnEmojiClick(event, emojiObject));
+  };
   const setShowEmojiHandler = () => {
     setShowEmoji(!showEmoji);
   };
@@ -50,9 +55,11 @@ const CreatePost = (props) => {
           placeholder={`Whats on your mind?, ${props.fullname.split(" ")[0]}`}
           name="txtname"
           maxlength="2000"
+          value={post_caption}
           onChange={(e) => dispatch(HomeActions.setPostCaption(e.target.value))}
         ></textarea>
         <div className={classes.emoji_pickerWrapper}>
+          <div className={classes.emojiPicker_descriptor}>Emoji</div>
           <div
             className={classes.chooseImoji}
             onClick={() => setShowEmojiHandler()}
@@ -66,7 +73,7 @@ const CreatePost = (props) => {
           </div>
           {showEmoji && (
             <div className={classes.emoji_picker}>
-              <Picker />
+              <Picker onEmojiClick={onEmojiClick} />
             </div>
           )}
         </div>

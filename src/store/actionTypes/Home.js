@@ -42,6 +42,12 @@ export const setPostCaption = (post_caption) => {
     post_caption: post_caption,
   };
 };
+export const setOnEmojiClick = (event, emojiObject) => {
+  return {
+    type: actionTypes.setOnEmojiClick,
+    emojiObject: emojiObject.emoji,
+  };
+};
 export const setCreatePostLoading = (createPostLoading) => {
   return {
     type: actionTypes.setCreatePostLoading,
@@ -49,7 +55,7 @@ export const setCreatePostLoading = (createPostLoading) => {
   };
 };
 export const ON_CREATE_POST = (e, postData, token) => {
-  console.log(token);
+  console.log(postData.post_caption);
   return (dispatch) => {
     e.preventDefault();
 

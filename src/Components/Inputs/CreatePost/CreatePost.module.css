@@ -168,6 +168,8 @@
 }
 .emoji_pickerWrapper {
   position: relative;
+  display: flex;
+  justify-content: end;
 }
 .emoji_picker {
   position: absolute;
@@ -191,4 +193,19 @@
 }
 .chooseImoji {
   cursor: pointer;
+}
+.emojiPicker_descriptor {
+  display: none;
+  position: absolute;
+  top: 0;
+  transform: translateY(-100%);
+  border-radius: 10px;
+  padding: 5px;
+  color: white;
+  font-size: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.emoji_pickerWrapper:hover .emojiPicker_descriptor {
+  display: block;
 }

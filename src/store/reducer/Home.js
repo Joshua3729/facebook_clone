@@ -38,6 +38,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         createPostLoading: action.createPostLoading,
       };
+    case actionTypes.setOnEmojiClick:
+      return {
+        ...state,
+        post_data: {
+          post_caption: state.post_data.post_caption + action.emojiObject,
+        },
+      };
     default:
       return state;
   }
