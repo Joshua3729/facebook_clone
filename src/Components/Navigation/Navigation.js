@@ -10,7 +10,7 @@ const Navigation = () => {
   return (
     <div className={classes.Navigation}>
       <div className={classes.first_column}>
-        <Logo />
+        <Logo width={50} height={50} />
         <button className={classes.search_btn}>
           <img src={search} alt="" />
         </button>
