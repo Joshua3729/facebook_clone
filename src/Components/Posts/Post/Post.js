@@ -7,18 +7,49 @@ import like_icon from "../../../Assets/Images/like.svg";
 const Post = (props) => {
   const token = useSelector((state) => state.auth.token);
   const user_id = useSelector((state) => state.auth.user_data.user_id);
-  const likeLoading = useSelector((state) => state.home.like_loading);
+  // const likeLoading = useSelector((state) => state.home.like_loading);
   const [liked, setLiked] = useState(false);
   const [likes_data, getLikes_data] = useState(null);
+  const [likeLoading, setLikeLoading] = useState(false);
   const dispatch = useDispatch();
-  const setLikedHandler = () => {
-    setLiked((prevLiked) => !prevLiked);
-    dispatch(HomeActions.ON_POST_LIKE(props.post_id, liked, token));
-  };
+  // const postLike = () => {
+  //   console.log(liked);
+  //   setLiked((prevLiked) => {
+  //     postLike(!prevLiked);
+  //     return !prevLiked;
+  //   });
+  // };
   useEffect(() => {
     getLikesHandler();
   }, []);
+  const postLike = () => {
+    setLiked((prevLiked) => !prevLiked);
+    setLikeLoading(true);
+    fetch("http://localhost:5000/feed/post_like", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({
+        post_id: props.post_id,
+      }),
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to create post.");
+        }
 
+        return res.json();
+      })
+      .then((resData) => {
+        setLikeLoading(false);
+        getLikesHandler();
+        setLiked(resData.liked);
+        console.log(resData);
+      })
+      .catch((err) => console.log(err));
+  };
   const getLikesHandler = () => {
     console.log(props.post_id);
     fetch(`http://localhost:5000/feed/get_likes/${props.post_id}`, {
@@ -49,7 +80,9 @@ const Post = (props) => {
           classes.liked,
       ].join(" ")
     : classes.like;
-
+  console.log(
+    likes_data?.users_that_liked.some((user) => user.user_id == user_id)
+  );
   return (
     <div className={classes.Post}>
       <div className={classes.post_header}>
@@ -90,7 +123,9 @@ const Post = (props) => {
           <div className={classes.people_who_liked}>
             <div className={classes.people_who_liked_header}>Likes</div>
             {likes_data.users_that_liked.map((user) => (
-              <div className={classes.like_user_name}>{user.fullname}</div>
+              <div className={classes.like_user_name} key={user.user_id}>
+                {user.fullname}
+              </div>
             ))}
           </div>
         </div>
@@ -100,9 +135,17 @@ const Post = (props) => {
         <div className={classes.inner_wrapper}>
           <button
             className={classes.like_btn}
-            style={{ color: liked ? "#1b74e4" : "#65676b" }}
+            style={{
+              color:
+                liked ||
+                likes_data?.users_that_liked.some(
+                  (user) => user.user_id == user_id
+                )
+                  ? "#1b74e4"
+                  : "#65676b",
+            }}
             disabled={likeLoading}
-            onClick={() => setLikedHandler()}
+            onClick={() => postLike()}
           >
             <i data-visualcompletion="css-img" className={like_classes}></i>{" "}
             Like

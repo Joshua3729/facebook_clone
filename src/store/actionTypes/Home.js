@@ -95,6 +95,7 @@ export const setLikeLoading = (loading) => {
 export const ON_POST_LIKE = (post_id, addLike, token) => {
   return (dispatch) => {
     dispatch(setLikeLoading(true));
+    console.log(addLike);
     fetch("http://localhost:5000/feed/post_like", {
       method: "POST",
       headers: {
@@ -115,6 +116,7 @@ export const ON_POST_LIKE = (post_id, addLike, token) => {
       })
       .then((resData) => {
         dispatch(setLikeLoading(true));
+        console.log(resData);
       })
       .catch((err) => console.log(err));
   };
