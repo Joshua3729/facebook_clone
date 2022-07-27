@@ -3,7 +3,7 @@
   background-color: white;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
-  overflow: hidden;
+  /* overflow: hidden; */
   margin-top: 20px;
 }
 .Post:first-child {
@@ -187,4 +187,37 @@
 
 .video_wrapper video {
   width: 100%;
+}
+.likes_inner_wrapper {
+  width: 100%;
+  border-bottom: #e5e5e5 1.5px solid;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+.likes_wrapper {
+  position: relative;
+  padding: 0 20px;
+  text-align: left;
+}
+.like_icon {
+  width: 22px;
+  margin-right: 10px;
+}
+.people_who_liked {
+  position: absolute;
+  z-index: 700;
+  height: 400px;
+  width: 150px;
+  background-color: rgba(36, 37, 38, 0.7);
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+.like_user_name {
+  color: #65676b;
+}
+.people_who_liked_header {
+  font-size: 25px;
+  color: #65676b;
 }

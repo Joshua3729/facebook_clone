@@ -84,13 +84,6 @@ export const ON_CREATE_POST = (e, postData, token) => {
       .catch((err) => console.log(err));
   };
 };
-export const setLike = (post_id, addLike) => {
-  return {
-    type: actionTypes.setLike,
-    post_id: post_id,
-    addLike: addLike,
-  };
-};
 
 export const setLikeLoading = (loading) => {
   return {
@@ -99,11 +92,9 @@ export const setLikeLoading = (loading) => {
   };
 };
 
-export const ON_POST_LIKE = (e, like_data) => {
+export const ON_POST_LIKE = (post_id, addLike, token) => {
   return (dispatch) => {
-    e.preventDefault();
     dispatch(setLikeLoading(true));
-
     fetch("http://localhost:5000/feed/post_like", {
       method: "POST",
       headers: {
@@ -111,7 +102,8 @@ export const ON_POST_LIKE = (e, like_data) => {
         Authorization: "Bearer " + token,
       },
       body: JSON.stringify({
-        post_id: like_data.post_id,
+        post_id: post_id,
+        addLike: addLike,
       }),
     })
       .then((res) => {

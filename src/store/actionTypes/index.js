@@ -17,4 +17,5 @@ export {
   setPostCaption,
   ON_CREATE_POST,
   setOnEmojiClick,
+  ON_POST_LIKE,
 } from "./Home";

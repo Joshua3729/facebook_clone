@@ -14,6 +14,8 @@ const Posts = (props) => {
           time={Date.getTimeCreated(post.created_at)}
           media={post.photo_url}
           caption={post.caption}
+          post_id={post.post_id}
+          key={post.post_id}
           // video={"http://localhost:5000/feed/get_video"}
           profile_img={post.profile_img}
           created_at={post.created_at}

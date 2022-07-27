@@ -7,10 +7,7 @@ const initialState = {
   post_data: {
     post_caption: "",
   },
-  like: {
-    post_id: null,
-    addLike: false,
-  },
+
   like_loading: false,
 };
 const reducer = (state = initialState, action) => {
@@ -48,14 +45,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         post_data: {
           post_caption: state.post_data.post_caption + action.emojiObject,
-        },
-      };
-    case actionTypes.setLike:
-      return {
-        ...state,
-        like: {
-          post_id: action.post_id,
-          addLike: action.addLike,
         },
       };
 
