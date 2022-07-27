@@ -194,6 +194,7 @@
   padding: 10px 0;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .likes_wrapper {
   position: relative;
@@ -206,18 +207,23 @@
 }
 .people_who_liked {
   position: absolute;
+  display: none;
   z-index: 700;
-  height: 400px;
   width: 150px;
-  background-color: rgba(36, 37, 38, 0.7);
+  background-color: rgba(36, 37, 38, 0.9);
   border-radius: 10px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   padding: 10px;
 }
 .like_user_name {
-  color: #65676b;
+  color: #f5f6f7;
 }
 .people_who_liked_header {
-  font-size: 25px;
-  color: #65676b;
+  font-size: 20px;
+  font-weight: 600;
+  color: #f5f6f7;
+  margin-bottom: 20px;
+}
+.likes_inner_wrapper:hover + .people_who_liked {
+  display: block;
 }

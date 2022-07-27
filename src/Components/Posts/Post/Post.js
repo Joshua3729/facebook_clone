@@ -6,6 +6,7 @@ import like_icon from "../../../Assets/Images/like.svg";
 
 const Post = (props) => {
   const token = useSelector((state) => state.auth.token);
+  const user_id = useSelector((state) => state.auth.user_data.user_id);
   const likeLoading = useSelector((state) => state.home.like_loading);
   const [liked, setLiked] = useState(false);
   const [likes_data, getLikes_data] = useState(null);
@@ -34,10 +35,20 @@ const Post = (props) => {
       })
       .then((resData) => {
         getLikes_data(resData);
-        console.log(resData);
       })
       .catch((err) => console.log(err));
   };
+
+  let like_classes = likes_data
+    ? [
+        classes.like,
+        (liked ||
+          likes_data?.users_that_liked.some(
+            (user) => user.user_id == user_id
+          )) &&
+          classes.liked,
+      ].join(" ")
+    : classes.like;
 
   return (
     <div className={classes.Post}>
@@ -78,7 +89,9 @@ const Post = (props) => {
           </div>
           <div className={classes.people_who_liked}>
             <div className={classes.people_who_liked_header}>Likes</div>
-            <div className={classes.like_user_name}></div>
+            {likes_data.users_that_liked.map((user) => (
+              <div className={classes.like_user_name}>{user.fullname}</div>
+            ))}
           </div>
         </div>
       )}
@@ -91,10 +104,7 @@ const Post = (props) => {
             disabled={likeLoading}
             onClick={() => setLikedHandler()}
           >
-            <i
-              data-visualcompletion="css-img"
-              className={[classes.like, liked && classes.liked].join(" ")}
-            ></i>{" "}
+            <i data-visualcompletion="css-img" className={like_classes}></i>{" "}
             Like
           </button>
           <button className={classes.comment_btn}>
