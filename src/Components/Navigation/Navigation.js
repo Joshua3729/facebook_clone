@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../UI/Logo/Logo";
 import classes from "./Navigation.module.css";
 import search from "../../Assets/Images/search.png";
@@ -7,7 +7,10 @@ import { useSelector } from "react-redux";
 const Navigation = () => {
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
   const username = useSelector((state) => state.auth.user_data.fullname);
-
+  const [show_popup, setShow_popup] = useState(false);
+  const setShow_popup_handler = () => {
+    setShow_popup((prevState) => !prevState);
+  };
   return (
     <div className={classes.Navigation}>
       <div className={classes.first_column}>
@@ -93,27 +96,32 @@ const Navigation = () => {
           </button>
         </li>
         <li className={classes.third_column_item}>
-          <div className={classes.profile}>
+          <div
+            className={classes.profile}
+            onClick={() => setShow_popup_handler()}
+          >
             <img src={profile_img} alt="" />
           </div>
-          <div className={classes.userPopup_wrapper}>
-            <div className={classes.userprofile_wrapper}>
-              <div className={classes.inner_userprofile_wrapper}>
-                <img
-                  src={profile_img}
-                  alt=""
-                  className={classes.user_profile}
-                />
-                <div className={classes.username}>{username}</div>
+          {show_popup && (
+            <div className={classes.userPopup_wrapper}>
+              <div className={classes.userprofile_wrapper}>
+                <div className={classes.inner_userprofile_wrapper}>
+                  <img
+                    src={profile_img}
+                    alt=""
+                    className={classes.user_profile}
+                  />
+                  <div className={classes.username}>{username}</div>
+                </div>
+              </div>
+              <div className={classes.logout_optionWrapper}>
+                <div className={classes.logout_icon_wrapper}>
+                  <i className={classes.logout_icon}></i>
+                </div>
+                <div className={classes.logout_txt}>Log Out</div>
               </div>
             </div>
-            <div className={classes.logout_optionWrapper}>
-              <div className={classes.logout_icon_wrapper}>
-                <i className={classes.logout_icon}></i>
-              </div>
-              <div className={classes.logout_txt}>Log Out</div>
-            </div>
-          </div>
+          )}
         </li>
       </ul>
     </div>
