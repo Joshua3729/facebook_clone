@@ -18,13 +18,13 @@ import LoadingPage from "./Pages/LoadingPage/LoadingPage";
 
 function App() {
   let isAuth = useSelector((state) => state.auth.isAuth);
-  let authLoading = useSelector((state) => state.auth.authLoading);
+  // let authLoading = useSelector((state) => state.auth.authLoading);
   const dispatch = useDispatch();
+  const [authLoading, setAuthLoading] = useState(true);
   useEffect(() => {
     const session_data = JSON.parse(localStorage.getItem("session_data"));
-    dispatch(HomeActions.setAuthLoad(true));
     if (!session_data?.token) {
-      dispatch(HomeActions.setAuthLoad(false));
+      setAuthLoading(false);
       return;
     }
     if (new Date(session_data?.xpiryDate) <= new Date()) {
@@ -47,7 +47,7 @@ function App() {
         session_data.user_data
       )
     );
-    dispatch(HomeActions.setAuthLoad(false));
+    setAuthLoading(false);
   }, []);
 
   const setAutoLogout = (milliseconds) => {
@@ -63,21 +63,21 @@ function App() {
       </Routes>
     </Router>
   );
-
-  if (!isAuth && !authLoading) {
-    route = (
-      <Router>
-        <Routes>
-          <Route path="/" exact element={<AuthPage />} />
-        </Routes>
-      </Router>
-    );
-  } else if (isAuth && !authLoading) {
+  console.log("isAuth:" + isAuth + " authLoading:" + authLoading);
+  if (isAuth && !authLoading) {
     route = (
       <Router>
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/:username" exact element={<User_profile />} />
+        </Routes>
+      </Router>
+    );
+  } else if (!isAuth && !authLoading) {
+    route = (
+      <Router>
+        <Routes>
+          <Route path="/" exact element={<AuthPage />} />
         </Routes>
       </Router>
     );
