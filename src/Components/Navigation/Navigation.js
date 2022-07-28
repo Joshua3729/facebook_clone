@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 
 const Navigation = () => {
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
+  const username = useSelector((state) => state.auth.user_data.fullname);
 
   return (
     <div className={classes.Navigation}>
@@ -94,6 +95,18 @@ const Navigation = () => {
         <li className={classes.third_column_item}>
           <div className={classes.profile}>
             <img src={profile_img} alt="" />
+          </div>
+          <div className={classes.userPopup_wrapper}>
+            <div className={classes.userprofile_wrapper}>
+              <div className={classes.inner_userprofile_wrapper}>
+                <img
+                  src={profile_img}
+                  alt=""
+                  className={classes.user_profile}
+                />
+                <div className={classes.username}>{username}</div>
+              </div>
+            </div>
           </div>
         </li>
       </ul>
