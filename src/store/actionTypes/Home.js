@@ -7,9 +7,14 @@ export const setPosts = (posts) => {
   };
 };
 
-export const initPosts = () => {
+export const initPosts = (token) => {
   return (dispatch) => {
-    fetch("http://localhost:5000/feed/get_posts")
+    fetch("http://localhost:5000/feed/get_posts", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    })
       .then((res) => {
         if (res.status !== 200) {
           throw new Error("Failed to fetch posts.");

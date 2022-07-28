@@ -63,13 +63,13 @@ function App() {
       </Routes>
     </Router>
   );
-  console.log("isAuth:" + isAuth + " authLoading:" + authLoading);
+
   if (isAuth && !authLoading) {
     route = (
       <Router>
         <Routes>
           <Route path="/" exact element={<Home />} />
-          <Route path="/:username" exact element={<User_profile />} />
+          <Route path="/:user_id" exact element={<User_profile />} />
         </Routes>
       </Router>
     );

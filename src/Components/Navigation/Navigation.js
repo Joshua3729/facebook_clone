@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Logo from "../UI/Logo/Logo";
 import classes from "./Navigation.module.css";
 import search from "../../Assets/Images/search.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import * as HomeActions from "../../store/actionTypes/index";
 
 const Navigation = () => {
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
@@ -11,6 +12,8 @@ const Navigation = () => {
   const setShow_popup_handler = () => {
     setShow_popup((prevState) => !prevState);
   };
+  const dispatch = useDispatch();
+
   return (
     <div className={classes.Navigation}>
       <div className={classes.first_column}>
@@ -114,7 +117,10 @@ const Navigation = () => {
                   <div className={classes.username}>{username}</div>
                 </div>
               </div>
-              <div className={classes.logout_optionWrapper}>
+              <div
+                className={classes.logout_optionWrapper}
+                onClick={() => dispatch(HomeActions.onLogout())}
+              >
                 <div className={classes.logout_icon_wrapper}>
                   <i className={classes.logout_icon}></i>
                 </div>

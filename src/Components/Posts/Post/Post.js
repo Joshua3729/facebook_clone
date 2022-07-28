@@ -3,25 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import classes from "./Post.module.css";
 import * as HomeActions from "../../../store/actionTypes/index";
 import like_icon from "../../../Assets/Images/like.svg";
+import { Link } from "react-router-dom";
 
 const Post = (props) => {
   const token = useSelector((state) => state.auth.token);
   const user_id = useSelector((state) => state.auth.user_data.user_id);
-  // const likeLoading = useSelector((state) => state.home.like_loading);
   const [liked, setLiked] = useState(false);
   const [likes_data, getLikes_data] = useState(null);
   const [likeLoading, setLikeLoading] = useState(false);
   const dispatch = useDispatch();
-  // const postLike = () => {
-  //   console.log(liked);
-  //   setLiked((prevLiked) => {
-  //     postLike(!prevLiked);
-  //     return !prevLiked;
-  //   });
-  // };
+
   useEffect(() => {
     getLikesHandler();
   }, []);
+
   const postLike = () => {
     setLiked((prevLiked) => !prevLiked);
     setLikeLoading(true);
@@ -95,7 +90,13 @@ const Post = (props) => {
         </div>
 
         <div className={classes.name_wrapper}>
-          <div className={classes.user_name}>{props.user_name}</div>
+          <div className={classes.user_name}>
+            <Link
+              to={`/${props.user_name.split(" ").join(".")}.${props.user_id}`}
+            >
+              {props.user_name}
+            </Link>
+          </div>
           <div className={classes.time}>{props.time}</div>
         </div>
       </div>

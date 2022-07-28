@@ -1,11 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import IntroCard from "../../Components/IntroCard/IntroCard";
 import PhotosCard from "../../Components/PhotosCard/PhotosCard";
 import classes from "./User_profile.module.css";
 import WhatsOnYourMind from "../../Components/Inputs/WhatsOnYourMind/WhatsOnYourMind";
+import { useParams } from "react-router-dom";
 
 const User_profile = () => {
+  // const user_id = props.match?.params.user_id;
+  const user_id = useParams().user_id;
+  console.log(user_id);
+  useEffect(() => {
+    getUser_posts();
+  }, []);
+
+  const getUser_posts = () => {
+    fetch(`http://localhost:5000/feed/get_user_posts/${user_id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to fetch posts.");
+        }
+
+        return res.json();
+      })
+      .then((resData) => {
+        dispatch(setPosts(resData.data));
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div className={classes.User_profile}>
       <div className={classes.header_bar}>

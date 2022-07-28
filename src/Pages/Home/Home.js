@@ -14,9 +14,11 @@ const Home = () => {
   const showCreatePost_modal = useSelector(
     (state) => state.home.showCreatePost_modal
   );
+  const token = useSelector((state) => state.auth.token);
+
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(HomeActions.initPosts());
+    dispatch(HomeActions.initPosts(token));
     const socket = openSocket("http://localhost:5000");
     socket.on("posts", (data) => {
       if (data.action == "create") dispatch(HomeActions.getNewPost(data.post));

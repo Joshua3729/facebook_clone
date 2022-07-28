@@ -16,6 +16,7 @@ const Posts = (props) => {
           caption={post.caption}
           post_id={post.post_id}
           key={post.post_id}
+          user_id={post.user_id}
           // video={"http://localhost:5000/feed/get_video"}
           profile_img={post.profile_img}
           created_at={post.created_at}
