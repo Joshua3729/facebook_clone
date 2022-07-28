@@ -107,6 +107,12 @@ const Navigation = () => {
                 <div className={classes.username}>{username}</div>
               </div>
             </div>
+            <div className={classes.logout_optionWrapper}>
+              <div className={classes.logout_icon_wrapper}>
+                <i className={classes.logout_icon}></i>
+              </div>
+              <div className={classes.logout_txt}>Log Out</div>
+            </div>
           </div>
         </li>
       </ul>

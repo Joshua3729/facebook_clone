@@ -131,3 +131,33 @@
   background-color: #dddddd;
   cursor: pointer;
 }
+.logout_icon {
+  background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yW/r/YBE_1_nu88W.png);
+  background-position: 0px -60px;
+  background-size: 40px 205px;
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.logout_optionWrapper {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.logout_icon_wrapper {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e4e6eb;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.logout_txt {
+  font-size: 20px;
+  font-weight: 600;
+}
