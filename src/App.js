@@ -8,6 +8,7 @@ import {
   Route,
   Link,
   Routes,
+  Navigate,
 } from "react-router-dom";
 import User_profile from "./Pages/User_Profile/User_profile";
 import AuthPage from "./Pages/AuthPage/AuthPage";
@@ -57,29 +58,24 @@ function App() {
   };
 
   let route = (
-    <Router>
-      <Routes>
-        <Route path="/" exact element={<LoadingPage />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" exact element={<LoadingPage />} />
+    </Routes>
   );
 
   if (isAuth && !authLoading) {
     route = (
-      <Router>
-        <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/:user_id" exact element={<User_profile />} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/" exact element={<Home />} />
+        <Route path="/:user_id" exact element={<User_profile />} />
+      </Routes>
     );
   } else if (!isAuth && !authLoading) {
     route = (
-      <Router>
-        <Routes>
-          <Route path="/" exact element={<AuthPage />} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/" exact element={<AuthPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     );
   }
   return (

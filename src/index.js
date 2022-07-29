@@ -8,6 +8,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import Home from "./store/reducer/Home";
 import Auth from "./store/reducer/Auth";
+import { BrowserRouter } from "react-router-dom";
 
 const rootReducer = combineReducers({
   home: Home,
@@ -34,9 +35,12 @@ const store = createStore(
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
+
   // </React.StrictMode>
 );
 
