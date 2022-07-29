@@ -41,12 +41,10 @@ const Post = (props) => {
         setLikeLoading(false);
         getLikesHandler();
         setLiked(resData.liked);
-        console.log(resData);
       })
       .catch((err) => console.log(err));
   };
   const getLikesHandler = () => {
-    console.log(props.post_id);
     fetch(`http://localhost:5000/feed/get_likes/${props.post_id}`, {
       headers: {
         Authorization: "Bearer " + token,
@@ -75,9 +73,7 @@ const Post = (props) => {
           classes.liked,
       ].join(" ")
     : classes.like;
-  console.log(
-    likes_data?.users_that_liked.some((user) => user.user_id == user_id)
-  );
+
   return (
     <div className={classes.Post}>
       <div className={classes.post_header}>

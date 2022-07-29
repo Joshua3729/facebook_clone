@@ -29,11 +29,17 @@
 
   overflow: hidden;
 }
-.user_name {
+.user_name a {
+  text-decoration: none;
   font-size: 20px;
   font-weight: 600;
   color: black;
 }
+.user_name a:active,
+.user_name a:focus {
+  color: #050505;
+}
+
 .time {
   color: #65676b;
 }
