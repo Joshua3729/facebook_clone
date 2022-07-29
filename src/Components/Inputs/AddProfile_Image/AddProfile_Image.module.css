@@ -16,3 +16,42 @@
   font-size: 25px;
   font-weight: 700;
 }
+.close {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e4e6eb;
+  position: absolute;
+  right: 15px;
+}
+.close img {
+  width: 30px;
+  height: 30px;
+}
+.image_picker {
+  width: 100%;
+  background-color: aquamarine;
+  opacity: 0;
+}
+.file_picker_btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  cursor: pointer;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: #e7f3ff;
+  border: none;
+  border-radius: 10px;
+}
+.image_btn_wrapper {
+  padding: 15px;
+}
+.image_btn_Innerwrapper {
+  position: relative;
+}

@@ -5,7 +5,7 @@ const AddProfile_Image = (props) => {
   return (
     <div className={classes.AddProfile_Image_wrapper}>
       <div className={classes.CreatePost_header}>
-        Create Post
+        Update profile picture
         <div
           className={classes.close}
           onClick={() => props.set_show_imageUpload_modal_handler(false)}
@@ -14,6 +14,19 @@ const AddProfile_Image = (props) => {
             src="https://static.xx.fbcdn.net/rsrc.php/v3/yX/r/TdCEremeWv5.png"
             alt=""
           />
+        </div>
+      </div>
+      <div className={classes.image_btn_wrapper}>
+        <div className={classes.image_btn_Innerwrapper}>
+          <label for="file-picker">
+            <button className={classes.file_picker_btn}>Upload Photo</button>
+            <input
+              id="file-picker"
+              type="file"
+              accept="image/png,image/jpg,image/jpeg"
+              className={classes.image_picker}
+            />
+          </label>
         </div>
       </div>
     </div>
