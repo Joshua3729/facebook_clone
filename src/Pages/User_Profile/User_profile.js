@@ -10,6 +10,7 @@ import Posts from "../../Components/Posts/Posts";
 
 import add_friend from "../../Assets/Images/add_friend.png";
 import Modal from "../../Components/Modal/Modal";
+import AddProfile_Image from "../../Components/Inputs/AddProfile_Image/AddProfile_Image";
 
 const User_profile = () => {
   // const user_id = props.match?.params.user_id;
@@ -26,6 +27,11 @@ const User_profile = () => {
     getUserData();
     getUser_posts();
   }, []);
+
+  const set_show_imageUpload_modal_handler = (show) => {
+    set_show_imageUpload_modal(show);
+  };
+
   const getUserData = () => {
     fetch(`http://localhost:5000/feed/get_user/${user_id[2]}`, {
       headers: {
@@ -91,7 +97,13 @@ const User_profile = () => {
 
   return (
     <>
-      <Modal show={show_imageUpload_modal}></Modal>
+      <Modal show={show_imageUpload_modal}>
+        <AddProfile_Image
+          set_show_imageUpload_modal_handler={
+            set_show_imageUpload_modal_handler
+          }
+        />
+      </Modal>
       <div className={classes.User_profile}>
         <div className={classes.header_bar}>
           <div className={classes.cover_wrapper}></div>
@@ -99,7 +111,10 @@ const User_profile = () => {
             <div className={classes.header_innerWrapper}>
               <div className={classes.userImg}>
                 <img src={user_data?.profile_img} alt="" />
-                <div className={classes.addImage_wrapper}>
+                <div
+                  className={classes.addImage_wrapper}
+                  onClick={() => set_show_imageUpload_modal_handler(true)}
+                >
                   <i className={classes.addImage_icon}></i>
                 </div>
               </div>
