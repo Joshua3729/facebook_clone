@@ -161,3 +161,28 @@
   border-radius: 15px;
   margin-left: 20px;
 }
+.addImage_icon {
+  background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yK/r/pj9BUYVLQio.png");
+  background-position: 0px -538px;
+  background-size: 26px 1886px;
+  width: 20px;
+  height: 20px;
+  transform: scale(1.3);
+  background-repeat: no-repeat;
+  display: inline-block;
+  -webkit-filter: invert(8%) sepia(10%) saturate(200%) saturate(200%)
+    saturate(166%) hue-rotate(177deg) brightness(104%) contrast(91%);
+}
+.addImage_wrapper {
+  position: absolute;
+  right: 0;
+  bottom: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dddddd;
+  cursor: pointer;
+}
