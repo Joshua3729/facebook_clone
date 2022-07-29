@@ -19,7 +19,7 @@ const User_profile = () => {
   const username = `${user_id[0]} ${user_id[1]}`;
   const [user_posts, setUser_posts] = useState(null);
   const [user_data, setUserData] = useState(null);
-  const [friends, setFriends_status]=useState(false);
+  const [friends, setFriends_status] = useState(true);
   useEffect(() => {
     getUserData();
     getUser_posts();
@@ -64,7 +64,7 @@ const User_profile = () => {
       .catch((err) => console.log(err));
   };
   const friend_button = friends ? (
-    <span>
+    <>
       <img
         className={classes.friends}
         src="https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/c9BbXR9AzI1.png?_nc_eui2=AeGSUajAFM2EC-zzkuCL-uduFsz17BrQ-k4WzPXsGtD6Tg-DUVQDyRyX2ecuHvzVNvHAdq9wUYI96qGfG47raCkn"
@@ -73,9 +73,9 @@ const User_profile = () => {
         width="20"
       />
       Friends
-    </span>
+    </>
   ) : (
-    <span>
+    <>
       <img
         className={classes.friends}
         src={add_friend}
@@ -84,7 +84,7 @@ const User_profile = () => {
         width="20"
       />
       Add Friend
-    </span>
+    </>
   );
 
   return (
@@ -99,8 +99,22 @@ const User_profile = () => {
             <div className={classes.userName}>{username}</div>
           </div>
           <div className={classes.btns_wrapper}>
-            <button className={classes.add_friend}>{friend_button}</button>
-            <button className={classes.messanger}>
+            <button
+              className={[
+                classes.add_friend,
+                friends ? classes.inactive_btn : classes.active_btn,
+              ].join(" ")}
+              disabled={friends}
+            >
+              {friend_button}
+            </button>
+            <button
+              className={[
+                classes.messanger,
+                friends ? classes.active_btn : classes.inactive_btn,
+              ].join(" ")}
+              disabled={!friends}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"

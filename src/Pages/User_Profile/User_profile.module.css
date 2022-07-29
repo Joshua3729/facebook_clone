@@ -54,25 +54,36 @@
 }
 .messanger,
 .add_friend {
-  padding: 15px 0;
-  width: 125px;
   margin-right: 10px;
   border: none;
   border-radius: 10px;
   font-size: 18px;
   font-weight: 600;
 }
-.add_friend {
-  background-color: #e4e6eb;
-}
+
 .messanger {
-  background-color: #1b74e4;
-  color: white;
+  padding: 15px;
+
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
+.active_btn {
+  background-color: #1b74e4;
+  color: white;
+  cursor: pointer;
+}
+.active_btn img {
+  -webkit-filter: invert(100%);
+}
+.inactive_btn:disabled {
+  background-color: #e4e6eb;
+  color: black;
+  cursor: not-allowed;
+}
+.inactive_btn svg {
+  -webkit-filter: invert(100%);
+}
 .message {
   width: 20px;
   fill: white;
@@ -88,6 +99,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 15px;
 }
 .links_wrapper {
   display: flex;
