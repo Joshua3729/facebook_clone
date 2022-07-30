@@ -18,3 +18,5 @@ export const setSubmitting = "setSubmitting";
 export const setLike = "setLike";
 export const setLikeLoading = "setLikeLoading";
 export const ON_FILE_CHANGE = "ON_FILE_CHANGE";
+export const onSetPreviewImg = "onSetPreviewImg";
+export const onPreviewImgLoading = "onPreviewImgLoading";

@@ -111,7 +111,13 @@ const User_profile = () => {
           }
         />
       </Modal>
-      <div className={classes.User_profile}>
+      <div
+        className={classes.User_profile}
+        style={{
+          overflow: show_imageUpload_modal ? "hidden" : "unset",
+          height: show_imageUpload_modal ? "100vh" : "unset",
+        }}
+      >
         <div className={classes.header_bar}>
           <div className={classes.cover_wrapper}></div>
           <div className={classes.profile_wrapper}>

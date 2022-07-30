@@ -10,6 +10,8 @@ const initialState = {
       validators: [required],
     },
   },
+  previewImgLoading: false,
+  previewImg: null,
   formIsValid: false,
 };
 const reducer = (state = initialState, action) => {
@@ -26,7 +28,7 @@ const reducer = (state = initialState, action) => {
         [action.input]: {
           ...previousState[action.input],
           valid: isValid,
-          value: action.value,
+          value: action.file,
         },
       };
       let formIsValid = true;
@@ -35,12 +37,22 @@ const reducer = (state = initialState, action) => {
           formIsValid = formIsValid && updatedForm[inputName].valid;
         }
       }
+
       return {
         ...state,
         [action.formType]: updatedForm,
         formIsValid: formIsValid,
       };
-
+    case actionTypes.onSetPreviewImg:
+      return {
+        ...state,
+        previewImg: action.previewImg,
+      };
+    case actionTypes.onPreviewImgLoading:
+      return {
+        ...state,
+        previewImgLoading: action.previewImgLoading,
+      };
     default:
       return state;
   }
