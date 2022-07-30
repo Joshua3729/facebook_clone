@@ -23,6 +23,40 @@ const AddProfile_Image = (props) => {
       </div>
     );
   }
+
+  let upload_button = previewImg ? (
+    <div className={classes.upload_profile_img}>
+      <button className={classes.cancel_upload}>Cancel</button>
+      <button className={classes.upload_btn}>Save</button>
+    </div>
+  ) : (
+    <div className={classes.image_btn_wrapper}>
+      <div className={classes.image_btn_Innerwrapper}>
+        <label for="file-picker">
+          <button className={classes.file_picker_btn}>
+            <i className={classes.add_icon}></i> Upload Photo
+          </button>
+          <input
+            id="file-picker"
+            type="file"
+            accept="image/png,image/jpg,image/jpeg"
+            className={classes.image_picker}
+            onChange={(e) =>
+              dispatch(
+                HomeActions.OnFIleChange(
+                  "image",
+                  e.target.value,
+                  e.target.files,
+                  "photo_upload_data"
+                )
+              )
+            }
+          />
+        </label>
+      </div>
+    </div>
+  );
+
   return (
     <div className={classes.AddProfile_Image_wrapper}>
       <div className={classes.CreatePost_header}>
@@ -38,31 +72,7 @@ const AddProfile_Image = (props) => {
         </div>
       </div>
       {img_preview}
-      <div className={classes.image_btn_wrapper}>
-        <div className={classes.image_btn_Innerwrapper}>
-          <label for="file-picker">
-            <button className={classes.file_picker_btn}>
-              <i className={classes.add_icon}></i> Upload Photo
-            </button>
-            <input
-              id="file-picker"
-              type="file"
-              accept="image/png,image/jpg,image/jpeg"
-              className={classes.image_picker}
-              onChange={(e) =>
-                dispatch(
-                  HomeActions.OnFIleChange(
-                    "image",
-                    e.target.value,
-                    e.target.files,
-                    "photo_upload_data"
-                  )
-                )
-              }
-            />
-          </label>
-        </div>
-      </div>
+      {upload_button}
     </div>
   );
 };

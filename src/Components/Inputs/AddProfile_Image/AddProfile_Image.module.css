@@ -3,7 +3,7 @@
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
-  min-height: 170px;
+  max-height: calc(100vh - 50px);
 }
 .CreatePost_header {
   position: relative;
@@ -79,10 +79,47 @@
 
 .img_previewWrapper {
   width: calc(100% - 30px);
+  height: 400px;
+  overflow-y: auto;
   margin: 0 auto;
-  min-height: 700px;
   margin-top: 20px;
 }
 .img_preview {
-  width: 470px;
+  width: 100%;
+  /* height: 700px; */
+}
+.upload_profile_img {
+  display: flex;
+  justify-content: right;
+  padding: 20px;
+  margin-top: 20px;
+  border-top: #dddfe2 1px solid;
+}
+.cancel_upload {
+  background-color: transparent;
+  border: none;
+  font-size: 17px;
+  padding: 10px;
+  font-weight: 600;
+  color: #1877f2;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 7px;
+}
+.cancel_upload:hover {
+  background-color: #dddfe2;
+}
+.upload_btn {
+  background-color: #1877f2;
+  font-size: 17px;
+  font-weight: 600;
+  color: white;
+  width: 120px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.upload_btn:hover {
+  background-color: #6096dd;
 }
