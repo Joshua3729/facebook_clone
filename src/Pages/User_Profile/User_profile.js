@@ -39,6 +39,30 @@ const User_profile = () => {
     set_show_imageUpload_modal(show);
   };
 
+  const uploadUserProfile = (profile_img) => {
+    console.log(profile_img);
+    const formData = new FormData();
+    formData.append("image", profile_img);
+    fetch("http://localhost:5000/feed/post_profile", {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+      body: formData,
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to create post.");
+        }
+
+        return res.json();
+      })
+      .then((resData) => {
+        console.log(resData);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const getUserData = () => {
     fetch(`http://localhost:5000/feed/get_user/${user_id[2]}`, {
       headers: {
@@ -109,6 +133,7 @@ const User_profile = () => {
           set_show_imageUpload_modal_handler={
             set_show_imageUpload_modal_handler
           }
+          uploadUserProfile={uploadUserProfile}
         />
       </Modal>
       <div

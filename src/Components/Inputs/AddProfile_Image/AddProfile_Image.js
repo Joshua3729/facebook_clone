@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./AddProfile_Image.module.css";
 import * as HomeActions from "../../../store/actionTypes/index";
+import LoadingSpinner from "../../UI/LoadingSpinners/LoadingSpinner_1/LoadingSpinner";
 
 const AddProfile_Image = (props) => {
   const dispatch = useDispatch();
@@ -9,13 +10,20 @@ const AddProfile_Image = (props) => {
   const imgLoading = useSelector(
     (state) => state.userprofile.previewImgLoading
   );
+  const imageFile = useSelector(
+    (state) => state.userprofile.photo_upload_data.image.value
+  );
   const previewImg = useSelector((state) => state.userprofile.previewImg);
 
   console.log(imgLoading);
 
   let img_preview = null;
   if (imgLoading) {
-    img_preview = <div>loading...</div>;
+    img_preview = (
+      <div className={classes.LoadingSpinner_wrapper}>
+        <LoadingSpinner />
+      </div>
+    );
   } else if (previewImg) {
     img_preview = (
       <div className={classes.img_previewWrapper}>
@@ -27,7 +35,12 @@ const AddProfile_Image = (props) => {
   let upload_button = previewImg ? (
     <div className={classes.upload_profile_img}>
       <button className={classes.cancel_upload}>Cancel</button>
-      <button className={classes.upload_btn}>Save</button>
+      <button
+        className={classes.upload_btn}
+        onClick={() => props.uploadUserProfile(imageFile)}
+      >
+        Save
+      </button>
     </div>
   ) : (
     <div className={classes.image_btn_wrapper}>
