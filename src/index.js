@@ -9,10 +9,12 @@ import thunk from "redux-thunk";
 import Home from "./store/reducer/Home";
 import Auth from "./store/reducer/Auth";
 import { BrowserRouter } from "react-router-dom";
+import user_profile from "./store/reducer/Userprofile";
 
 const rootReducer = combineReducers({
   home: Home,
   auth: Auth,
+  userprofile: user_profile,
 });
 
 const logger = (store) => {

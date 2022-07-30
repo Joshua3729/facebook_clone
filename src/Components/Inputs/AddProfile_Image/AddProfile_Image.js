@@ -1,7 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import classes from "./AddProfile_Image.module.css";
+import * as HomeActions from "../../../store/actionTypes/index";
 
 const AddProfile_Image = (props) => {
+  const dispatch = useDispatch();
   return (
     <div className={classes.AddProfile_Image_wrapper}>
       <div className={classes.CreatePost_header}>
@@ -27,6 +30,15 @@ const AddProfile_Image = (props) => {
               type="file"
               accept="image/png,image/jpg,image/jpeg"
               className={classes.image_picker}
+              onChange={(e) =>
+                dispatch(
+                  HomeActions.setOnInputChange(
+                    "image",
+                    e.target.files,
+                    "photo_upload_data"
+                  )
+                )
+              }
             />
           </label>
         </div>
