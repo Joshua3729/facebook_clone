@@ -19,7 +19,9 @@ const AddProfile_Image = (props) => {
       <div className={classes.image_btn_wrapper}>
         <div className={classes.image_btn_Innerwrapper}>
           <label for="file-picker">
-            <button className={classes.file_picker_btn}>Upload Photo</button>
+            <button className={classes.file_picker_btn}>
+              <i className={classes.add_icon}></i> Upload Photo
+            </button>
             <input
               id="file-picker"
               type="file"

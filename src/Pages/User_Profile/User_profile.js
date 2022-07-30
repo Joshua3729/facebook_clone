@@ -7,7 +7,7 @@ import WhatsOnYourMind from "../../Components/Inputs/WhatsOnYourMind/WhatsOnYour
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Posts from "../../Components/Posts/Posts";
-
+import { required } from "../../Utils/validators";
 import add_friend from "../../Assets/Images/add_friend.png";
 import Modal from "../../Components/Modal/Modal";
 import AddProfile_Image from "../../Components/Inputs/AddProfile_Image/AddProfile_Image";
@@ -23,6 +23,13 @@ const User_profile = () => {
   const [user_data, setUserData] = useState(null);
   const [show_imageUpload_modal, set_show_imageUpload_modal] = useState(true);
   const [friends, setFriends_status] = useState(true);
+  const [imageFile, setImageFile] = useState({
+    image: {
+      value: "",
+      valid: false,
+      validators: [required],
+    },
+  });
   useEffect(() => {
     getUserData();
     getUser_posts();

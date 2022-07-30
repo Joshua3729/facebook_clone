@@ -1,9 +1,9 @@
 .AddProfile_Image_wrapper {
   width: 500px;
-  height: 400px;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
+  height: 170px;
 }
 .CreatePost_header {
   position: relative;
@@ -34,7 +34,7 @@
 }
 .image_picker {
   width: 100%;
-  background-color: aquamarine;
+
   opacity: 0;
 }
 .file_picker_btn {
@@ -48,10 +48,29 @@
   background-color: #e7f3ff;
   border: none;
   border-radius: 10px;
+  color: #1877f2;
+  font-size: 20px;
+  font-weight: 700;
+}
+.file_picker_btn:hover {
+  background-color: hwb(209 84% 1%);
 }
 .image_btn_wrapper {
   padding: 15px;
 }
 .image_btn_Innerwrapper {
   position: relative;
+}
+.add_icon {
+  background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yK/r/pj9BUYVLQio.png");
+  background-position: 0px -1754px;
+  background-size: 26px 1886px;
+  width: 16px;
+  height: 16px;
+  transform: scale(1.7);
+  background-repeat: no-repeat;
+  display: inline-block;
+  -webkit-filter: invert(39%) sepia(57%) saturate(200%) saturate(200%)
+    saturate(200%) saturate(200%) saturate(200%) saturate(147.75%)
+    hue-rotate(202deg) brightness(97%) contrast(96%);
 }
