@@ -1,18 +1,16 @@
 import React from "react";
 import classes from "./WhatsOnYourMind.module.css";
 import * as HomeActions from "../../../store/actionTypes/index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const WhatsOnYourMind = (props) => {
   const dispatch = useDispatch();
+  const profile_img = useSelector((state) => state.auth.user_data.profile_img);
+
   return (
     <div className={classes.WhatsOnYourMind}>
       <div className={classes.wrapper}>
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYH_VDaGfxQ_cPhkgDPyoxXJgnnKHzEw7kdg&usqp=CAU"
-          alt=""
-          className={classes.profile}
-        />
+        <img src={profile_img} alt="" className={classes.profile} />
 
         <div
           className={classes.user_input}

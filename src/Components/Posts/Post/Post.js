@@ -11,6 +11,8 @@ const Post = (props) => {
   const [liked, setLiked] = useState(false);
   const [likes_data, getLikes_data] = useState(null);
   const [likeLoading, setLikeLoading] = useState(false);
+  const profile_img = useSelector((state) => state.auth.user_data.profile_img);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -161,7 +163,7 @@ const Post = (props) => {
         <div className={classes.comment_innerWrapper}>
           <div className={classes.outer_wrapper}>
             <div className={classes.userProfile_wrapper}>
-              <img src={props.userImg} alt="" />
+              <img src={profile_img} alt="" />
             </div>
             <div className={classes.online}></div>
           </div>
