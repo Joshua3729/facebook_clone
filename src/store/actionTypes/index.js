@@ -9,6 +9,7 @@ export {
   setShowModal,
   setOnDateInputChange,
   setOnGenderInputChange,
+  onUpdateProfile,
 } from "./Auth";
 export {
   initPosts,

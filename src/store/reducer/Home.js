@@ -6,6 +6,7 @@ const initialState = {
   createPostLoading: false,
   post_data: {
     post_caption: "",
+    photo_file: null,
   },
 
   like_loading: false,
@@ -31,7 +32,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         post_data: {
+          ...state.post_data,
           post_caption: action.post_caption,
+        },
+      };
+    case actionTypes.uploadImgFile:
+      return {
+        ...state,
+        post_data: {
+          ...state.post_data,
+          photo_file: action.photo_file,
         },
       };
 

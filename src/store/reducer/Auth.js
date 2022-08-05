@@ -158,6 +158,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         gender: action.value,
       };
+    case actionTypes.setUpdateUserProfile:
+      return {
+        ...state,
+        user_data: {
+          ...state.user_data,
+          profile_img: action.profile_img,
+        },
+      };
     default:
       return state;
   }

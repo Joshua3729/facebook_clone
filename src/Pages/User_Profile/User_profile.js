@@ -25,6 +25,7 @@ const User_profile = () => {
   const [user_data, setUserData] = useState(null);
   const [show_imageUpload_modal, set_show_imageUpload_modal] = useState(false);
   const [friends, setFriends_status] = useState(true);
+  const user_profile = useSelector((state) => state.auth.user_data.profile_img);
   const [imageFile, setImageFile] = useState({
     image: {
       value: "",
@@ -62,6 +63,7 @@ const User_profile = () => {
       .then((resData) => {
         set_show_imageUpload_modal(false);
         dispatch(HomeActions.setCloseUploadAction());
+        dispatch(HomeActions.onUpdateProfile(resData.profile_img));
       })
       .catch((err) => console.log(err));
   };
@@ -198,7 +200,14 @@ const User_profile = () => {
           <div className={classes.profile_wrapper}>
             <div className={classes.header_innerWrapper}>
               <div className={classes.userImg}>
-                <img src={user_data?.profile_img} alt="" />
+                <img
+                  src={
+                    loggedIn_id == user_id[2]
+                      ? user_profile
+                      : user_data?.profile_img
+                  }
+                  alt=""
+                />
                 {user_id[2] == loggedIn_id && (
                   <div
                     className={classes.addImage_wrapper}

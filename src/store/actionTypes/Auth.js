@@ -209,6 +209,17 @@ export const setOnGenderInputChange = (value) => {
 export const setUpdateUserProfile = (user_profile) => {
   return {
     type: actionTypes.setUpdateUserProfile,
-    user_profile: user_profile,
+    profile_img: user_profile,
+  };
+};
+
+export const onUpdateProfile = (user_profile) => {
+  return (dispatch) => {
+    let session_data = JSON.parse(localStorage.getItem("session_data"));
+    session_data.user_data.profile_img = user_profile;
+
+    localStorage.setItem("session_data", JSON.stringify(session_data));
+
+    dispatch(setUpdateUserProfile(user_profile));
   };
 };

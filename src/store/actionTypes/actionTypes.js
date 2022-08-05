@@ -21,3 +21,5 @@ export const ON_FILE_CHANGE = "ON_FILE_CHANGE";
 export const onSetPreviewImg = "onSetPreviewImg";
 export const onPreviewImgLoading = "onPreviewImgLoading";
 export const closeUploadAction = "closeUploadAction";
+export const setUpdateUserProfile = "setUpdateUserProfile";
+export const uploadImgFile = "uploadImgFile";
