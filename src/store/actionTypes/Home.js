@@ -47,18 +47,7 @@ export const setPostCaption = (post_caption) => {
     post_caption: post_caption,
   };
 };
-export const setUploadImgFile = (photo_file) => {
-  return {
-    type: actionTypes.uploadImgFile,
-    photo_file: photo_file,
-  };
-};
-export const setPreviewPost_photo = (previewPost_photo) => {
-  return {
-    type: actionTypes.setPreviewPost_photo,
-    previewPost_photo: previewPost_photo,
-  };
-};
+
 export const setOnEmojiClick = (event, emojiObject) => {
   return {
     type: actionTypes.setOnEmojiClick,
@@ -139,5 +128,43 @@ export const ON_POST_LIKE = (post_id, addLike, token) => {
         console.log(resData);
       })
       .catch((err) => console.log(err));
+  };
+};
+
+export const setPreviewPost_photo = (previewPost_photo) => {
+  return {
+    type: actionTypes.setPreviewPost_photo,
+    previewPost_photo: previewPost_photo,
+  };
+};
+
+export const setPreviewPost_photo_Loading = (loading) => {
+  return {
+    type: actionTypes.onPreviewPost_photo_Loading,
+    previewImgLoading: loading,
+  };
+};
+
+export const setOnFileChange = (input, value, file, formType) => {
+  return {
+    type: actionTypes.ON_FILE_CHANGE,
+    input: input,
+    file: file[0],
+    value: value,
+    formType: formType,
+  };
+};
+export const OnFIleChange = (input, value, file, formType) => {
+  return (dispatch) => {
+    dispatch(setOnFileChange(input, value, file, formType));
+    dispatch(setPreviewPost_photo_Loading(true));
+    generateBase64FromImage(file[0])
+      .then((b64) => {
+        dispatch(setPreviewPost_photo(b64));
+        dispatch(setPreviewPost_photo_Loading(false));
+      })
+      .catch((e) => {
+        dispatch(setPreviewPost_photo(null));
+      });
   };
 };
