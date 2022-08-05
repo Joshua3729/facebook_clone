@@ -19,4 +19,4 @@ export {
   setOnEmojiClick,
   ON_POST_LIKE,
 } from "./Home";
-export { OnFIleChange } from "./UserProfile";
+export { OnFIleChange, setCloseUploadAction } from "./UserProfile";

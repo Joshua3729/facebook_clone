@@ -33,7 +33,13 @@ const Home = () => {
           profile_img={user_data.profile_img}
         />
       </Modal>
-      <div className={classes.Home}>
+      <div
+        className={classes.Home}
+        style={{
+          overflow: showCreatePost_modal ? "hidden" : "unset",
+          height: showCreatePost_modal ? "100vh" : "unset",
+        }}
+      >
         <div className={classes.gutter}></div>
         <div className={classes.Home_innerWrapper}>
           <div className={classes.main}>

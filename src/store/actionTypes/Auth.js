@@ -206,3 +206,9 @@ export const setOnGenderInputChange = (value) => {
     value: value,
   };
 };
+export const setUpdateUserProfile = (user_profile) => {
+  return {
+    type: actionTypes.setUpdateUserProfile,
+    user_profile: user_profile,
+  };
+};

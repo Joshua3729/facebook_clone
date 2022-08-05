@@ -36,3 +36,8 @@ export const OnFIleChange = (input, value, file, formType) => {
       });
   };
 };
+export const setCloseUploadAction = () => {
+  return {
+    type: actionTypes.closeUploadAction,
+  };
+};

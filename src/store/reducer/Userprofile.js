@@ -53,6 +53,19 @@ const reducer = (state = initialState, action) => {
         ...state,
         previewImgLoading: action.previewImgLoading,
       };
+    case actionTypes.closeUploadAction:
+      return {
+        ...state,
+        photo_upload_data: {
+          image: {
+            value: "",
+            valid: false,
+            touched: false,
+            validators: [required],
+          },
+        },
+        previewImg: null,
+      };
     default:
       return state;
   }

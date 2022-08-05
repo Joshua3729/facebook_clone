@@ -53,7 +53,9 @@
   font-weight: 700;
 }
 .messanger,
-.add_friend {
+.add_friend,
+.addToStory_btn,
+.editProfile_btn {
   margin-right: 10px;
   border: none;
   border-radius: 10px;
@@ -68,6 +70,7 @@
   align-items: center;
   justify-content: center;
 }
+.addToStory_btn,
 .active_btn {
   background-color: #1b74e4;
   color: white;
@@ -78,7 +81,7 @@
 }
 .inactive_btn:disabled {
   background-color: #e4e6eb;
-  color: black;
+  color: #1d1f23;
   cursor: not-allowed;
 }
 .inactive_btn svg {
@@ -185,4 +188,27 @@
   justify-content: center;
   background-color: #dddddd;
   cursor: pointer;
+}
+.editProfile_btn,
+.addToStory_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+.addToStory_btn img {
+  -webkit-filter: invert(100%);
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.editProfile_btn img {
+  -webkit-filter: invert(8%) sepia(10%) saturate(200%) saturate(200%)
+    saturate(166%) hue-rotate(177deg) brightness(104%) contrast(91%);
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.editProfile_btn {
+  color: #1d1f23;
 }
