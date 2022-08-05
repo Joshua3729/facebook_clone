@@ -1,4 +1,5 @@
 import * as actionTypes from "../actionTypes/actionTypes";
+import { generateBase64FromImage } from "../../Utils/image";
 
 export const setPosts = (posts) => {
   return {
@@ -145,18 +146,15 @@ export const setPreviewPost_photo_Loading = (loading) => {
   };
 };
 
-export const setOnFileChange = (input, value, file, formType) => {
+export const setOnPost_FileChange = (file) => {
   return {
-    type: actionTypes.ON_FILE_CHANGE,
-    input: input,
+    type: actionTypes.OnPost_FileChange,
     file: file[0],
-    value: value,
-    formType: formType,
   };
 };
-export const OnFIleChange = (input, value, file, formType) => {
+export const OnPost_FIleChange = (file) => {
   return (dispatch) => {
-    dispatch(setOnFileChange(input, value, file, formType));
+    dispatch(setOnPost_FileChange(file));
     dispatch(setPreviewPost_photo_Loading(true));
     generateBase64FromImage(file[0])
       .then((b64) => {

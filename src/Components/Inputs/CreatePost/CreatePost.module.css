@@ -65,13 +65,12 @@
 }
 .text_input {
   width: 100%;
-  margin-top: 15px;
   font-size: 25px;
   border: none;
   font-family: Helvetica, Arial, sans-serif;
   resize: none;
-  overflow-y: auto;
-  height: 200px;
+
+  min-height: 100px;
 }
 .text_input:focus {
   border: none;
@@ -141,7 +140,6 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  cursor: pointer;
 }
 .descriptor {
   display: none;
@@ -208,4 +206,30 @@
 }
 .emoji_pickerWrapper:hover .emojiPicker_descriptor {
   display: block;
+}
+.image_picker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  opacity: 0;
+  background-color: #1b74e4;
+  cursor: pointer;
+}
+.filePicker_label {
+  position: relative;
+}
+.post_image_wrapper {
+  width: 100%;
+  height: 200px;
+}
+.post_image_wrapper img {
+  width: 100%;
+}
+.post_area_wrapper {
+  width: 100%;
+  height: 200px;
+  overflow-y: auto;
+  margin-top: 15px;
 }

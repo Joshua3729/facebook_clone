@@ -25,3 +25,4 @@ export const setUpdateUserProfile = "setUpdateUserProfile";
 export const uploadImgFile = "uploadImgFile";
 export const setPreviewPost_photo = "setPreviewPost_photo";
 export const onPreviewPost_photo_Loading = "onPreviewPost_photo_Loading";
+export const OnPost_FileChange = "OnPost_FileChange";

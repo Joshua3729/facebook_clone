@@ -16,9 +16,9 @@ export {
   getNewPost,
   setShowCreatePost_Modal,
   setPostCaption,
-  setUploadImgFile,
   ON_CREATE_POST,
   setOnEmojiClick,
   ON_POST_LIKE,
+  OnPost_FIleChange,
 } from "./Home";
 export { OnFIleChange, setCloseUploadAction } from "./UserProfile";

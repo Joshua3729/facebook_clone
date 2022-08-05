@@ -9,7 +9,7 @@ const initialState = {
     photo_file: null,
   },
   previewPost_photo: null,
-
+  previewImgLoading: false,
   like_loading: false,
 };
 const reducer = (state = initialState, action) => {
@@ -37,14 +37,6 @@ const reducer = (state = initialState, action) => {
           post_caption: action.post_caption,
         },
       };
-    case actionTypes.uploadImgFile:
-      return {
-        ...state,
-        post_data: {
-          ...state.post_data,
-          photo_file: action.photo_file,
-        },
-      };
 
     case actionTypes.setCreatePostLoading:
       return {
@@ -55,14 +47,33 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         post_data: {
+          ...state.post_data,
           post_caption: state.post_data.post_caption + action.emojiObject,
         },
       };
-
+    case actionTypes.OnPost_FileChange:
+      return {
+        ...state,
+        post_data: {
+          ...state.post_data,
+          photo_file: action.file,
+        },
+      };
     case actionTypes.setLikeLoading:
       return {
         ...state,
         like_loading: action.like_loading,
+      };
+
+    case actionTypes.onPreviewPost_photo_Loading:
+      return {
+        ...state,
+        previewImgLoading: action.previewImgLoading,
+      };
+    case actionTypes.setPreviewPost_photo:
+      return {
+        ...state,
+        previewPost_photo: action.previewPost_photo,
       };
     default:
       return state;
