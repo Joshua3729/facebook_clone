@@ -8,6 +8,7 @@ const initialState = {
     post_caption: "",
     photo_file: null,
   },
+  previewPost_photo: null,
 
   like_loading: false,
 };

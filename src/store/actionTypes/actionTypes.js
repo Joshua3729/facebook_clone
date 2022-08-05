@@ -23,3 +23,4 @@ export const onPreviewImgLoading = "onPreviewImgLoading";
 export const closeUploadAction = "closeUploadAction";
 export const setUpdateUserProfile = "setUpdateUserProfile";
 export const uploadImgFile = "uploadImgFile";
+export const setPreviewPost_photo = "setPreviewPost_photo";

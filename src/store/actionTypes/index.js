@@ -16,6 +16,7 @@ export {
   getNewPost,
   setShowCreatePost_Modal,
   setPostCaption,
+  setUploadImgFile,
   ON_CREATE_POST,
   setOnEmojiClick,
   ON_POST_LIKE,

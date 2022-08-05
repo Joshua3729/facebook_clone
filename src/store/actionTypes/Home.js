@@ -47,6 +47,18 @@ export const setPostCaption = (post_caption) => {
     post_caption: post_caption,
   };
 };
+export const setUploadImgFile = (photo_file) => {
+  return {
+    type: actionTypes.uploadImgFile,
+    photo_file: photo_file,
+  };
+};
+export const setPreviewPost_photo = (previewPost_photo) => {
+  return {
+    type: actionTypes.setPreviewPost_photo,
+    previewPost_photo: previewPost_photo,
+  };
+};
 export const setOnEmojiClick = (event, emojiObject) => {
   return {
     type: actionTypes.setOnEmojiClick,
@@ -60,7 +72,7 @@ export const setCreatePostLoading = (createPostLoading) => {
   };
 };
 
-export const ON_CREATE_POST = (e, postData, token) => {
+export const ON_CREATE_POST = (e, postData, token, profile_img = null) => {
   return (dispatch) => {
     e.preventDefault();
     dispatch(setCreatePostLoading(true));
