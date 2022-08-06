@@ -62,23 +62,20 @@ export const setCreatePostLoading = (createPostLoading) => {
   };
 };
 
-export const ON_CREATE_POST = (e, postData, token, profile_img = null) => {
+export const ON_CREATE_POST = (e, postData, token) => {
   return (dispatch) => {
     e.preventDefault();
     dispatch(setCreatePostLoading(true));
     const formData = new FormData();
-    formData.append("post_image", profile_img);
+    formData.append("image", postData.photo_file);
     formData.append("caption", postData.post_caption);
 
     fetch("http://localhost:5000/feed/post", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
-      body: JSON.stringify({
-        caption: postData.post_caption,
-      }),
+      body: formData,
     })
       .then((res) => {
         if (res.status !== 200) {

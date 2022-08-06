@@ -1,14 +1,17 @@
 import React from "react";
 import classes from "./Stories.module.css";
 import Story from "./Story/Story";
+import { useSelector } from "react-redux";
 
 const Stories = () => {
+  const profile_img = useSelector((state) => state.auth.user_data.profile_img);
+  console.log(profile_img);
   return (
     <div className={classes.Stories}>
       <div
         className={classes.createStory_wrapper}
         style={{
-          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.4), transparent) ,url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYH_VDaGfxQ_cPhkgDPyoxXJgnnKHzEw7kdg&usqp=CAU)`,
+          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.4), transparent) ,url("${profile_img}")`,
         }}
       >
         <div className={classes.footer_wrapper}>

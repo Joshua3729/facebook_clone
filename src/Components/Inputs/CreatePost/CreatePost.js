@@ -6,9 +6,7 @@ import Picker from "emoji-picker-react";
 
 const CreatePost = (props) => {
   const dispatch = useDispatch();
-  const formValid = useSelector(
-    (state) => state.home.post_data.post_caption.length >= 10
-  );
+
   const token = useSelector((state) => state.auth.token);
   const postData = useSelector((state) => state.home.post_data);
   const [showEmoji, setShowEmoji] = useState(false);
@@ -25,7 +23,7 @@ const CreatePost = (props) => {
   const setShowEmojiHandler = () => {
     setShowEmoji(!showEmoji);
   };
-  console.log(postPhoto_preview);
+  const formValid = postData.post_caption.length >= 10 || postData.photo_file;
   return (
     <div className={classes.CreatePost}>
       <div className={classes.CreatePost_header}>
@@ -122,6 +120,7 @@ const CreatePost = (props) => {
                   type="file"
                   accept="image/png,image/jpg,image/jpeg"
                   className={classes.image_picker}
+                  name="image"
                   onChange={(e) =>
                     dispatch(HomeActions.OnPost_FIleChange(e.target.files))
                   }
