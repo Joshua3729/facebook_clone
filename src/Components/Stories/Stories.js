@@ -53,7 +53,7 @@ const Stories = () => {
       />
       <Story
         image={
-          "https://kaslam.co.za/wp-content/uploads/2019/04/kelly-Khumalo.jpg"
+          "https://www.safrolebs.com/wp-content/uploads/2022/03/20220331_171412.jpg"
         }
       />
       <Story
