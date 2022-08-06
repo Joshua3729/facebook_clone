@@ -5,6 +5,7 @@ import * as HomeActions from "../../../store/actionTypes/index";
 import like_icon from "../../../Assets/Images/like.svg";
 import { Link } from "react-router-dom";
 import Comment from "../comment/comment";
+import openSocket from "socket.io-client";
 
 const Post = (props) => {
   const token = useSelector((state) => state.auth.token);
@@ -13,13 +14,42 @@ const Post = (props) => {
   const [likes_data, getLikes_data] = useState(null);
   const [likeLoading, setLikeLoading] = useState(false);
   const [user_comment, setUser_comment] = useState(null);
+  const [comments_data, getComments_data] = useState(null);
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     getLikesHandler();
+    const socket = openSocket("http://localhost:5000");
+    socket.on("comments", (data) => {
+      if (data.action == "create" && data.post_id == props.post_id) {
+        console.log(data.comment);
+        getComments_data((state) => [...data.comment, ...state]);
+      }
+    });
+    getPostComments();
   }, []);
+  const getNewComment = (comment) => {
+    getComments_data((state) => [...comment, ...state]);
+  };
+  const getPostComments = () => {
+    fetch("http://localhost:5000/feed/get_comments/" + props.post_id, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to fetch comments.");
+        }
+
+        return res.json();
+      })
+      .then((resData) => getComments_data(resData.comments))
+      .catch((err) => console.log(err));
+  };
 
   const postLike = () => {
     setLiked((prevLiked) => !prevLiked);
@@ -36,7 +66,7 @@ const Post = (props) => {
     })
       .then((res) => {
         if (res.status !== 200) {
-          throw new Error("Failed to create post.");
+          throw new Error("Failed to create like.");
         }
 
         return res.json();
@@ -51,28 +81,28 @@ const Post = (props) => {
   const onCommentChange = (comment) => {
     setUser_comment(comment);
   };
-  const postComment = (comment) => {
-    console.log(comment);
-    // fetch("http://localhost:5000/feed/post_comment", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization: "Bearer " + token,
-    //   },
-    //   body: JSON.stringify({
-    //     post_id: props.post_id,
-    //     comment: comment,
-    //   }),
-    // })
-    //   .then((res) => {
-    //     if (res.status !== 200) {
-    //       throw new Error("Failed to create post.");
-    //     }
+  const postComment = (e, comment) => {
+    e.preventDefault();
+    fetch("http://localhost:5000/feed/post_comment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({
+        post_id: props.post_id,
+        comment: comment,
+      }),
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to create comment.");
+        }
 
-    //     return res.json();
-    //   })
-    //   .then((resData) => console.log(resData))
-    //   .catch((err) => console.log(err));
+        return res.json();
+      })
+      .then((resData) => console.log(resData))
+      .catch((err) => console.log(err));
   };
 
   const getLikesHandler = () => {
@@ -104,6 +134,19 @@ const Post = (props) => {
           classes.liked,
       ].join(" ")
     : classes.like;
+
+  let comments = comments_data ? (
+    comments_data.map((comment) => (
+      <Comment
+        user_id={comment.user_id}
+        user_name={comment.fullname}
+        comment={comment.comment}
+        user_profile={comment.profile_img}
+      />
+    ))
+  ) : (
+    <div>Loading...</div>
+  );
 
   return (
     <div className={classes.Post}>
@@ -189,17 +232,7 @@ const Post = (props) => {
         </div>
       </div>
       <div className={classes.comment_wrapper}>
-        <div className={classes.friends_comments}>
-          <Comment
-            user_name={"Bheki Cele"}
-            comment={
-              "The club was able to register Kessie and Christensen this morning as per LaLiga FFP but failed to register Robert Lewandowski, Raphinha and Jules Kounde. The club need to bring the wage structure down by €32 million more which is only possible once Frenkie de Jong leaves the club and Sergio Busquets takes a 50% paycut before 11th of August or else Barcelona can not register rest of their new signings and will have to sell Lewandowski, Raphinha and Kounde before the transfer window closes."
-            }
-            user_profile={
-              "https://www.wits.ac.za/media/wits-university/faculties-and-schools/humanities/research-entities/link/images/team-member-photos/Barry%20Dwolatzky%20-%20400x400-1-200x200.jpg"
-            }
-          />
-        </div>
+        <div className={classes.friends_comments}>{comments}</div>
         <div className={classes.comment_innerWrapper}>
           <div className={classes.outer_wrapper}>
             <div className={classes.userProfile_wrapper}>
@@ -207,7 +240,10 @@ const Post = (props) => {
             </div>
             <div className={classes.online}></div>
           </div>
-          <form onSubmit={() => postComment(user_comment)}>
+          <form
+            onSubmit={(e) => postComment(e, user_comment)}
+            className={classes.comment_form}
+          >
             <input
               type="text"
               className={classes.comment_input}

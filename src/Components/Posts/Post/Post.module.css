@@ -150,13 +150,16 @@
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 .comment_input {
-  width: calc(100% - 50px);
+  width: 100%;
   border-radius: 100px;
   border: none;
   background-color: #f0f2f5;
   font-size: 20px;
   padding: 10px 20px;
   border: none;
+}
+.comment_form {
+  width: calc(100% - 50px);
 }
 .comment_input:focus {
   border: none;

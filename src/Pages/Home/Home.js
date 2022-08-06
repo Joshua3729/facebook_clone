@@ -23,7 +23,6 @@ const Home = () => {
     socket.on("posts", (data) => {
       if (data.action == "create") dispatch(HomeActions.getNewPost(data.post));
     });
-    console.log("once");
   }, []);
   return (
     <>

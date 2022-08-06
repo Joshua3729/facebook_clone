@@ -40,6 +40,7 @@
   display: flex;
   text-align: start;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 .comment_toolbar_btn {
   margin-right: 10px;
