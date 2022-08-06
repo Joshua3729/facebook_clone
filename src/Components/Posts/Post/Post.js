@@ -4,6 +4,7 @@ import classes from "./Post.module.css";
 import * as HomeActions from "../../../store/actionTypes/index";
 import like_icon from "../../../Assets/Images/like.svg";
 import { Link } from "react-router-dom";
+import Comment from "../comment/comment";
 
 const Post = (props) => {
   const token = useSelector((state) => state.auth.token);
@@ -160,6 +161,17 @@ const Post = (props) => {
         </div>
       </div>
       <div className={classes.comment_wrapper}>
+        <div className={classes.friends_comments}>
+          <Comment
+            user_name={"Bheki Cele"}
+            comment={
+              "The club was able to register Kessie and Christensen this morning as per LaLiga FFP but failed to register Robert Lewandowski, Raphinha and Jules Kounde. The club need to bring the wage structure down by €32 million more which is only possible once Frenkie de Jong leaves the club and Sergio Busquets takes a 50% paycut before 11th of August or else Barcelona can not register rest of their new signings and will have to sell Lewandowski, Raphinha and Kounde before the transfer window closes."
+            }
+            user_profile={
+              "https://www.wits.ac.za/media/wits-university/faculties-and-schools/humanities/research-entities/link/images/team-member-photos/Barry%20Dwolatzky%20-%20400x400-1-200x200.jpg"
+            }
+          />
+        </div>
         <div className={classes.comment_innerWrapper}>
           <div className={classes.outer_wrapper}>
             <div className={classes.userProfile_wrapper}>
