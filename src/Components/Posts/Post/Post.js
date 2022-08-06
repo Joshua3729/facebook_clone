@@ -12,6 +12,7 @@ const Post = (props) => {
   const [liked, setLiked] = useState(false);
   const [likes_data, getLikes_data] = useState(null);
   const [likeLoading, setLikeLoading] = useState(false);
+  const [user_comment, setUser_comment] = useState(null);
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
 
   const dispatch = useDispatch();
@@ -47,6 +48,33 @@ const Post = (props) => {
       })
       .catch((err) => console.log(err));
   };
+  const onCommentChange = (comment) => {
+    setUser_comment(comment);
+  };
+  const postComment = (comment) => {
+    console.log(comment);
+    // fetch("http://localhost:5000/feed/post_comment", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: "Bearer " + token,
+    //   },
+    //   body: JSON.stringify({
+    //     post_id: props.post_id,
+    //     comment: comment,
+    //   }),
+    // })
+    //   .then((res) => {
+    //     if (res.status !== 200) {
+    //       throw new Error("Failed to create post.");
+    //     }
+
+    //     return res.json();
+    //   })
+    //   .then((resData) => console.log(resData))
+    //   .catch((err) => console.log(err));
+  };
+
   const getLikesHandler = () => {
     fetch(`http://localhost:5000/feed/get_likes/${props.post_id}`, {
       headers: {
@@ -179,12 +207,14 @@ const Post = (props) => {
             </div>
             <div className={classes.online}></div>
           </div>
-
-          <input
-            type="text"
-            className={classes.comment_input}
-            placeholder="Write a comment"
-          />
+          <form onSubmit={() => postComment(user_comment)}>
+            <input
+              type="text"
+              className={classes.comment_input}
+              placeholder="Write a comment"
+              onChange={(e) => onCommentChange(e.target.value)}
+            />
+          </form>
         </div>
       </div>
     </div>
