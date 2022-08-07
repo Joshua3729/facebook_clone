@@ -178,3 +178,50 @@
   font-size: 30px;
   font-weight: 700;
 }
+.userImg_wrapper {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  background-color: #f2f2f2;
+  border-radius: 50%;
+  margin-right: 10px;
+  overflow: hidden;
+}
+.userImg_wrapper img {
+  width: 100%;
+  height: 100%;
+}
+.notification_item {
+  display: flex;
+  width: 100%;
+}
+.notifications_innerWrapper {
+  margin-top: 50px;
+}
+.notification_username {
+  font-size: 20px;
+  font-weight: 600;
+}
+.notification_info_wrapper {
+  font-size: 20px;
+  width: calc(100% - 80px);
+}
+.comment_notification_icon {
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  width: 25px;
+  height: 25px;
+  background-color: #f2f2f2;
+  border-radius: 50%;
+}
+
+.msg_icon {
+  height: 28px;
+  width: 28px;
+  background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yK/r/f4hEiaDqBpD.png?_nc_eui2=AeEKMJ9VBjDauqBYZ_9VDT-Mx2hgID-dW2nHaGAgP51baZDwcFCwTXcXqPAPLF3L6_O2ShKBT4pRYIJWsZKT5fJs");
+  background-position: 0px -750px;
+  background-size: 30px 1890px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}

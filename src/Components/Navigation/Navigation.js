@@ -141,7 +141,26 @@ const Navigation = () => {
           {show_popup_notifications && (
             <div className={classes.userPopup_wrapper}>
               <div className={classes.notifications_wrapper}>
-                <div className={classes.title}>Notification</div>
+                <div className={classes.title}>Notifications</div>
+                <div className={classes.notifications_innerWrapper}>
+                  <div className={classes.notification_item}>
+                    <div className={classes.userImg_wrapper}>
+                      <img
+                        src="https://www.billboard.com/wp-content/uploads/stylus/2528869-michael-jackson-617-409.jpg?w=617"
+                        alt=""
+                      />
+                      <div className={classes.comment_notification_icon}>
+                        <i className={classes.msg_icon}></i>
+                      </div>
+                    </div>
+                    <div className={classes.notification_info_wrapper}>
+                      <span className={classes.notification_username}>
+                        Bheki Cele
+                      </span>{" "}
+                      commented on your post
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           )}
