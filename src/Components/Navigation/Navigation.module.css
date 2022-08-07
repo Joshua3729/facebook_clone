@@ -185,11 +185,11 @@
   background-color: #f2f2f2;
   border-radius: 50%;
   margin-right: 10px;
-  overflow: hidden;
 }
 .userImg_wrapper img {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
 }
 .notification_item {
   display: flex;
@@ -224,4 +224,7 @@
   background-size: 30px 1890px;
   background-repeat: no-repeat;
   display: inline-block;
+}
+.like_icon {
+  width: 100%;
 }

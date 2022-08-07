@@ -63,6 +63,7 @@ const Post = (props) => {
       },
       body: JSON.stringify({
         post_id: props.post_id,
+        post_owner: props.user_id,
       }),
     })
       .then((res) => {
@@ -73,6 +74,7 @@ const Post = (props) => {
         return res.json();
       })
       .then((resData) => {
+        console.log(resData);
         setLikeLoading(false);
         getLikesHandler();
         setLiked(resData.liked);

@@ -4,6 +4,7 @@ import classes from "./Navigation.module.css";
 import search from "../../Assets/Images/search.png";
 import { useDispatch, useSelector } from "react-redux";
 import * as HomeActions from "../../store/actionTypes/index";
+import like_icon from "../../Assets/Images/like.svg";
 
 const Navigation = () => {
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
@@ -15,11 +16,20 @@ const Navigation = () => {
     setShow_popup_profile((prevState) => !prevState);
   };
 
+  const notification_type = "comment";
+
   const setShow_popup_notifications_handler = () => {
     setShow_popup_notifications((prevState) => !prevState);
   };
   const dispatch = useDispatch();
-
+  let notification_icon = null;
+  if (notification_type == "comment") {
+    notification_icon = <i className={classes.msg_icon}></i>;
+  } else if (notification_type == "like") {
+    notification_icon = (
+      <img src={like_icon} alt="" className={classes.like_icon} />
+    );
+  }
   return (
     <div className={classes.Navigation}>
       <div className={classes.first_column}>
@@ -150,7 +160,7 @@ const Navigation = () => {
                         alt=""
                       />
                       <div className={classes.comment_notification_icon}>
-                        <i className={classes.msg_icon}></i>
+                        {notification_icon}
                       </div>
                     </div>
                     <div className={classes.notification_info_wrapper}>
