@@ -169,3 +169,12 @@
   font-size: 20px;
   font-weight: 600;
 }
+.notifications_wrapper {
+  width: 100%;
+  height: 400px;
+  text-align: start;
+}
+.title {
+  font-size: 30px;
+  font-weight: 700;
+}

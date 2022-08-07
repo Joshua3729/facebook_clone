@@ -6,6 +6,7 @@ import like_icon from "../../../Assets/Images/like.svg";
 import { Link } from "react-router-dom";
 import Comment from "../comment/comment";
 import openSocket from "socket.io-client";
+import * as Date from "../../../Utils/Date";
 
 const Post = (props) => {
   const token = useSelector((state) => state.auth.token);
@@ -136,14 +137,17 @@ const Post = (props) => {
     : classes.like;
 
   let comments = comments_data ? (
-    comments_data.map((comment) => (
-      <Comment
-        user_id={comment.user_id}
-        user_name={comment.fullname}
-        comment={comment.comment}
-        user_profile={comment.profile_img}
-      />
-    ))
+    comments_data.map((comment) => {
+      return (
+        <Comment
+          user_id={comment.user_id}
+          user_name={comment.fullname}
+          comment={comment.comment}
+          user_profile={comment.profile_img}
+          time_ellapsed={Date.getTimeCreated(comment.created_at)}
+        />
+      );
+    })
   ) : (
     <div>Loading...</div>
   );

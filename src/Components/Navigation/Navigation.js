@@ -8,9 +8,15 @@ import * as HomeActions from "../../store/actionTypes/index";
 const Navigation = () => {
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
   const username = useSelector((state) => state.auth.user_data.fullname);
-  const [show_popup, setShow_popup] = useState(false);
-  const setShow_popup_handler = () => {
-    setShow_popup((prevState) => !prevState);
+  const [show_popup_profile, setShow_popup_profile] = useState(false);
+  const [show_popup_notifications, setShow_popup_notifications] =
+    useState(false);
+  const setShow_popup_profile_handler = () => {
+    setShow_popup_profile((prevState) => !prevState);
+  };
+
+  const setShow_popup_notifications_handler = () => {
+    setShow_popup_notifications((prevState) => !prevState);
   };
   const dispatch = useDispatch();
 
@@ -85,7 +91,10 @@ const Navigation = () => {
           </button>
         </li>
         <li className={classes.third_column_item}>
-          <button className={classes.notification}>
+          <button
+            className={classes.notification}
+            onClick={() => setShow_popup_notifications_handler()}
+          >
             <svg
               viewBox="0 0 28 28"
               alt=""
@@ -101,11 +110,11 @@ const Navigation = () => {
         <li className={classes.third_column_item}>
           <div
             className={classes.profile}
-            onClick={() => setShow_popup_handler()}
+            onClick={() => setShow_popup_profile_handler()}
           >
             <img src={profile_img} alt="" />
           </div>
-          {show_popup && (
+          {show_popup_profile && (
             <div className={classes.userPopup_wrapper}>
               <div className={classes.userprofile_wrapper}>
                 <div className={classes.inner_userprofile_wrapper}>
@@ -125,6 +134,14 @@ const Navigation = () => {
                   <i className={classes.logout_icon}></i>
                 </div>
                 <div className={classes.logout_txt}>Log Out</div>
+              </div>
+            </div>
+          )}
+
+          {show_popup_notifications && (
+            <div className={classes.userPopup_wrapper}>
+              <div className={classes.notifications_wrapper}>
+                <div className={classes.title}>Notification</div>
               </div>
             </div>
           )}

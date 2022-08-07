@@ -46,6 +46,8 @@
 }
 .image_wrapper {
   width: 100%;
+  min-height: 400px;
+  background-color: #f0f2f5;
   max-height: 600px;
   overflow: hidden;
 }
@@ -240,7 +242,7 @@
 }
 .friends_comments {
   width: 100%;
-  margin-top: 10px;
+
   border-top: #e5e5e5 1.5px solid;
   padding-top: 10px;
 }

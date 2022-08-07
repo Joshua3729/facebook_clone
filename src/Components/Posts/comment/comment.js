@@ -1,4 +1,5 @@
 import React from "react";
+
 import classes from "./comment.module.css";
 
 const Comment = (props) => {
@@ -15,7 +16,7 @@ const Comment = (props) => {
         <div className={classes.comment_toolbar}>
           <button className={classes.comment_toolbar_btn}>Like</button>
           <button className={classes.comment_toolbar_btn}>Reply</button>
-          <div className={classes.time}>3d</div>
+          <div className={classes.time}>{props.time_ellapsed}</div>
         </div>
       </div>
     </div>
