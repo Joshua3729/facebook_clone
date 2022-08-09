@@ -11,6 +11,7 @@ const initialState = {
   },
   authLoading: false,
   showModal: false,
+  loginLoading: false,
   DOB: {
     date: "14",
     month: "7",
@@ -165,6 +166,12 @@ const reducer = (state = initialState, action) => {
           ...state.user_data,
           profile_img: action.profile_img,
         },
+      };
+
+    case actionTypes.setLoginLoading:
+      return {
+        ...state,
+        loginLoading: action.loginLoading,
       };
     default:
       return state;

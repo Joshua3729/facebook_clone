@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Comment from "../comment/comment";
 import openSocket from "socket.io-client";
 import * as Date from "../../../Utils/Date";
+import Socket from "../../../Utils/Socket";
 
 const Post = (props) => {
   const token = useSelector((state) => state.auth.token);
@@ -22,8 +23,8 @@ const Post = (props) => {
 
   useEffect(() => {
     getLikesHandler();
-    const socket = openSocket("http://localhost:5000");
-    socket.on("comments", (data) => {
+
+    Socket.on("comments", (data) => {
       if (data.action == "create" && data.post_id == props.post_id) {
         console.log(data.comment);
         getComments_data((state) => [...data.comment, ...state]);

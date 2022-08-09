@@ -1,21 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../UI/Logo/Logo";
 import classes from "./Navigation.module.css";
 import search from "../../Assets/Images/search.png";
 import { useDispatch, useSelector } from "react-redux";
 import * as HomeActions from "../../store/actionTypes/index";
 import like_icon from "../../Assets/Images/like.svg";
-
+import openSocket from "socket.io-client";
 const Navigation = () => {
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
   const username = useSelector((state) => state.auth.user_data.fullname);
+  const user_id = useSelector((state) => state.auth.user_data.user_id);
   const [show_popup_profile, setShow_popup_profile] = useState(false);
   const [show_popup_notifications, setShow_popup_notifications] =
     useState(false);
   const setShow_popup_profile_handler = () => {
     setShow_popup_profile((prevState) => !prevState);
   };
+  useEffect(() => {
+    const socket = openSocket("http://localhost:5000/users");
+    socket.on("notifications", (data) => {
+      if (data.action == "get_notification") console.log(data.notification);
+    });
 
+    const data = { userId: user_id };
+    socket.emit("setSocketId", data);
+  }, []);
   const notification_type = "comment";
 
   const setShow_popup_notifications_handler = () => {

@@ -14,6 +14,8 @@ const AuthPage = (props) => {
   const signupForm = useSelector((state) => state.auth.signupForm);
   const gender = useSelector((state) => state.auth.gender);
   const DOB = useSelector((state) => state.auth.DOB);
+  const loginLoading = useSelector((state) => state.auth.loginLoading);
+  console.log("loading: " + loginLoading);
   return (
     <>
       <Modal show={showModal}>
@@ -468,7 +470,9 @@ const AuthPage = (props) => {
                     }
                   />
                 </div>
-                <button className={classes.LogIn_btn}>Log In</button>
+                <button className={classes.LogIn_btn} disabled={loginLoading}>
+                  {loginLoading ? "Please Wait..." : "Log In"}
+                </button>
                 <div className={classes.fogort_password}>
                   Forgotten password?
                 </div>

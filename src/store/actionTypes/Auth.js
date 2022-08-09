@@ -51,11 +51,20 @@ export const setAuthLoad = (authLoading) => {
   };
 };
 
+export const setLoginLoading = (loading) => {
+  return {
+    type: actionTypes.setLoginLoading,
+    loginLoading: loading,
+  };
+};
+
 export const onLogin = (event, authData) => {
   event.preventDefault();
+  setLoginLoading(true);
   return (dispatch) => {
     if (authData.formIsValid) {
       dispatch(setAuthLoad(true));
+      setLoginLoading(true);
       fetch(`http://localhost:5000/auth/login`, {
         method: "POST",
         headers: {
@@ -79,6 +88,8 @@ export const onLogin = (event, authData) => {
           return res.json();
         })
         .then((resData) => {
+          setLoginLoading(false);
+
           dispatch(
             setOnLogin(
               true,
@@ -108,7 +119,7 @@ export const onLogin = (event, authData) => {
           dispatch(setAuthLoad(false));
         })
         .catch((err) => {
-          console.log(err);
+          alert(err.error);
         });
     }
   };

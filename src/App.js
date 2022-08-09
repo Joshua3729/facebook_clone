@@ -56,7 +56,7 @@ function App() {
       dispatch(HomeActions.onLogout());
     }, milliseconds);
   };
-
+  console.log("isAuth: " + isAuth + " " + "authLoading: " + authLoading);
   let route = (
     <Routes>
       <Route path="/" exact element={<LoadingPage />} />

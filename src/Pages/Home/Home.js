@@ -8,6 +8,7 @@ import openSocket from "socket.io-client";
 import * as HomeActions from "../../store/actionTypes/index";
 import { useDispatch, useSelector } from "react-redux";
 import CreatePost from "../../Components/Inputs/CreatePost/CreatePost";
+
 const Home = () => {
   const posts = useSelector((state) => state.home.posts);
   const user_data = useSelector((state) => state.auth.user_data);
@@ -19,7 +20,7 @@ const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(HomeActions.initPosts(token));
-    const socket = openSocket("http://localhost:5000");
+    const socket = openSocket("http://localhost:5000/posts");
     socket.on("posts", (data) => {
       if (data.action == "create") dispatch(HomeActions.getNewPost(data.post));
     });

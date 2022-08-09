@@ -226,3 +226,8 @@
   display: flex;
   justify-content: center;
 }
+.LogIn_btn:disabled {
+  background-color: #e4e6eb;
+  color: #bcc0c4;
+  cursor: not-allowed;
+}
