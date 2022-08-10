@@ -13,18 +13,41 @@ const Navigation = () => {
   const [show_popup_profile, setShow_popup_profile] = useState(false);
   const [show_popup_notifications, setShow_popup_notifications] =
     useState(false);
+  const [userNotifications, setUserNotifications] = useState(null);
   const setShow_popup_profile_handler = () => {
     setShow_popup_profile((prevState) => !prevState);
   };
+  const token = useSelector((state) => state.auth.token);
+
   useEffect(() => {
     const socket = openSocket("http://localhost:5000/users");
+    getUserNotifications();
     socket.on("notifications", (data) => {
-      if (data.action == "get_notification") console.log(data.notification);
+      if (data.action === "get-notification") console.log(data.notification);
     });
-
     const data = { userId: user_id };
     socket.emit("setSocketId", data);
   }, []);
+
+  const getUserNotifications = () => {
+    fetch("http://localhost:5000/feed/get_user_notifications", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to fetch posts.");
+        }
+
+        return res.json();
+      })
+      .then((resData) => {
+        setUserNotifications(resData.data);
+      })
+      .catch((err) => console.log(err));
+  };
   const notification_type = "comment";
 
   const setShow_popup_notifications_handler = () => {

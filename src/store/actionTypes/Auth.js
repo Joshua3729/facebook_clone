@@ -1,6 +1,6 @@
 import { Action } from "history";
 import * as actionTypes from "./actionTypes";
-
+import { setAutoLogout } from "../../Utils/AutoLogout";
 export const setOnInputChange = (input, value, formType) => {
   return {
     type: actionTypes.ON_INPUT_CHANGE,
@@ -115,7 +115,7 @@ export const onLogin = (event, authData) => {
             },
           };
           localStorage.setItem("session_data", JSON.stringify(session_data));
-          this.setAutoLogout(remainingMilliseconds);
+          setAutoLogout(remainingMilliseconds, dispatch);
           dispatch(setAuthLoad(false));
         })
         .catch((err) => {

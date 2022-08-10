@@ -16,6 +16,7 @@ import Footer from "./Components/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import * as HomeActions from "./store/actionTypes/index";
 import LoadingPage from "./Pages/LoadingPage/LoadingPage";
+import { setAutoLogout } from "./Utils/AutoLogout";
 
 function App() {
   let isAuth = useSelector((state) => state.auth.isAuth);
@@ -36,7 +37,7 @@ function App() {
 
     const remainingMilliseconds =
       new Date(session_data?.expiryDate).getTime() - new Date().getTime();
-    setAutoLogout(remainingMilliseconds);
+    setAutoLogout(remainingMilliseconds, dispatch);
 
     if (session_data?.user_data.user_id) {
       isAuth = true;
@@ -51,11 +52,6 @@ function App() {
     setAuthLoading(false);
   }, []);
 
-  const setAutoLogout = (milliseconds) => {
-    setTimeout(() => {
-      dispatch(HomeActions.onLogout());
-    }, milliseconds);
-  };
   console.log("isAuth: " + isAuth + " " + "authLoading: " + authLoading);
   let route = (
     <Routes>
