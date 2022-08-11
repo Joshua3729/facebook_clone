@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import * as HomeActions from "../../store/actionTypes/index";
 import like_icon from "../../Assets/Images/like.svg";
 import openSocket from "socket.io-client";
+import { getNotificationTimeCreated } from "../../Utils/Date";
+
 const Navigation = () => {
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
   const username = useSelector((state) => state.auth.user_data.fullname);
@@ -14,21 +16,26 @@ const Navigation = () => {
   const [show_popup_notifications, setShow_popup_notifications] =
     useState(false);
   const [userNotifications, setUserNotifications] = useState(null);
+
   const setShow_popup_profile_handler = () => {
     setShow_popup_profile((prevState) => !prevState);
   };
+
   const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
     const socket = openSocket("http://localhost:5000/users");
     getUserNotifications();
     socket.on("notifications", (data) => {
-      if (data.action === "get-notification") console.log(data.notification);
+      if (data.action === "get-notification")
+        getRecentUserNotification(data.notification);
     });
     const data = { userId: user_id };
     socket.emit("setSocketId", data);
   }, []);
-
+  const getRecentUserNotification = (recentNotification) => {
+    setUserNotifications((state) => [...recentNotification, ...state]);
+  };
   const getUserNotifications = () => {
     fetch("http://localhost:5000/feed/get_user_notifications", {
       headers: {
@@ -48,20 +55,50 @@ const Navigation = () => {
       })
       .catch((err) => console.log(err));
   };
-  const notification_type = "comment";
+  let notification_type;
 
   const setShow_popup_notifications_handler = () => {
     setShow_popup_notifications((prevState) => !prevState);
   };
   const dispatch = useDispatch();
-  let notification_icon = null;
-  if (notification_type == "comment") {
-    notification_icon = <i className={classes.msg_icon}></i>;
-  } else if (notification_type == "like") {
-    notification_icon = (
-      <img src={like_icon} alt="" className={classes.like_icon} />
-    );
+
+  let notification_item = "Loading";
+
+  if (userNotifications) {
+    let notification_icon = null;
+    let notification_text = null;
+
+    notification_item = userNotifications.map((userNotification) => {
+      notification_type = userNotification.action_type;
+      console.log(notification_type);
+      if (notification_type == "comment") {
+        notification_icon = <i className={classes.msg_icon}></i>;
+        notification_text = "commented on your post";
+      } else if (notification_type == "like") {
+        notification_icon = (
+          <img src={like_icon} className={classes.like_icon} />
+        );
+        notification_text = "liked your post";
+      }
+      return (
+        <div className={classes.notification_item}>
+          <div className={classes.userImg_wrapper}>
+            <img src={userNotification.profile_img} alt="profile" />
+            <div className={classes.comment_notification_icon}>
+              {notification_icon}
+            </div>
+          </div>
+          <div className={classes.notification_info_wrapper}>
+            <span className={classes.notification_username}>
+              {userNotification.fullname}
+            </span>{" "}
+            {notification_text}
+          </div>
+        </div>
+      );
+    });
   }
+
   return (
     <div className={classes.Navigation}>
       <div className={classes.first_column}>
@@ -185,23 +222,7 @@ const Navigation = () => {
               <div className={classes.notifications_wrapper}>
                 <div className={classes.title}>Notifications</div>
                 <div className={classes.notifications_innerWrapper}>
-                  <div className={classes.notification_item}>
-                    <div className={classes.userImg_wrapper}>
-                      <img
-                        src="https://www.billboard.com/wp-content/uploads/stylus/2528869-michael-jackson-617-409.jpg?w=617"
-                        alt=""
-                      />
-                      <div className={classes.comment_notification_icon}>
-                        {notification_icon}
-                      </div>
-                    </div>
-                    <div className={classes.notification_info_wrapper}>
-                      <span className={classes.notification_username}>
-                        Bheki Cele
-                      </span>{" "}
-                      commented on your post
-                    </div>
-                  </div>
+                  {notification_item}
                 </div>
               </div>
             </div>
