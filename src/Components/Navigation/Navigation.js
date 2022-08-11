@@ -20,6 +20,8 @@ const Navigation = () => {
 
   const setShow_popup_profile_handler = () => {
     setShow_popup_profile((prevState) => !prevState);
+    setNumberOfNew_notifications(0);
+    viewNotifications();
   };
 
   const token = useSelector((state) => state.auth.token);
@@ -27,6 +29,7 @@ const Navigation = () => {
   useEffect(() => {
     const socket = openSocket("http://localhost:5000/users");
     getUserNotifications();
+    getNumberOfNew_notifications();
     socket.on("notifications", (data) => {
       if (data.action === "get-notification")
         getRecentUserNotification(data.notification);
@@ -73,6 +76,26 @@ const Navigation = () => {
       })
       .then((resData) => {
         setNumberOfNew_notifications(resData.data);
+      })
+      .catch((err) => console.log(err));
+  };
+  const viewNotifications = () => {
+    fetch("http://localhost:5000/feed/view_notifications", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to create like.");
+        }
+
+        return res.json();
+      })
+      .then((resData) => {
+        console.log("viewed");
       })
       .catch((err) => console.log(err));
   };
@@ -196,7 +219,6 @@ const Navigation = () => {
       </ul>
       <ul className={classes.third_column}>
         <li className={classes.third_column_item}>
-          <div className={classes.summary}>2</div>
           <button className={classes.messenger}>
             <svg
               viewBox="0 0 28 28"
