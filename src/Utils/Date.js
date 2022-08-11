@@ -32,9 +32,9 @@ export const getNotificationTimeCreated = (date) => {
   if (diffInMs < 60000) return "few seconds ago";
   else if (diffInMs < 3600000) return `few minutes ago`;
   else if (diffInMs < 86400000)
-    return `${(diffInMs / (1000 * 60 * 60)).toFixed(0)} hours ago`;
+    return `${(diffInMs / (1000 * 60 * 60)).toFixed(0)} hour(s) ago`;
   else if (diffInMs < 2592000000)
-    return `${(diffInMs / (1000 * 60 * 60 * 24)).toFixed(0)} days ago`;
+    return `${(diffInMs / (1000 * 60 * 60 * 24)).toFixed(0)} day(s) ago`;
   else
     return `${date1.toLocaleString("en-us", {
       month: "long",

@@ -7,7 +7,7 @@ import * as HomeActions from "../../store/actionTypes/index";
 import like_icon from "../../Assets/Images/like.svg";
 import openSocket from "socket.io-client";
 import { getNotificationTimeCreated } from "../../Utils/Date";
-
+import no_notifications from "../../Assets/Videos/no-notifications.mp4";
 const Navigation = () => {
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
   const username = useSelector((state) => state.auth.user_data.fullname);
@@ -62,41 +62,60 @@ const Navigation = () => {
   };
   const dispatch = useDispatch();
 
-  let notification_item = "Loading";
+  let notifications = "Loading";
 
-  if (userNotifications) {
+  if (userNotifications?.length > 0) {
     let notification_icon = null;
     let notification_text = null;
 
-    notification_item = userNotifications.map((userNotification) => {
-      notification_type = userNotification.action_type;
-      console.log(notification_type);
-      if (notification_type == "comment") {
-        notification_icon = <i className={classes.msg_icon}></i>;
-        notification_text = "commented on your post";
-      } else if (notification_type == "like") {
-        notification_icon = (
-          <img src={like_icon} className={classes.like_icon} />
-        );
-        notification_text = "liked your post";
-      }
-      return (
-        <div className={classes.notification_item}>
-          <div className={classes.userImg_wrapper}>
-            <img src={userNotification.profile_img} alt="profile" />
-            <div className={classes.comment_notification_icon}>
-              {notification_icon}
+    notifications = (
+      <div className={classes.notifications_innerWrapper}>
+        {userNotifications.map((userNotification) => {
+          notification_type = userNotification.action_type;
+          console.log(notification_type);
+          if (notification_type == "comment") {
+            notification_icon = <i className={classes.msg_icon}></i>;
+            notification_text = "commented on your post";
+          } else if (notification_type == "like") {
+            notification_icon = (
+              <img src={like_icon} className={classes.like_icon} />
+            );
+            notification_text = "liked your post";
+          }
+
+          return (
+            <div className={classes.notification_item}>
+              <div className={classes.userImg_wrapper}>
+                <img src={userNotification.profile_img} alt="profile" />
+                <div className={classes.comment_notification_icon}>
+                  {notification_icon}
+                </div>
+              </div>
+              <div className={classes.notification_info_outer_wrapper}>
+                <div className={classes.notification_info_wrapper}>
+                  <span className={classes.notification_username}>
+                    {userNotification.fullname}
+                  </span>{" "}
+                  {notification_text}
+                </div>
+                <div className={classes.timestamp}>
+                  {getNotificationTimeCreated(userNotification.created_at)}
+                </div>
+              </div>
             </div>
-          </div>
-          <div className={classes.notification_info_wrapper}>
-            <span className={classes.notification_username}>
-              {userNotification.fullname}
-            </span>{" "}
-            {notification_text}
-          </div>
+          );
+        })}
+      </div>
+    );
+  } else if (userNotifications?.length == 0) {
+    notifications = (
+      <div className={classes.outer_wrapper}>
+        <div className={classes.no_notifications_wrapper}>
+          <video src={no_notifications} autoPlay loop muted />
         </div>
-      );
-    });
+        <div className={classes.message}>NO NOTIFICATIONS YET</div>
+      </div>
+    );
   }
 
   return (
@@ -221,9 +240,7 @@ const Navigation = () => {
             <div className={classes.userPopup_wrapper}>
               <div className={classes.notifications_wrapper}>
                 <div className={classes.title}>Notifications</div>
-                <div className={classes.notifications_innerWrapper}>
-                  {notification_item}
-                </div>
+                {notifications}
               </div>
             </div>
           )}
