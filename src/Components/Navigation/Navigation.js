@@ -16,6 +16,7 @@ const Navigation = () => {
   const [show_popup_notifications, setShow_popup_notifications] =
     useState(false);
   const [userNotifications, setUserNotifications] = useState(null);
+  const [numberOfNew_notifications, setNumberOfNew_notifications] = useState(0);
 
   const setShow_popup_profile_handler = () => {
     setShow_popup_profile((prevState) => !prevState);
@@ -55,6 +56,27 @@ const Navigation = () => {
       })
       .catch((err) => console.log(err));
   };
+
+  const getNumberOfNew_notifications = () => {
+    fetch("http://localhost:5000/feed/get_number_of_notifications", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to fetch posts.");
+        }
+
+        return res.json();
+      })
+      .then((resData) => {
+        setNumberOfNew_notifications(resData.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   let notification_type;
 
   const setShow_popup_notifications_handler = () => {
@@ -113,7 +135,7 @@ const Navigation = () => {
         <div className={classes.no_notifications_wrapper}>
           <video src={no_notifications} autoPlay loop muted />
         </div>
-        <div className={classes.message}>NO NOTIFICATIONS YET</div>
+        <div className={classes.message}>No notifications yet</div>
       </div>
     );
   }
@@ -189,6 +211,9 @@ const Navigation = () => {
           </button>
         </li>
         <li className={classes.third_column_item}>
+          {numberOfNew_notifications > 0 && (
+            <div className={classes.summary}>{numberOfNew_notifications}</div>
+          )}
           <button
             className={classes.notification}
             onClick={() => setShow_popup_notifications_handler()}

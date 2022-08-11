@@ -247,11 +247,23 @@
 .no_notifications_wrapper {
   width: 200;
   height: 200px;
-  border: 5px red solid;
-  background-color: #1b74e4;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 .no_notifications_wrapper video {
   width: 100%;
   height: 100%;
+}
+.message {
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 10px;
+  color: #65676b;
+}
+.num_of_notifications {
+  position: absolute;
+  background-color: #e41e3f;
+  color: white;
+  border-radius: 50%;
+  font-weight: 600;
 }
