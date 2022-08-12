@@ -17,13 +17,6 @@ const Navigation = () => {
     useState(false);
   const [userNotifications, setUserNotifications] = useState(null);
   const [numberOfNew_notifications, setNumberOfNew_notifications] = useState(0);
-
-  const setShow_popup_profile_handler = () => {
-    setShow_popup_profile((prevState) => !prevState);
-    setNumberOfNew_notifications(0);
-    viewNotifications();
-  };
-
   const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
@@ -31,8 +24,10 @@ const Navigation = () => {
     getUserNotifications();
     getNumberOfNew_notifications();
     socket.on("notifications", (data) => {
-      if (data.action === "get-notification")
+      if (data.action === "get-notification") {
         getRecentUserNotification(data.notification);
+        setNumberOfNew_notifications((state) => state + 1);
+      }
     });
     const data = { userId: user_id };
     socket.emit("setSocketId", data);
@@ -89,13 +84,13 @@ const Navigation = () => {
     })
       .then((res) => {
         if (res.status !== 200) {
-          throw new Error("Failed to create like.");
+          throw new Error("Failed to view notifications.");
         }
 
         return res.json();
       })
       .then((resData) => {
-        console.log("viewed");
+        console.log(resData);
       })
       .catch((err) => console.log(err));
   };
@@ -104,6 +99,11 @@ const Navigation = () => {
 
   const setShow_popup_notifications_handler = () => {
     setShow_popup_notifications((prevState) => !prevState);
+    setNumberOfNew_notifications(0);
+    if (numberOfNew_notifications > 0) viewNotifications();
+  };
+  const setShow_popup_profile_handler = () => {
+    setShow_popup_profile((prevState) => !prevState);
   };
   const dispatch = useDispatch();
 
@@ -117,7 +117,6 @@ const Navigation = () => {
       <div className={classes.notifications_innerWrapper}>
         {userNotifications.map((userNotification) => {
           notification_type = userNotification.action_type;
-          console.log(notification_type);
           if (notification_type == "comment") {
             notification_icon = <i className={classes.msg_icon}></i>;
             notification_text = "commented on your post";
@@ -284,7 +283,12 @@ const Navigation = () => {
           )}
 
           {show_popup_notifications && (
-            <div className={classes.userPopup_wrapper}>
+            <div
+              className={[
+                classes.userPopup_wrapper,
+                classes.notificationPop_upWrapper,
+              ].join(" ")}
+            >
               <div className={classes.notifications_wrapper}>
                 <div className={classes.title}>Notifications</div>
                 {notifications}

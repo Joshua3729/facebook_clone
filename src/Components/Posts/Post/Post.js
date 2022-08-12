@@ -23,11 +23,25 @@ const Post = (props) => {
 
   useEffect(() => {
     getLikesHandler();
+    const socket_1 = openSocket("http://localhost:5000/comments");
+    const socket_2 = openSocket("http://localhost:5000/likes");
 
-    Socket.on("comments", (data) => {
-      if (data.action == "create" && data.post_id == props.post_id) {
-        console.log(data.comment);
+    socket_1.on("comments", (data) => {
+      if (data.action == "create" && data.comment.post_id == props.post_id) {
         getComments_data((state) => [...data.comment, ...state]);
+      }
+    });
+    socket_2.on("likes", (data) => {
+      console.log(data);
+      if (data.action == "create" && data.post_id == props.post_id) {
+        getLikes_data((state) => {
+          const likes = {
+            users_that_liked: [data.like, ...state.users_that_liked],
+            likes: state.likes + 1,
+          };
+
+          return likes;
+        });
       }
     });
     getPostComments();

@@ -53,6 +53,7 @@
 }
 .image_wrapper img {
   width: 100%;
+  min-height: 400px;
 }
 .post_toolbar {
   width: 100%;
