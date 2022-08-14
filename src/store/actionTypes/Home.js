@@ -163,3 +163,9 @@ export const OnPost_FIleChange = (file) => {
       });
   };
 };
+export const getActive_users = (active_users) => {
+  return {
+    type: actionTypes.getActive_users,
+    active_users: active_users,
+  };
+};

@@ -2,6 +2,7 @@ import * as actionTypes from "../actionTypes/actionTypes";
 
 const initialState = {
   posts: [],
+  active_users: null,
   showCreatePost_modal: false,
   createPostLoading: false,
   post_data: {
@@ -74,6 +75,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         previewPost_photo: action.previewPost_photo,
+      };
+    case actionTypes.getActive_users:
+      return {
+        ...state,
+        active_users: action.active_users,
       };
     default:
       return state;

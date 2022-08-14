@@ -8,10 +8,13 @@ import like_icon from "../../Assets/Images/like.svg";
 import openSocket from "socket.io-client";
 import { getNotificationTimeCreated } from "../../Utils/Date";
 import no_notifications from "../../Assets/Videos/no-notifications.mp4";
+import { Manager } from "socket.io-client";
+
 const Navigation = () => {
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
   const username = useSelector((state) => state.auth.user_data.fullname);
   const user_id = useSelector((state) => state.auth.user_data.user_id);
+  const isAuth = useSelector((state) => state.auth.isAuth);
   const [show_popup_profile, setShow_popup_profile] = useState(false);
   const [show_popup_notifications, setShow_popup_notifications] =
     useState(false);
@@ -19,19 +22,39 @@ const Navigation = () => {
   const [numberOfNew_notifications, setNumberOfNew_notifications] = useState(0);
   const token = useSelector((state) => state.auth.token);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    const socket = openSocket("http://localhost:5000/users");
-    getUserNotifications();
-    getNumberOfNew_notifications();
-    socket.on("notifications", (data) => {
-      if (data.action === "get-notification") {
-        getRecentUserNotification(data.notification);
-        setNumberOfNew_notifications((state) => state + 1);
-      }
+    const manager = new Manager("http://localhost:5000", {
+      query: {
+        user_id: user_id,
+        profile_img: profile_img,
+        fullname: username,
+      },
     });
-    const data = { userId: user_id };
-    socket.emit("setSocketId", data);
+    const socket = manager.socket("/users");
+    if (isAuth) {
+      getUserNotifications();
+      getNumberOfNew_notifications();
+      socket.on("notifications", (data) => {
+        if (data.action === "get-notification") {
+          getRecentUserNotification(data.notification);
+          setNumberOfNew_notifications((state) => state + 1);
+        }
+        if (data.action === "get-users") {
+          dispatch(HomeActions.getActive_users(data.users));
+        }
+      });
+    }
+    return () => {
+      socket.off("getUsers");
+    };
   }, []);
+
+  const logOut_handler = () => {
+    dispatch(HomeActions.onLogout());
+  };
+
   const getRecentUserNotification = (recentNotification) => {
     setUserNotifications((state) => [...recentNotification, ...state]);
   };
@@ -105,7 +128,6 @@ const Navigation = () => {
   const setShow_popup_profile_handler = () => {
     setShow_popup_profile((prevState) => !prevState);
   };
-  const dispatch = useDispatch();
 
   let notifications = "Loading";
 
@@ -272,7 +294,7 @@ const Navigation = () => {
               </div>
               <div
                 className={classes.logout_optionWrapper}
-                onClick={() => dispatch(HomeActions.onLogout())}
+                onClick={() => logOut_handler()}
               >
                 <div className={classes.logout_icon_wrapper}>
                   <i className={classes.logout_icon}></i>

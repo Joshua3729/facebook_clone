@@ -46,14 +46,12 @@
 }
 .image_wrapper {
   width: 100%;
-  min-height: 400px;
   background-color: #f0f2f5;
   max-height: 600px;
   overflow: hidden;
 }
 .image_wrapper img {
   width: 100%;
-  min-height: 400px;
 }
 .post_toolbar {
   width: 100%;

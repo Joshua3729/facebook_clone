@@ -73,7 +73,7 @@ const WhatsOnYourMind = (props) => {
             viewBox="0 0 24 24"
             width="1em"
             height="1em"
-            className={classes.Feelinge}
+            className={classes.Feeling}
           >
             <g fill-rule="evenodd" transform="translate(-444 -156)">
               <g>

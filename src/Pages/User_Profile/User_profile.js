@@ -36,6 +36,7 @@ const User_profile = () => {
   useEffect(() => {
     getUserData();
     getUser_posts();
+    window.scrollTo(0, 0);
   }, []);
 
   const set_show_imageUpload_modal_handler = (show) => {

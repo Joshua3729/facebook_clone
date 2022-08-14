@@ -20,5 +20,6 @@ export {
   setOnEmojiClick,
   ON_POST_LIKE,
   OnPost_FIleChange,
+  getActive_users,
 } from "./Home";
 export { OnFIleChange, setCloseUploadAction } from "./UserProfile";
