@@ -178,6 +178,9 @@ const Post = (props) => {
             alt="profile"
             className={classes.profile}
           />
+          {/* {props.currently_active == "1" && (
+            <div className={classes.online}></div>
+          )} */}
         </div>
 
         <div className={classes.name_wrapper}>

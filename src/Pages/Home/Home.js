@@ -35,6 +35,7 @@ const Home = () => {
     <div className={classes.active_contact_item}>
       <div className={classes.contact_profile_wrapper}>
         <img src={user.profile_img} />
+        {user.currently_active == "1" && <div className={classes.online}></div>}
       </div>
       <div className={classes.contact_fullname}>
         {user_data.user_id == user.user_id ? "(me)" : user.fullname}

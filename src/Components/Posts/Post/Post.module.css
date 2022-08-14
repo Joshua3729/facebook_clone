@@ -18,17 +18,17 @@
   width: 100%;
   background-color: #e4e6eb;
   height: 100%;
+  border-radius: 50%;
 }
 .name_wrapper {
   margin-left: 20px;
   text-align: left;
 }
 .profile_wrapper {
+  position: relative;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-
-  overflow: hidden;
 }
 .user_name a {
   text-decoration: none;
@@ -245,3 +245,14 @@
   border-top: #e5e5e5 1.5px solid;
   padding-top: 10px;
 }
+/* .online {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  border: 2px white solid;
+  background-color: #31a24c;
+  bottom: 0px;
+  right: -5px;
+  z-index: 500;
+  border-radius: 50px;
+} */
