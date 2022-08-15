@@ -28,8 +28,6 @@ const Navigation = () => {
     const manager = new Manager("http://localhost:5000", {
       query: {
         user_id: user_id,
-        profile_img: profile_img,
-        fullname: username,
       },
     });
     const socket = manager.socket("/users");
@@ -40,6 +38,7 @@ const Navigation = () => {
         if (data.action === "get-notification") {
           getRecentUserNotification(data.notification);
           setNumberOfNew_notifications((state) => state + 1);
+          console.log(data);
         }
         if (data.action === "get-users") {
           dispatch(HomeActions.getActive_users(data.users));
@@ -137,7 +136,7 @@ const Navigation = () => {
 
     notifications = (
       <div className={classes.notifications_innerWrapper}>
-        {userNotifications.map((userNotification) => {
+        {userNotifications.map((userNotification, i) => {
           notification_type = userNotification.action_type;
           if (notification_type == "comment") {
             notification_icon = <i className={classes.msg_icon}></i>;
@@ -150,7 +149,7 @@ const Navigation = () => {
           }
 
           return (
-            <div className={classes.notification_item}>
+            <div className={classes.notification_item} key={i}>
               <div className={classes.userImg_wrapper}>
                 <img src={userNotification.profile_img} alt="profile" />
                 <div className={classes.comment_notification_icon}>

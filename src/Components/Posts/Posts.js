@@ -17,10 +17,8 @@ const Posts = (props) => {
           post_id={post.post_id}
           key={post.post_id}
           user_id={post.user_id}
-          // video={"http://localhost:5000/feed/get_video"}
           profile_img={post.profile_img}
           created_at={post.created_at}
-          userImg="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYH_VDaGfxQ_cPhkgDPyoxXJgnnKHzEw7kdg&usqp=CAU"
         />
       );
     });

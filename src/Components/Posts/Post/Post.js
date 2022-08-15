@@ -32,7 +32,6 @@ const Post = (props) => {
       }
     });
     socket_2.on("likes", (data) => {
-      console.log(data);
       if (data.action == "create" && data.post_id == props.post_id) {
         getLikes_data((state) => {
           const likes = {
