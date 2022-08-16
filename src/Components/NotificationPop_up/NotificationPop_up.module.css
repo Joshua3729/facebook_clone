@@ -1,0 +1,38 @@
+.NotificationPop_up_wrapper {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: white;
+  width: 400px;
+  padding: 20px;
+  border-radius: 15px;
+  z-index: 1500;
+  box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+.title {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.close {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e4e6eb;
+  position: absolute;
+  right: 15px;
+}
+.close img {
+  width: 20px;
+  height: 20px;
+}
+.header_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
