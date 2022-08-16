@@ -217,29 +217,6 @@
   height: 100%;
   border-radius: 50%;
 }
-.notification_item {
-  display: flex;
-  width: 100%;
-}
-.notifications_innerWrapper {
-  margin-top: 50px;
-}
-.notification_username {
-  font-size: 20px;
-  font-weight: 600;
-}
-.notification_info_wrapper {
-  font-size: 20px;
-}
-.comment_notification_icon {
-  position: absolute;
-  bottom: 0px;
-  right: 0;
-  width: 25px;
-  height: 25px;
-  background-color: #f2f2f2;
-  border-radius: 50%;
-}
 
 .msg_icon {
   height: 28px;
@@ -264,12 +241,7 @@
 .notification_info_outer_wrapper {
   width: calc(100% - 80px);
 }
-.timestamp {
-  margin-top: 10px;
-  font-size: 17px;
-  color: #1b74e4;
-  font-weight: 600;
-}
+
 .no_notifications_wrapper {
   width: 200;
   height: 200px;

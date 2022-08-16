@@ -4,11 +4,10 @@ import classes from "./Navigation.module.css";
 import search from "../../Assets/Images/search.png";
 import { useDispatch, useSelector } from "react-redux";
 import * as HomeActions from "../../store/actionTypes/index";
-import like_icon from "../../Assets/Images/like.svg";
 import openSocket from "socket.io-client";
-import { getNotificationTimeCreated } from "../../Utils/Date";
 import no_notifications from "../../Assets/Videos/no-notifications.mp4";
 import { Manager } from "socket.io-client";
+import Notification_item from "../Notification_item/Notification_item";
 
 const Navigation = () => {
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
@@ -131,45 +130,11 @@ const Navigation = () => {
   let notifications = "Loading";
 
   if (userNotifications?.length > 0) {
-    let notification_icon = null;
-    let notification_text = null;
-
     notifications = (
       <div className={classes.notifications_innerWrapper}>
-        {userNotifications.map((userNotification, i) => {
-          notification_type = userNotification.action_type;
-          if (notification_type == "comment") {
-            notification_icon = <i className={classes.msg_icon}></i>;
-            notification_text = "commented on your post";
-          } else if (notification_type == "like") {
-            notification_icon = (
-              <img src={like_icon} className={classes.like_icon} />
-            );
-            notification_text = "liked your post";
-          }
-
-          return (
-            <div className={classes.notification_item} key={i}>
-              <div className={classes.userImg_wrapper}>
-                <img src={userNotification.profile_img} alt="profile" />
-                <div className={classes.comment_notification_icon}>
-                  {notification_icon}
-                </div>
-              </div>
-              <div className={classes.notification_info_outer_wrapper}>
-                <div className={classes.notification_info_wrapper}>
-                  <span className={classes.notification_username}>
-                    {userNotification.fullname}
-                  </span>{" "}
-                  {notification_text}
-                </div>
-                <div className={classes.timestamp}>
-                  {getNotificationTimeCreated(userNotification.created_at)}
-                </div>
-              </div>
-            </div>
-          );
-        })}
+        {userNotifications.map((userNotification, i) => (
+          <Notification_item userNotification={userNotification} key={i} />
+        ))}
       </div>
     );
   } else if (userNotifications?.length == 0) {
