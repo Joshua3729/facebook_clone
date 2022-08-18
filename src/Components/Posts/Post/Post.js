@@ -46,9 +46,7 @@ const Post = (props) => {
     });
     getPostComments();
   }, []);
-  const getNewComment = (comment) => {
-    getComments_data((state) => [...comment, ...state]);
-  };
+
   const getPostComments = () => {
     fetch("http://localhost:5000/feed/get_comments/" + props.post_id, {
       headers: {
