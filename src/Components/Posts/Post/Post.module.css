@@ -159,7 +159,11 @@
   padding: 10px 20px;
   border: none;
 }
+.comment_input:disabled {
+  cursor: not-allowed;
+}
 .comment_form {
+  position: relative;
   width: calc(100% - 50px);
 }
 .comment_input:focus {
@@ -245,14 +249,27 @@
   border-top: #e5e5e5 1.5px solid;
   padding-top: 10px;
 }
-/* .online {
-  width: 12px;
-  height: 12px;
+.emoji_btn {
+  cursor: pointer;
+  transform: translateY(-50%) scale(1.3);
+  background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/Xxb2DgF7lZO.png?_nc_eui2=AeEmOXJPAatmvB5Dx956yuSD0yeNQ-niVeXTJ41D6eJV5booznqRBCTmH3JqdJ0ida4Gb47WaPzvQX9E3yIzjZ5b");
+  background-position: 0px -578px;
+  background-size: 26px 914px;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  -webkit-filter: invert(39%) sepia(21%) saturate(200%) saturate(109.5%)
+    hue-rotate(174deg) brightness(94%) contrast(86%);
+}
+.emoji_wrapper {
   position: absolute;
-  border: 2px white solid;
-  background-color: #31a24c;
-  bottom: 0px;
-  right: -5px;
-  z-index: 500;
-  border-radius: 50px;
-} */
+  right: 20px;
+  top: 50%;
+}
+.emoji_picker {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(-110%);
+}
