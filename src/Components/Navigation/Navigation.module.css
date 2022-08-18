@@ -265,3 +265,14 @@
   border-radius: 50%;
   font-weight: 600;
 }
+.LoadingSpinner_wrapper {
+  width: 100px;
+  height: 100px;
+}
+.LoadingSpinner_outerWrapper {
+  width: 100%;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -10,6 +10,7 @@ import { Manager } from "socket.io-client";
 import Notification_item from "../Notification_item/Notification_item";
 import NotificationPop_up from "../NotificationPop_up/NotificationPop_up";
 import Popup_modal from "../Popup_modal/Popup_modal";
+import LoadingSpinner_2 from "../UI/LoadingSpinners/LoadingSpinner_2/LoadingSpinner_2";
 
 const Navigation = () => {
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
@@ -140,9 +141,15 @@ const Navigation = () => {
     setShow_popup_profile(false);
   };
 
-  let notifications = "Loading";
+  let notifications = (
+    <div className={classes.LoadingSpinner_outerWrapper}>
+      <div className={classes.LoadingSpinner_wrapper}>
+        <LoadingSpinner_2 />
+      </div>
+    </div>
+  );
 
-  if (userNotifications?.length > 0) {
+  if (false && userNotifications?.length > 0) {
     notifications = (
       <div className={classes.notifications_innerWrapper}>
         {userNotifications.map((userNotification, i) => (
