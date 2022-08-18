@@ -28,3 +28,4 @@ export const onPreviewPost_photo_Loading = "onPreviewPost_photo_Loading";
 export const OnPost_FileChange = "OnPost_FileChange";
 export const setLoginLoading = "setLoginLoading";
 export const getActive_users = "getActive_users";
+export const resetPostData = "resetPostData";

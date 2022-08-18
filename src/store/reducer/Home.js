@@ -81,6 +81,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         active_users: action.active_users,
       };
+    case actionTypes.resetPostData:
+      return {
+        ...state,
+        post_data: {
+          post_caption: "",
+          photo_file: null,
+        },
+      };
     default:
       return state;
   }

@@ -104,6 +104,7 @@ const Post = (props) => {
     e.preventDefault();
     setUser_comment("");
     setPostComment_loading(true);
+
     fetch("http://localhost:5000/feed/post_comment", {
       method: "POST",
       headers: {
@@ -147,7 +148,9 @@ const Post = (props) => {
       })
       .catch((err) => console.log(err));
   };
-
+  const onEmojiClick = (event, emojiObject) => {
+    setUser_comment((state) => state + emojiObject.emoji);
+  };
   let like_classes = likes_data
     ? [
         classes.like,
@@ -282,7 +285,7 @@ const Post = (props) => {
                 show={showPopup_modal}
               >
                 <div className={classes.emoji_picker}>
-                  <Picker />
+                  <Picker onEmojiClick={onEmojiClick} />
                 </div>
               </Popup_modal>
 

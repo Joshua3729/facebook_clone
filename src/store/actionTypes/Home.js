@@ -62,6 +62,12 @@ export const setCreatePostLoading = (createPostLoading) => {
   };
 };
 
+export const resetPostData = () => {
+  return {
+    type: actionTypes.resetPostData,
+  };
+};
+
 export const ON_CREATE_POST = (e, postData, token) => {
   return (dispatch) => {
     e.preventDefault();
@@ -87,6 +93,7 @@ export const ON_CREATE_POST = (e, postData, token) => {
       .then((resData) => {
         dispatch(setCreatePostLoading(false));
         dispatch(setShowCreatePost_Modal(false));
+        dispatch(resetPostData());
       })
       .catch((err) => console.log(err));
   };
