@@ -15,7 +15,7 @@ const Post = (props) => {
   const [liked, setLiked] = useState(false);
   const [likes_data, getLikes_data] = useState(null);
   const [likeLoading, setLikeLoading] = useState(false);
-  const [user_comment, setUser_comment] = useState(null);
+  const [user_comment, setUser_comment] = useState("");
   const [comments_data, getComments_data] = useState(null);
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
 
@@ -99,6 +99,7 @@ const Post = (props) => {
   };
   const postComment = (e, comment) => {
     e.preventDefault();
+    setUser_comment("");
     fetch("http://localhost:5000/feed/post_comment", {
       method: "POST",
       headers: {
@@ -271,6 +272,7 @@ const Post = (props) => {
               className={classes.comment_input}
               placeholder="Write a comment"
               onChange={(e) => onCommentChange(e.target.value)}
+              value={user_comment}
             />
           </form>
         </div>
