@@ -8,6 +8,7 @@ import Comment from "../comment/comment";
 import openSocket from "socket.io-client";
 import * as Date from "../../../Utils/Date";
 import Picker from "emoji-picker-react";
+import Popup_modal from "../../Popup_modal/Popup_modal";
 
 const Post = (props) => {
   const token = useSelector((state) => state.auth.token);
@@ -18,6 +19,7 @@ const Post = (props) => {
   const [user_comment, setUser_comment] = useState("");
   const [comments_data, getComments_data] = useState(null);
   const [postComment_loading, setPostComment_loading] = useState(false);
+  const [showPopup_modal, setShowPopup_modal] = useState(false);
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
 
   const dispatch = useDispatch();
@@ -273,10 +275,23 @@ const Post = (props) => {
             className={classes.comment_form}
           >
             <div className={classes.emoji_wrapper}>
-              <div className={classes.emoji_picker}>
-                <Picker />
-              </div>
-              <i className={classes.emoji_btn}></i>
+              <Popup_modal
+                onClickOutside={() => {
+                  setShowPopup_modal(false);
+                }}
+                show={showPopup_modal}
+              >
+                <div className={classes.emoji_picker}>
+                  <Picker />
+                </div>
+              </Popup_modal>
+
+              <i
+                className={classes.emoji_btn}
+                onClick={() => {
+                  setShowPopup_modal(true);
+                }}
+              ></i>
             </div>
             <input
               type="text"
