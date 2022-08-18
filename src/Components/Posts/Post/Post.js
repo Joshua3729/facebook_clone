@@ -27,8 +27,9 @@ const Post = (props) => {
     const socket_2 = openSocket("http://localhost:5000/likes");
 
     socket_1.on("comments", (data) => {
-      if (data.action == "create" && data.comment.post_id == props.post_id) {
+      if (data.action == "create" && data.post_id == props.post_id) {
         getComments_data((state) => [...data.comment, ...state]);
+        console.log(data.comment);
       }
     });
     socket_2.on("likes", (data) => {

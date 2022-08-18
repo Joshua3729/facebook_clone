@@ -6,7 +6,7 @@ import ReactDOM from "react-dom";
 const NotificationPop_up = (props) => {
   setTimeout(() => {
     props.closeNotificationPopup(false);
-  }, 5000);
+  }, 10000);
   return ReactDOM.createPortal(
     <div
       className={classes.NotificationPop_up_wrapper}

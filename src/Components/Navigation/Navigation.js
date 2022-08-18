@@ -80,7 +80,6 @@ const Navigation = () => {
       })
       .then((resData) => {
         setUserNotifications(resData.data);
-        openNotificationPop_upHandler(true);
       })
       .catch((err) => console.log(err));
   };
