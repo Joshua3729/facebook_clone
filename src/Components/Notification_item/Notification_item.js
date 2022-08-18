@@ -14,7 +14,11 @@ const Notification_item = (props) => {
     notification_text = "commented on your post";
   } else if (notification_type == "like") {
     notification_icon = <img src={like_icon} className={classes.like_icon} />;
-    notification_text = `liked your post: "${userNotification.caption}"`;
+    notification_text = userNotification.photo_url
+      ? `liked your photo ${
+          userNotification.caption ? `: "${userNotification.caption}"` : ``
+        }`
+      : `liked your post: "${userNotification.caption}"`;
   }
   return (
     <div className={classes.notification_item}>
