@@ -24,7 +24,13 @@
 }
 .notification_info_wrapper {
   font-size: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 .comment_notification_icon {
   position: absolute;
   bottom: 0px;

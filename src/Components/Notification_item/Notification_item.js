@@ -5,6 +5,7 @@ import { getNotificationTimeCreated } from "../../Utils/Date";
 
 const Notification_item = (props) => {
   const userNotification = props.userNotification;
+  console.log(userNotification);
   const notification_type = userNotification.action_type;
   let notification_icon = null;
   let notification_text = null;
@@ -13,7 +14,7 @@ const Notification_item = (props) => {
     notification_text = "commented on your post";
   } else if (notification_type == "like") {
     notification_icon = <img src={like_icon} className={classes.like_icon} />;
-    notification_text = "liked your post";
+    notification_text = `liked your post: "${userNotification.caption}"`;
   }
   return (
     <div className={classes.notification_item}>
