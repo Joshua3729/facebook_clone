@@ -9,6 +9,7 @@ import no_notifications from "../../Assets/Videos/no-notifications.mp4";
 import { Manager } from "socket.io-client";
 import Notification_item from "../Notification_item/Notification_item";
 import NotificationPop_up from "../NotificationPop_up/NotificationPop_up";
+import Popup_modal from "../Popup_modal/Popup_modal";
 
 const Navigation = () => {
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
@@ -125,12 +126,18 @@ const Navigation = () => {
   };
 
   const setShow_popup_notifications_handler = () => {
-    setShow_popup_notifications((prevState) => !prevState);
+    setShow_popup_notifications(true);
     setNumberOfNew_notifications(0);
     if (numberOfNew_notifications > 0) viewNotifications();
   };
+  const closeNotificationPopup_handler = () => {
+    setShow_popup_notifications(false);
+  };
   const setShow_popup_profile_handler = () => {
-    setShow_popup_profile((prevState) => !prevState);
+    setShow_popup_profile(true);
+  };
+  const closeProfilePopup_handler = () => {
+    setShow_popup_profile(false);
   };
 
   let notifications = "Loading";
@@ -237,6 +244,7 @@ const Navigation = () => {
             <button
               className={classes.notification}
               onClick={() => setShow_popup_notifications_handler()}
+              // disabled={show_popup_notifications}
             >
               <svg
                 viewBox="0 0 28 28"
@@ -257,7 +265,13 @@ const Navigation = () => {
             >
               <img src={profile_img} alt="" />
             </div>
-            {show_popup_profile && (
+
+            <Popup_modal
+              onClickOutside={() => {
+                closeProfilePopup_handler();
+              }}
+              show={show_popup_profile}
+            >
               <div className={classes.userPopup_wrapper}>
                 <div className={classes.userprofile_wrapper}>
                   <div className={classes.inner_userprofile_wrapper}>
@@ -279,9 +293,14 @@ const Navigation = () => {
                   <div className={classes.logout_txt}>Log Out</div>
                 </div>
               </div>
-            )}
+            </Popup_modal>
 
-            {show_popup_notifications && (
+            <Popup_modal
+              onClickOutside={() => {
+                closeNotificationPopup_handler();
+              }}
+              show={show_popup_notifications}
+            >
               <div
                 className={[
                   classes.userPopup_wrapper,
@@ -293,7 +312,7 @@ const Navigation = () => {
                   {notifications}
                 </div>
               </div>
-            )}
+            </Popup_modal>
           </li>
         </ul>
       </div>

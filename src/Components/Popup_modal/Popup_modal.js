@@ -19,11 +19,7 @@ const Popup_modal = (props) => {
 
   if (!props.show) return null;
 
-  return (
-    <div ref={ref} className="info-box">
-      {props.children}
-    </div>
-  );
+  return <div ref={ref}>{props.children}</div>;
 };
 
 export default Popup_modal;
