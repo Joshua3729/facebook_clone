@@ -9,6 +9,7 @@ import openSocket from "socket.io-client";
 import * as Date from "../../../Utils/Date";
 import Picker from "emoji-picker-react";
 import Popup_modal from "../../Popup_modal/Popup_modal";
+import Loading_Post from "../Loading_Post/Loading_Post";
 
 const Post = (props) => {
   const token = useSelector((state) => state.auth.token);
@@ -178,137 +179,145 @@ const Post = (props) => {
     <div>Loading...</div>
   );
 
-  return (
-    <div className={classes.Post}>
-      <div className={classes.post_header}>
-        <div className={classes.profile_wrapper}>
-          <img
-            src={props.profile_img}
-            alt="profile"
-            className={classes.profile}
-          />
-          {/* {props.currently_active == "1" && (
-            <div className={classes.online}></div>
-          )} */}
-        </div>
+  let Post_item = <Loading_Post />;
 
-        <div className={classes.name_wrapper}>
-          <div className={classes.user_name}>
-            <Link
-              to={`/${props.user_name.split(" ").join(".")}.${props.user_id}`}
-            >
-              {props.user_name}
-            </Link>
-          </div>
-          <div className={classes.time}>{props.time}</div>
-        </div>
-      </div>
-      {props.caption && (
-        <div className={classes.caption_wrapper}>{props.caption}</div>
-      )}
-      {props.media && (
-        <div className={classes.image_wrapper}>
-          <img src={props.media} alt="" />
-        </div>
-      )}
-      {props.video && (
-        <div className={classes.video_wrapper}>
-          <video autoplay="true" loop="" controls="true">
-            <source type="video/mp4" src={props.video} />
-          </video>
-        </div>
-      )}
-      {likes_data && likes_data.likes > 0 && (
-        <div className={classes.likes_wrapper}>
-          <div className={classes.likes_inner_wrapper}>
-            <img src={like_icon} alt="" className={classes.like_icon} />
-            <div className={classes.numberOfLikes}>{likes_data?.likes}</div>
-          </div>
-          <div className={classes.people_who_liked}>
-            <div className={classes.people_who_liked_header}>Likes</div>
-            {likes_data.users_that_liked.map((user) => (
-              <div className={classes.like_user_name} key={user.user_id}>
-                {user.fullname}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-      {props.text && <div className={classes.text_wrapper}>{props.text}</div>}
-      <div className={classes.post_toolbar}>
-        <div className={classes.inner_wrapper}>
-          <button
-            className={classes.like_btn}
-            style={{
-              color:
-                liked ||
-                likes_data?.users_that_liked.some(
-                  (user) => user.user_id == user_id
-                )
-                  ? "#1b74e4"
-                  : "#65676b",
-            }}
-            disabled={likeLoading}
-            onClick={() => postLike()}
-          >
-            <i data-visualcompletion="css-img" className={like_classes}></i>{" "}
-            Like
-          </button>
-          <button className={classes.comment_btn}>
-            <i data-visualcompletion="css-img" className={classes.comment}></i>
-            Comment
-          </button>
-          <button className={classes.share_btn}>
-            <i data-visualcompletion="css-img" className={classes.share}></i>
-            Share
-          </button>
-        </div>
-      </div>
-      <div className={classes.comment_wrapper}>
-        <div className={classes.friends_comments}>{comments}</div>
-        <div className={classes.comment_innerWrapper}>
-          <div className={classes.outer_wrapper}>
-            <div className={classes.userProfile_wrapper}>
-              <img src={profile_img} alt="" />
-            </div>
-            <div className={classes.online}></div>
-          </div>
-          <form
-            onSubmit={(e) => postComment(e, user_comment)}
-            className={classes.comment_form}
-          >
-            <div className={classes.emoji_wrapper}>
-              <Popup_modal
-                onClickOutside={() => {
-                  setShowPopup_modal(false);
-                }}
-                show={showPopup_modal}
-              >
-                <div className={classes.emoji_picker}>
-                  <Picker onEmojiClick={onEmojiClick} />
-                </div>
-              </Popup_modal>
-
-              <i
-                className={classes.emoji_btn}
-                onClick={() => {
-                  setShowPopup_modal(true);
-                }}
-              ></i>
-            </div>
-            <input
-              type="text"
-              className={classes.comment_input}
-              placeholder="Write a comment"
-              onChange={(e) => onCommentChange(e.target.value)}
-              value={user_comment}
-              disabled={postComment_loading}
+  if (comments_data)
+    Post_item = (
+      <div className={classes.Post}>
+        <div className={classes.post_header}>
+          <div className={classes.profile_wrapper}>
+            <img
+              src={props.profile_img}
+              alt="profile"
+              className={classes.profile}
             />
-          </form>
+            {/* {props.currently_active == "1" && (
+      <div className={classes.online}></div>
+    )} */}
+          </div>
+
+          <div className={classes.name_wrapper}>
+            <div className={classes.user_name}>
+              <Link
+                to={`/${props.user_name.split(" ").join(".")}.${props.user_id}`}
+              >
+                {props.user_name}
+              </Link>
+            </div>
+            <div className={classes.time}>{props.time}</div>
+          </div>
+        </div>
+        {props.caption && (
+          <div className={classes.caption_wrapper}>{props.caption}</div>
+        )}
+        {props.media && (
+          <div className={classes.image_wrapper}>
+            <img src={props.media} alt="" />
+          </div>
+        )}
+        {props.video && (
+          <div className={classes.video_wrapper}>
+            <video autoplay="true" loop="" controls="true">
+              <source type="video/mp4" src={props.video} />
+            </video>
+          </div>
+        )}
+        {likes_data && likes_data.likes > 0 && (
+          <div className={classes.likes_wrapper}>
+            <div className={classes.likes_inner_wrapper}>
+              <img src={like_icon} alt="" className={classes.like_icon} />
+              <div className={classes.numberOfLikes}>{likes_data?.likes}</div>
+            </div>
+            <div className={classes.people_who_liked}>
+              <div className={classes.people_who_liked_header}>Likes</div>
+              {likes_data.users_that_liked.map((user) => (
+                <div className={classes.like_user_name} key={user.user_id}>
+                  {user.fullname}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        {props.text && <div className={classes.text_wrapper}>{props.text}</div>}
+        <div className={classes.post_toolbar}>
+          <div className={classes.inner_wrapper}>
+            <button
+              className={classes.like_btn}
+              style={{
+                color:
+                  liked ||
+                  likes_data?.users_that_liked.some(
+                    (user) => user.user_id == user_id
+                  )
+                    ? "#1b74e4"
+                    : "#65676b",
+              }}
+              disabled={likeLoading}
+              onClick={() => postLike()}
+            >
+              <i data-visualcompletion="css-img" className={like_classes}></i>{" "}
+              Like
+            </button>
+            <button className={classes.comment_btn}>
+              <i
+                data-visualcompletion="css-img"
+                className={classes.comment}
+              ></i>
+              Comment
+            </button>
+            <button className={classes.share_btn}>
+              <i data-visualcompletion="css-img" className={classes.share}></i>
+              Share
+            </button>
+          </div>
+        </div>
+        <div className={classes.comment_wrapper}>
+          <div className={classes.friends_comments}>{comments}</div>
+          <div className={classes.comment_innerWrapper}>
+            <div className={classes.outer_wrapper}>
+              <div className={classes.userProfile_wrapper}>
+                <img src={profile_img} alt="" />
+              </div>
+              <div className={classes.online}></div>
+            </div>
+            <form
+              onSubmit={(e) => postComment(e, user_comment)}
+              className={classes.comment_form}
+            >
+              <div className={classes.emoji_wrapper}>
+                <Popup_modal
+                  onClickOutside={() => {
+                    setShowPopup_modal(false);
+                  }}
+                  show={showPopup_modal}
+                >
+                  <div className={classes.emoji_picker}>
+                    <Picker onEmojiClick={onEmojiClick} />
+                  </div>
+                </Popup_modal>
+
+                <i
+                  className={classes.emoji_btn}
+                  onClick={() => {
+                    setShowPopup_modal(true);
+                  }}
+                ></i>
+              </div>
+              <input
+                type="text"
+                className={classes.comment_input}
+                placeholder="Write a comment"
+                onChange={(e) => onCommentChange(e.target.value)}
+                value={user_comment}
+                disabled={postComment_loading}
+              />
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+
+  return Post_item;
 };
 
 export default Post;
