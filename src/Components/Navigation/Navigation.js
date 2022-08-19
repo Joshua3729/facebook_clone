@@ -149,7 +149,7 @@ const Navigation = () => {
     </div>
   );
 
-  if (false && userNotifications?.length > 0) {
+  if (userNotifications?.length > 0) {
     notifications = (
       <div className={classes.notifications_innerWrapper}>
         {userNotifications.map((userNotification, i) => (
