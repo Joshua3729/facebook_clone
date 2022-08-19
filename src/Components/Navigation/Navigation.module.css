@@ -49,6 +49,7 @@
 .nav_item:last-child {
   margin-right: 0;
 }
+.column_item,
 .profile,
 .notification,
 .messenger {
