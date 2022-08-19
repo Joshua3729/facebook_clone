@@ -7,7 +7,12 @@ export const setPosts = (posts) => {
     posts: posts,
   };
 };
-
+export const set_posts_loading = (loading) => {
+  return {
+    type: actionTypes.SET_POSTS_LOADING,
+    posts_loading: loading,
+  };
+};
 export const initPosts = (token) => {
   return (dispatch) => {
     fetch("http://localhost:5000/feed/get_posts", {
@@ -25,6 +30,7 @@ export const initPosts = (token) => {
       })
       .then((resData) => {
         dispatch(setPosts(resData.data));
+        dispatch(set_posts_loading(false));
       })
       .catch((err) => console.log(err));
   };

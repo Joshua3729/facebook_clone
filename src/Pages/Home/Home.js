@@ -18,6 +18,7 @@ const Home = () => {
   );
   const token = useSelector((state) => state.auth.token);
   const active_users = useSelector((state) => state.home.active_users);
+  const posts_loading = useSelector((state) => state.home.posts_loading);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -42,50 +43,54 @@ const Home = () => {
       </div>
     </div>
   ));
-  return (
-    <>
-      <Modal show={showCreatePost_modal}>
-        <CreatePost
-          fullname={user_data.fullname}
-          profile_img={user_data.profile_img}
-        />
-      </Modal>
-      <div
-        className={classes.Home}
-        style={{
-          overflow: showCreatePost_modal ? "hidden" : "unset",
-          height: showCreatePost_modal ? "100vh" : "unset",
-        }}
-      >
-        <div className={classes.gutter}></div>
-        <div className={classes.Home_innerWrapper}>
-          <div className={classes.main}>
-            <Stories />
-            <div className={classes.feed}>
-              <WhatsOnYourMind />
-              <Posts posts={posts} />
-              <div className={classes.noMore_posts}>
-                <div className={classes.inner_wrapper}>
-                  <p className={classes.Notice}>No More Posts</p>
-                  <p className={classes.CTA}>
-                    Add more friends to see more posts in your Feed.
-                  </p>
-                  <button className={classes.findFriends_btn}>
-                    Find Friends
-                  </button>
+  let home_page = <div className={classes.Home}></div>;
+
+  if (!posts_loading)
+    home_page = (
+      <>
+        <Modal show={showCreatePost_modal}>
+          <CreatePost
+            fullname={user_data.fullname}
+            profile_img={user_data.profile_img}
+          />
+        </Modal>
+        <div
+          className={classes.Home}
+          style={{
+            overflow: showCreatePost_modal ? "hidden" : "unset",
+            height: showCreatePost_modal ? "100vh" : "unset",
+          }}
+        >
+          <div className={classes.gutter}></div>
+          <div className={classes.Home_innerWrapper}>
+            <div className={classes.main}>
+              <Stories />
+              <div className={classes.feed}>
+                <WhatsOnYourMind />
+                <Posts posts={posts} />
+                <div className={classes.noMore_posts}>
+                  <div className={classes.inner_wrapper}>
+                    <p className={classes.Notice}>No More Posts</p>
+                    <p className={classes.CTA}>
+                      Add more friends to see more posts in your Feed.
+                    </p>
+                    <button className={classes.findFriends_btn}>
+                      Find Friends
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className={classes.taskbar}>
-            <div className={classes.contacts}>
-              <div className={classes.title}>Contacts</div>
-              <div className={classes.contacts_items}>{contacts}</div>
+            <div className={classes.taskbar}>
+              <div className={classes.contacts}>
+                <div className={classes.title}>Contacts</div>
+                <div className={classes.contacts_items}>{contacts}</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  return home_page;
 };
 export default Home;

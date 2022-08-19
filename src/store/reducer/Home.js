@@ -12,6 +12,7 @@ const initialState = {
   previewPost_photo: null,
   previewImgLoading: false,
   like_loading: false,
+  posts_loading: true,
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -88,6 +89,12 @@ const reducer = (state = initialState, action) => {
           post_caption: "",
           photo_file: null,
         },
+      };
+
+    case actionTypes.SET_POSTS_LOADING:
+      return {
+        ...state,
+        posts_loading: action.posts_loading,
       };
     default:
       return state;
