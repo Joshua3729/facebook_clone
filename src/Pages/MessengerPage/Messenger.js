@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
+import Chat_item from "../../Components/Chat_item/Chat_item";
 import classes from "./MessengerPage.module.css";
 
 const MessengerPage = () => {
@@ -55,7 +56,7 @@ const MessengerPage = () => {
             />
           </form>
           <div className={classes.messages_wrapper}>
-            <div className={classes.no_messages}>No Messages Found</div>
+            <Chat_item />
           </div>
         </div>
         <div className={classes.message_wrapper}>
