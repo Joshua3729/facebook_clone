@@ -1,0 +1,159 @@
+.MessengerPage {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: calc(100vh - 70px);
+  background-color: #f0f2f5;
+  width: 100%;
+  overflow-y: hidden;
+}
+.chats_wrapper {
+  background-color: white;
+  height: 100%;
+  border-right: 1px solid #dddddd;
+}
+.message_wrapper {
+  height: 100%;
+  background-color: white;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 700;
+}
+.gutter {
+  width: 100%;
+  height: 70px;
+}
+.header_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.taskbar_wrapper {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+.taskbar_item {
+  width: 45px;
+  height: 45px;
+  background-color: #dddddd;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.taskbar_item:last-child {
+  margin-right: 0;
+}
+.search_input {
+  width: 100%;
+  height: 50px;
+  padding: 20px 20px 20px 40px;
+  border-radius: 100px;
+  border: none;
+  background-color: #f0f2f5;
+  font-size: 20px;
+}
+.search_input:focus {
+  border: none;
+  outline: none;
+}
+.search_input::placeholder {
+  color: #8a8d91;
+}
+.search_input:-ms-input-placeholder {
+  color: #8a8d91;
+}
+.search_input::-ms-input-placeholder {
+  color: #8a8d91;
+}
+.search_icon_wrapper {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+}
+.search_form {
+  position: relative;
+  width: calc(100% - 40px);
+  margin-top: 20px;
+  display: flex;
+  margin: 20px auto 0 auto;
+}
+.search_icon {
+  width: 20px;
+  height: 20px;
+  color: #65676b;
+}
+.messages_wrapper {
+  height: calc(100% - 140px);
+  margin-top: 20px;
+  padding: 20px;
+  overflow-y: scroll;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.no_messages {
+  font-size: 20px;
+  font-weight: 600;
+}
+.message_header {
+  background-color: white;
+  width: 100%;
+  height: 80px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+.message_header {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+}
+.user_profile {
+  margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #dddddd;
+}
+.username {
+  font-size: 20px;
+  font-weight: 500;
+}
+.messages_inner_wrapper {
+  width: 100%;
+  height: calc(100% - 160px);
+  overflow-y: scroll;
+}
+.message_form {
+  position: relative;
+  height: 80px;
+  padding: 15px 20px;
+}
+.message_input {
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+  border: none;
+  padding: 15px;
+  font-size: 20px;
+  background-color: #dddddd;
+}
+.message_input:focus {
+  outline: none;
+}
+.emoji_btn {
+  position: absolute;
+  top: 50%;
+  right: 35px;
+  transform: translateY(-50%);
+}
+.message_input::placeholder {
+  color: #8a8d91;
+}
+.message_input:-ms-input-placeholder {
+  color: #8a8d91;
+}
+.message_input::-ms-input-placeholder {
+  color: #8a8d91;
+}

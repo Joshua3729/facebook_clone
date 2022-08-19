@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as HomeActions from "./store/actionTypes/index";
 import LoadingPage from "./Pages/LoadingPage/LoadingPage";
 import { setAutoLogout } from "./Utils/AutoLogout";
+import MessengerPage from "./Pages/MessengerPage/Messenger";
 
 function App() {
   let isAuth = useSelector((state) => state.auth.isAuth);
@@ -64,6 +65,7 @@ function App() {
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/:user_id" exact element={<User_profile />} />
+        <Route path="/messages/:message_id" exact element={<MessengerPage />} />
       </Routes>
     );
   } else if (!isAuth && !authLoading) {
