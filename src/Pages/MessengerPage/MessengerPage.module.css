@@ -85,14 +85,12 @@
   height: 20px;
   color: #65676b;
 }
-.messages_wrapper {
-  height: calc(100% - 140px);
+.chats_items_wrapper {
+  /* height: 420px; */
+  height: calc(100vh - 70px - 170px);
   margin-top: 20px;
-  padding: 20px;
+  padding: 0 20px;
   overflow-y: scroll;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .no_messages {
   font-size: 20px;
@@ -155,5 +153,25 @@
   color: #8a8d91;
 }
 .message_input::-ms-input-placeholder {
+  color: #8a8d91;
+}
+.messages_inner_wrapper .user_profile {
+  width: 70px;
+  height: 70px;
+  background-color: #dddddd;
+  border-radius: 50%;
+  display: flex;
+  margin: 0 auto 10px auto;
+}
+.messages_inner_wrapper {
+  padding: 30px 20px 20px 20px;
+}
+
+.messages_inner_wrapper .username {
+  margin-bottom: 10px;
+}
+
+.connection_status {
+  font-size: 15px;
   color: #8a8d91;
 }

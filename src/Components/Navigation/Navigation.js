@@ -11,6 +11,7 @@ import Notification_item from "../Notification_item/Notification_item";
 import NotificationPop_up from "../NotificationPop_up/NotificationPop_up";
 import Popup_modal from "../Popup_modal/Popup_modal";
 import LoadingSpinner_2 from "../UI/LoadingSpinners/LoadingSpinner_2/LoadingSpinner_2";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
@@ -238,18 +239,20 @@ const Navigation = () => {
     third_column_items = (
       <>
         <li className={classes.third_column_item}>
-          <button className={classes.messenger}>
-            <svg
-              viewBox="0 0 28 28"
-              alt=""
-              class="a8c37x1j ms05siws l3qrxjdp b7h9ocf4 rs22bh7c"
-              fill="currentColor"
-              height="25"
-              width="25"
-            >
-              <path d="M14 2.042c6.76 0 12 4.952 12 11.64S20.76 25.322 14 25.322a13.091 13.091 0 0 1-3.474-.461.956 .956 0 0 0-.641.047L7.5 25.959a.961.961 0 0 1-1.348-.849l-.065-2.134a.957.957 0 0 0-.322-.684A11.389 11.389 0 0 1 2 13.682C2 6.994 7.24 2.042 14 2.042ZM6.794 17.086a.57.57 0 0 0 .827.758l3.786-2.874a.722.722 0 0 1 .868 0l2.8 2.1a1.8 1.8 0 0 0 2.6-.481l3.525-5.592a.57.57 0 0 0-.827-.758l-3.786 2.874a.722.722 0 0 1-.868 0l-2.8-2.1a1.8 1.8 0 0 0-2.6.481Z"></path>
-            </svg>
-          </button>
+          <Link to={`/messages/1`}>
+            <button className={classes.messenger}>
+              <svg
+                viewBox="0 0 28 28"
+                alt=""
+                class="a8c37x1j ms05siws l3qrxjdp b7h9ocf4 rs22bh7c"
+                fill="currentColor"
+                height="25"
+                width="25"
+              >
+                <path d="M14 2.042c6.76 0 12 4.952 12 11.64S20.76 25.322 14 25.322a13.091 13.091 0 0 1-3.474-.461.956 .956 0 0 0-.641.047L7.5 25.959a.961.961 0 0 1-1.348-.849l-.065-2.134a.957.957 0 0 0-.322-.684A11.389 11.389 0 0 1 2 13.682C2 6.994 7.24 2.042 14 2.042ZM6.794 17.086a.57.57 0 0 0 .827.758l3.786-2.874a.722.722 0 0 1 .868 0l2.8 2.1a1.8 1.8 0 0 0 2.6-.481l3.525-5.592a.57.57 0 0 0-.827-.758l-3.786 2.874a.722.722 0 0 1-.868 0l-2.8-2.1a1.8 1.8 0 0 0-2.6.481Z"></path>
+              </svg>
+            </button>
+          </Link>
         </li>
         <li className={classes.third_column_item}>
           {numberOfNew_notifications > 0 && (

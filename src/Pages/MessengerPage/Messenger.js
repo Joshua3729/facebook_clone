@@ -55,7 +55,15 @@ const MessengerPage = () => {
               className={classes.search_input}
             />
           </form>
-          <div className={classes.messages_wrapper}>
+          <div className={classes.chats_items_wrapper}>
+            <Chat_item active={true} />
+            <Chat_item />
+            <Chat_item />
+            <Chat_item />
+            <Chat_item />
+            <Chat_item />
+            <Chat_item />
+            <Chat_item />
             <Chat_item />
           </div>
         </div>
@@ -64,7 +72,15 @@ const MessengerPage = () => {
             <div className={classes.user_profile}></div>
             <div className={classes.username}>Joshua Khumalo</div>
           </div>
-          <div className={classes.messages_inner_wrapper}></div>
+          <div className={classes.messages_inner_wrapper}>
+            <div className={classes.about_user}>
+              <div className={classes.user_profile}></div>
+              <div className={classes.username}>Joshua Khumalo</div>
+              <div className={classes.connection_status}>
+                You're connected on bookFace
+              </div>
+            </div>
+          </div>
           <form className={classes.message_form}>
             <svg
               class={classes.emoji_btn}

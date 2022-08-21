@@ -62,6 +62,13 @@
   cursor: pointer;
 }
 
+.messenger_link {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: #e4e6eb;
+}
+
 .third_column:last-child {
   margin-right: 0;
 }
