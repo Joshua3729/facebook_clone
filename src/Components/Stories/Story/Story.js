@@ -14,7 +14,7 @@ const Story = (props) => {
         alt=""
         className={classes.profile}
       />
-      <p className={classes.name}>Sive Wana</p>
+      <p className={classes.name}>{props.name}</p>
     </div>
   );
 };

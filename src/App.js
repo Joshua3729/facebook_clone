@@ -65,7 +65,7 @@ function App() {
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/:user_id" exact element={<User_profile />} />
-        <Route path="/messages/:message_id" exact element={<MessengerPage />} />
+        <Route path="/messages/:user_id" exact element={<MessengerPage />} />
       </Routes>
     );
   } else if (!isAuth && !authLoading) {

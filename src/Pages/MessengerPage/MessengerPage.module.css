@@ -120,7 +120,7 @@
 }
 .messages_inner_wrapper {
   width: 100%;
-  height: calc(100% - 160px);
+  height: calc(100vh - 230px);
   overflow-y: scroll;
 }
 .message_form {
@@ -174,4 +174,20 @@
 .connection_status {
   font-size: 15px;
   color: #8a8d91;
+}
+.about_user {
+  margin-bottom: 30px;
+}
+.no_chats_wrapper {
+  width: 100%;
+  height: calc(100vh - 70px - 170px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }

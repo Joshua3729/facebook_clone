@@ -45,19 +45,23 @@ const Stories = () => {
         image={
           "https://dailynews.co.zw/wp-content/uploads/2020/03/Burna-Boy.jpg"
         }
+        name={"Sive Manqina"}
       />
       <Story
         image={
           "https://www.musicinafrica.net/sites/default/files/images/artist_profile/202103/khamo1.jpg"
         }
+        name={"Bheki Cele"}
       />
       <Story
         image={
           "https://www.safrolebs.com/wp-content/uploads/2022/03/20220331_171412.jpg"
         }
+        name={"Luvo Gculo"}
       />
       <Story
         image={"https://dumacollective.com/wp-content/uploads/2020/08/KK-2.jpg"}
+        name={"Tinashe Jena"}
       />
     </div>
   );

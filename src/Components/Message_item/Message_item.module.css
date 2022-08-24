@@ -1,0 +1,40 @@
+.connection_message {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.connection_profile {
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  border-radius: 50%;
+}
+.message {
+  padding: 10px;
+  background-color: #dddddd;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.my_message {
+  background-color: #1b74e4;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.my_message_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.time_stamp {
+  margin-bottom: 10px;
+  font-size: 17px;
+  color: #8a8d91;
+}
+.profile{
+  width: 100%;
+  height: 100%;
+border-radius: 50%;
+}
