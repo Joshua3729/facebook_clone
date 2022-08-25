@@ -12,6 +12,8 @@ const MessengerPage = () => {
   const [chats_data, get_chats_data] = useState(null);
   const [user_data, get_user_data] = useState(null);
   const [messages_data, get_messages_data] = useState(null);
+  const [new_message, set_new_messages] = useState("");
+
   const token = useSelector((state) => state.auth.token);
   const user_id = useParams().user_id;
 
@@ -19,7 +21,6 @@ const MessengerPage = () => {
     document.body.style.overflowY = "scroll";
     getChats();
     getMessages(user_id);
-    getMessageUser(user_id);
     const socketPosts = openSocket("http://localhost:5000/messenger");
 
     socketPosts.on("messages", (data) => {
@@ -33,9 +34,47 @@ const MessengerPage = () => {
 
   const openMessages = (id) => {
     navigate(`/messages/${id}`);
+    getMessages(id);
+  };
+
+  const onMessageChange = (message) => {
+    set_new_messages(message);
+  };
+
+  const sendMessage = (e, message, target_user_id) => {
+    e.preventDefault();
+    set_new_messages("");
+    // setUser_comment("");
+    // setPostComment_loading(true);
+
+    fetch("http://localhost:5000/feed/send_message", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({
+        target_user_id: target_user_id,
+        text_message: message,
+      }),
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to send message.");
+        }
+
+        return res.json();
+      })
+      .then((resData) => {
+        console.log(resData);
+        get_messages_data((state) => [...state, ...resData.message]);
+        // setPostComment_loading(false);
+      })
+      .catch((err) => console.log(err));
   };
 
   const getChats = () => {
+    console.log("[Executed]");
     fetch("http://localhost:5000/feed/get_chats", {
       headers: {
         "Content-Type": "application/json",
@@ -51,30 +90,13 @@ const MessengerPage = () => {
       })
       .then((resData) => {
         console.log(resData);
+        console.log("[Executed]");
+
         get_chats_data(resData.chats);
       })
       .catch((err) => console.log(err));
   };
-  const getMessageUser = (user_id) => {
-    fetch("http://localhost:5000/feed/get_message_user/" + user_id, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-    })
-      .then((res) => {
-        if (res.status !== 200) {
-          throw new Error("Failed to fetch user.");
-        }
 
-        return res.json();
-      })
-      .then((resData) => {
-        console.log(resData);
-        get_user_data(resData.user[0]);
-      })
-      .catch((err) => console.log(err));
-  };
   const getMessages = (user_id) => {
     fetch("http://localhost:5000/feed/get_messages/" + user_id, {
       headers: {
@@ -92,6 +114,7 @@ const MessengerPage = () => {
       .then((resData) => {
         console.log(resData);
         get_messages_data(resData.messages);
+        get_user_data(resData.user);
       })
       .catch((err) => console.log(err));
   };
@@ -103,7 +126,11 @@ const MessengerPage = () => {
     chats_wrapper = (
       <div className={classes.chats_items_wrapper}>
         {chats_data.map((chat) => (
-          <Chat_item active={true} chat={chat} click={openMessages} />
+          <Chat_item
+            active={chat.user_id == user_id}
+            chat={chat}
+            click={openMessages}
+          />
         ))}
       </div>
     );
@@ -138,7 +165,10 @@ const MessengerPage = () => {
             <Message_item message={message} />
           ))}
         </div>
-        <form className={classes.message_form}>
+        <form
+          className={classes.message_form}
+          onSubmit={(e) => sendMessage(e, new_message, user_id)}
+        >
           <svg
             class={classes.emoji_btn}
             height="30px"
@@ -162,6 +192,8 @@ const MessengerPage = () => {
             type="text"
             className={classes.message_input}
             placeholder="Aa"
+            value={new_message}
+            onChange={(e) => onMessageChange(e.target.value)}
           />
         </form>
       </div>

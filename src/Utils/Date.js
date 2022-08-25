@@ -49,3 +49,15 @@ export const getNotificationTimeCreated = (date) => {
           })
     }`;
 };
+
+export const getMessageTimeCreated = (date) => {
+  const date1 = new Date(date);
+  const date2 = new Date();
+  const diffInMs = Math.abs(date2 - date1);
+
+  return `${date1.toLocaleString("en-us", {
+    month: "short",
+  })} ${date1.getDate()}, ${date1.getFullYear()} ${date1
+    .getHours()
+    .toFixed(0)}:${date1.getMinutes().toFixed(0)}`;
+};

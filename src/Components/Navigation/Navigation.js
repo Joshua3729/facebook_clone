@@ -49,6 +49,9 @@ const Navigation = () => {
         if (data.action === "get-users") {
           dispatch(HomeActions.getActive_users(data.users));
         }
+        if (data.action === "get-message") {
+          console.log(data);
+        }
       });
     }
     return () => {

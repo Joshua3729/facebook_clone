@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { getMessageTimeCreated } from "../../Utils/Date";
 import classes from "./Message_item.module.css";
 
 const Message_item = (props) => {
@@ -24,7 +25,9 @@ const Message_item = (props) => {
     );
   return (
     <div className={classes.Message_item}>
-      <div className={classes.time_stamp}>Fri 12:31 PM</div>
+      <div className={classes.time_stamp}>
+        {getMessageTimeCreated(props.message.created_at)}
+      </div>
       <div className={classes.message_wrapper}>{message_item}</div>
     </div>
   );
