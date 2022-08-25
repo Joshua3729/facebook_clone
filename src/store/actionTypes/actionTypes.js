@@ -30,3 +30,5 @@ export const setLoginLoading = "setLoginLoading";
 export const getActive_users = "getActive_users";
 export const resetPostData = "resetPostData";
 export const SET_POSTS_LOADING = "SET_POSTS_LOADING";
+export const GET_CHATS_DATA = "GET_CHATS_DATA";
+export const GET_MESSAGES_DATA = "GET_MESSAGES_DATA";

@@ -23,3 +23,4 @@ export {
   getActive_users,
 } from "./Home";
 export { OnFIleChange, setCloseUploadAction } from "./UserProfile";
+export { getChats, getMessages } from "./Messenger";
