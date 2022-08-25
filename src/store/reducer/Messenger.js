@@ -1,7 +1,10 @@
 import * as actionTypes from "../actionTypes/actionTypes";
-import { required, length, email } from "../../Utils/validators";
 
-const initialState = {};
+const initialState = {
+  messages_data: null,
+  chats_data: null,
+  user_data: null,
+};
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     default:
