@@ -1,26 +1,33 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Chat_item from "../../Components/Chat_item/Chat_item";
 import Message_item from "../../Components/Message_item/Message_item";
 import classes from "./MessengerPage.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import openSocket from "socket.io-client";
+import * as HomeActions from "../../store/actionTypes/index";
+import Navigation from "../../Components/Navigation/Navigation";
 
 const MessengerPage = () => {
-  const [chats_data, get_chats_data] = useState(null);
-  const [user_data, get_user_data] = useState(null);
-  const [messages_data, get_messages_data] = useState(null);
-  const [new_message, set_new_messages] = useState("");
-
+  // const [chats_data, get_chats_data] = useState(null);
+  // const [user_data, get_user_data] = useState(null);
+  // const [messages_data, get_messages_data] = useState(null);
+  const chats_data = useSelector((state) => state.messenger.chats_data);
+  const messages_data = useSelector((state) => state.messenger.messages_data);
+  const user_data = useSelector((state) => state.messenger.user_data);
+  const new_message = useSelector((state) => state.messenger.user_message);
   const token = useSelector((state) => state.auth.token);
   const user_id = useParams().user_id;
+  const sender_user_id = useSelector((state) => state.auth.user_data.user_id);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     document.body.style.overflowY = "scroll";
-    getChats();
-    getMessages(user_id);
+    dispatch(HomeActions.getChats(token));
+    dispatch(HomeActions.getMessages(user_id, token));
     const socketPosts = openSocket("http://localhost:5000/messenger");
 
     socketPosts.on("messages", (data) => {
@@ -34,89 +41,7 @@ const MessengerPage = () => {
 
   const openMessages = (id) => {
     navigate(`/messages/${id}`);
-    getMessages(id);
-  };
-
-  const onMessageChange = (message) => {
-    set_new_messages(message);
-  };
-
-  const sendMessage = (e, message, target_user_id) => {
-    e.preventDefault();
-    set_new_messages("");
-    // setUser_comment("");
-    // setPostComment_loading(true);
-
-    fetch("http://localhost:5000/feed/send_message", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-      body: JSON.stringify({
-        target_user_id: target_user_id,
-        text_message: message,
-      }),
-    })
-      .then((res) => {
-        if (res.status !== 200) {
-          throw new Error("Failed to send message.");
-        }
-
-        return res.json();
-      })
-      .then((resData) => {
-        console.log(resData);
-        get_messages_data((state) => [...state, ...resData.message]);
-        // setPostComment_loading(false);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const getChats = () => {
-    console.log("[Executed]");
-    fetch("http://localhost:5000/feed/get_chats", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-    })
-      .then((res) => {
-        if (res.status !== 200) {
-          throw new Error("Failed to fetch comments.");
-        }
-
-        return res.json();
-      })
-      .then((resData) => {
-        console.log(resData);
-        console.log("[Executed]");
-
-        get_chats_data(resData.chats);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const getMessages = (user_id) => {
-    fetch("http://localhost:5000/feed/get_messages/" + user_id, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-    })
-      .then((res) => {
-        if (res.status !== 200) {
-          throw new Error("Failed to fetch messages.");
-        }
-
-        return res.json();
-      })
-      .then((resData) => {
-        console.log(resData);
-        get_messages_data(resData.messages);
-        get_user_data(resData.user);
-      })
-      .catch((err) => console.log(err));
+    dispatch(HomeActions.getMessages(id, token));
   };
 
   let chats_wrapper = <div className={classes.loading}>Loading...</div>;
@@ -135,20 +60,10 @@ const MessengerPage = () => {
       </div>
     );
 
-    message_wrapper = (
-      <div className={classes.message_wrapper}>
-        <div className={classes.message_header}>
-          <div className={classes.user_profile}>
-            <img
-              src={user_data?.profile_img}
-              alt="user profile"
-              className={classes.profile}
-            />
-          </div>
-          <div className={classes.username}>{user_data?.fullname}</div>
-        </div>
-        <div className={classes.messages_inner_wrapper}>
-          <div className={classes.about_user}>
+    if (user_id)
+      message_wrapper = (
+        <div className={classes.message_wrapper}>
+          <div className={classes.message_header}>
             <div className={classes.user_profile}>
               <img
                 src={user_data?.profile_img}
@@ -157,47 +72,70 @@ const MessengerPage = () => {
               />
             </div>
             <div className={classes.username}>{user_data?.fullname}</div>
-            <div className={classes.connection_status}>
-              You're connected on bookFace
-            </div>
           </div>
-          {messages_data?.map((message) => (
-            <Message_item message={message} />
-          ))}
-        </div>
-        <form
-          className={classes.message_form}
-          onSubmit={(e) => sendMessage(e, new_message, user_id)}
-        >
-          <svg
-            class={classes.emoji_btn}
-            height="30px"
-            viewBox="0 0 38 38"
-            width="30px"
+          <div className={classes.messages_inner_wrapper}>
+            <div className={classes.about_user}>
+              <div className={classes.user_profile}>
+                <img
+                  src={user_data?.profile_img}
+                  alt="user profile"
+                  className={classes.profile}
+                />
+              </div>
+              <div className={classes.username}>{user_data?.fullname}</div>
+              <div className={classes.connection_status}>
+                You're connected on bookFace
+              </div>
+            </div>
+            {messages_data?.map((message) => (
+              <Message_item message={message} />
+            ))}
+          </div>
+          <form
+            className={classes.message_form}
+            onSubmit={(e) =>
+              dispatch(
+                HomeActions.sendMessage(
+                  e,
+                  new_message,
+                  sender_user_id,
+                  user_id,
+                  token
+                )
+              )
+            }
           >
-            <g fill="none" fill-rule="evenodd">
-              <g transform="translate(-893.000000, -701.000000)">
-                <g transform="translate(709.000000, 314.000000)">
-                  <g>
-                    <path
-                      d="M210.5,405 C209.121,405 208,403.879 208,402.5 C208,401.121 209.121,400 210.5,400 C211.879,400 213,401.121 213,402.5 C213,403.879 211.879,405 210.5,405 M212.572,411.549 C210.428,413.742 206.938,415 203,415 C199.062,415 195.572,413.742 193.428,411.549 C192.849,410.956 192.859,410.007 193.451,409.428 C194.045,408.85 194.993,408.859 195.572,409.451 C197.133,411.047 199.909,412 203,412 C206.091,412 208.867,411.047 210.428,409.451 C211.007,408.859 211.956,408.85 212.549,409.428 C213.141,410.007 213.151,410.956 212.572,411.549 M195.5,400 C196.879,400 198,401.121 198,402.5 C198,403.879 196.879,405 195.5,405 C194.121,405 193,403.879 193,402.5 C193,401.121 194.121,400 195.5,400 M203,387 C192.523,387 184,395.523 184,406 C184,416.477 192.523,425 203,425 C213.477,425 222,416.477 222,406 C222,395.523 213.477,387 203,387"
-                      fill="#0084ff"
-                    ></path>
+            <svg
+              class={classes.emoji_btn}
+              height="30px"
+              viewBox="0 0 38 38"
+              width="30px"
+            >
+              <g fill="none" fill-rule="evenodd">
+                <g transform="translate(-893.000000, -701.000000)">
+                  <g transform="translate(709.000000, 314.000000)">
+                    <g>
+                      <path
+                        d="M210.5,405 C209.121,405 208,403.879 208,402.5 C208,401.121 209.121,400 210.5,400 C211.879,400 213,401.121 213,402.5 C213,403.879 211.879,405 210.5,405 M212.572,411.549 C210.428,413.742 206.938,415 203,415 C199.062,415 195.572,413.742 193.428,411.549 C192.849,410.956 192.859,410.007 193.451,409.428 C194.045,408.85 194.993,408.859 195.572,409.451 C197.133,411.047 199.909,412 203,412 C206.091,412 208.867,411.047 210.428,409.451 C211.007,408.859 211.956,408.85 212.549,409.428 C213.141,410.007 213.151,410.956 212.572,411.549 M195.5,400 C196.879,400 198,401.121 198,402.5 C198,403.879 196.879,405 195.5,405 C194.121,405 193,403.879 193,402.5 C193,401.121 194.121,400 195.5,400 M203,387 C192.523,387 184,395.523 184,406 C184,416.477 192.523,425 203,425 C213.477,425 222,416.477 222,406 C222,395.523 213.477,387 203,387"
+                        fill="#0084ff"
+                      ></path>
+                    </g>
                   </g>
                 </g>
               </g>
-            </g>
-          </svg>
-          <input
-            type="text"
-            className={classes.message_input}
-            placeholder="Aa"
-            value={new_message}
-            onChange={(e) => onMessageChange(e.target.value)}
-          />
-        </form>
-      </div>
-    );
+            </svg>
+            <input
+              type="text"
+              className={classes.message_input}
+              placeholder="Aa"
+              value={new_message}
+              onChange={(e) =>
+                dispatch(HomeActions.onMessageChange(e.target.value))
+              }
+            />
+          </form>
+        </div>
+      );
   } else if (chats_data?.length === 0) {
     chats_wrapper = (
       <div className={classes.no_chats_wrapper}>
@@ -207,6 +145,7 @@ const MessengerPage = () => {
   }
   return (
     <>
+      <Navigation />
       <div className={classes.gutter}></div>
       <div className={classes.MessengerPage}>
         <div className={classes.chats_wrapper}>

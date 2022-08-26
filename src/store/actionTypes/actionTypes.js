@@ -32,3 +32,6 @@ export const resetPostData = "resetPostData";
 export const SET_POSTS_LOADING = "SET_POSTS_LOADING";
 export const GET_CHATS_DATA = "GET_CHATS_DATA";
 export const GET_MESSAGES_DATA = "GET_MESSAGES_DATA";
+export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
+export const ON_MESSAGE_CHANGE = "ON_MESSAGE_CHANGE";
+export const GET_NEW_MESSAGE = "GET_NEW_MESSAGE";

@@ -10,11 +10,13 @@ import Home from "./store/reducer/Home";
 import Auth from "./store/reducer/Auth";
 import { BrowserRouter } from "react-router-dom";
 import user_profile from "./store/reducer/Userprofile";
+import messenger from "./store/reducer/Messenger";
 
 const rootReducer = combineReducers({
   home: Home,
   auth: Auth,
   userprofile: user_profile,
+  messenger: messenger,
 });
 
 const logger = (store) => {

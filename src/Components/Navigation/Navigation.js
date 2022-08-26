@@ -12,8 +12,9 @@ import NotificationPop_up from "../NotificationPop_up/NotificationPop_up";
 import Popup_modal from "../Popup_modal/Popup_modal";
 import LoadingSpinner_2 from "../UI/LoadingSpinners/LoadingSpinner_2/LoadingSpinner_2";
 import { Link } from "react-router-dom";
+import { onPreviewPost_photo_Loading } from "../../store/actionTypes/actionTypes";
 
-const Navigation = () => {
+const Navigation = (props) => {
   const profile_img = useSelector((state) => state.auth.user_data.profile_img);
   const username = useSelector((state) => state.auth.user_data.fullname);
   const user_id = useSelector((state) => state.auth.user_data.user_id);
@@ -27,7 +28,6 @@ const Navigation = () => {
   const token = useSelector((state) => state.auth.token);
   const [openNotificationPop_up, setOpenNotificationPop_up] = useState(false);
   const dispatch = useDispatch();
-  const posts_loading = useSelector((state) => state.home.posts_loading);
 
   useEffect(() => {
     const manager = new Manager("http://localhost:5000", {
@@ -51,6 +51,7 @@ const Navigation = () => {
         }
         if (data.action === "get-message") {
           console.log(data);
+          dispatch(HomeActions.getNewMessage(data.message[0]));
         }
       });
     }
@@ -189,7 +190,7 @@ const Navigation = () => {
     </>
   );
 
-  if (!posts_loading) {
+  if (!props.loading) {
     second_column_items = (
       <>
         <li className={[classes.active, classes.nav_item].join(" ")}>
@@ -242,7 +243,7 @@ const Navigation = () => {
     third_column_items = (
       <>
         <li className={classes.third_column_item}>
-          <Link to={`/messages/1`}>
+          <Link to={`/messages`}>
             <button className={classes.messenger}>
               <svg
                 viewBox="0 0 28 28"

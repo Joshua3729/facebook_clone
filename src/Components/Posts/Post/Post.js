@@ -199,7 +199,9 @@ const Post = (props) => {
           <div className={classes.name_wrapper}>
             <div className={classes.user_name}>
               <Link
-                to={`/${props.user_name.split(" ").join(".")}.${props.user_id}`}
+                to={`/user/${props.user_name.split(" ").join(".")}.${
+                  props.user_id
+                }`}
               >
                 {props.user_name}
               </Link>

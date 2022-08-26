@@ -8,9 +8,11 @@ import openSocket from "socket.io-client";
 import * as HomeActions from "../../store/actionTypes/index";
 import { useDispatch, useSelector } from "react-redux";
 import CreatePost from "../../Components/Inputs/CreatePost/CreatePost";
+import Navigation from "../../Components/Navigation/Navigation";
 
 const Home = () => {
   const posts = useSelector((state) => state.home.posts);
+
   const user_data = useSelector((state) => state.auth.user_data);
   const [activeContacts, getActiveContacts] = useState(null);
   const showCreatePost_modal = useSelector(
@@ -91,6 +93,11 @@ const Home = () => {
         </div>
       </>
     );
-  return home_page;
+  return (
+    <>
+      <Navigation loading={posts_loading} />
+      {home_page}
+    </>
+  );
 };
 export default Home;

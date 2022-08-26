@@ -64,8 +64,9 @@ function App() {
     route = (
       <Routes>
         <Route path="/" exact element={<Home />} />
-        <Route path="/:user_id" exact element={<User_profile />} />
+        <Route path="/user/:user_id" exact element={<User_profile />} />
         <Route path="/messages/:user_id" exact element={<MessengerPage />} />
+        <Route path="/messages/" exact element={<MessengerPage />} />
       </Routes>
     );
   } else if (!isAuth && !authLoading) {
@@ -76,12 +77,7 @@ function App() {
       </Routes>
     );
   }
-  return (
-    <div className={classes.App}>
-      {isAuth && !authLoading && <Navigation />}
-      {route}
-    </div>
-  );
+  return <div className={classes.App}>{route}</div>;
 }
 
 export default App;
